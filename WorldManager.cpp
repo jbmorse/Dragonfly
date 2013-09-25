@@ -100,3 +100,19 @@ bool WorldManager::isValid(string event_type) {
 	return false;
 
 }
+
+void WorldManager::draw() {
+
+	ObjectListIterator iterator(&updates);
+
+	for (int alt = 0; alt <= MAX_ALTITUDE; alt++) {
+		while (!iterator.isDone()) {
+			if (iterator.currentObject()->getAltitude() == alt) {
+				iterator.currentObject()->draw();
+			}
+			iterator.next();
+		}
+		iterator.first();
+	}
+
+}

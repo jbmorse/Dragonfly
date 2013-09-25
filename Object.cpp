@@ -12,11 +12,15 @@
 #include "LogManager.h"
 #include "EventStep.h"
 #include "GameManager.h"
+#include "EventMouse.h"
+#include "EventKeyboard.h"
+#include "InputManager.h"
 
 //Misc required headers
 
 Object::Object() {
 
+	altitude = 0;
 	event_count = 0;
 	LogManager &logmanager = LogManager::getInstance();
 	logmanager.writeLog("Object::Object: Creating Object\n");
@@ -87,6 +91,10 @@ int Object::registerInterest(string event_type) {
 		GameManager &gamemanager = GameManager::getInstance();
 		gamemanager.registerInterest(this, event_type);
 	}
+	else if (event_type == MOUSE_EVENT || event_type == KEYBOARD_EVENT) {
+		InputManager &inputmanager = InputManager::getInstance();
+		inputmanager.registerInterest(this, event_type);
+	}
 	else {
 		WorldManager &worldmanager = WorldManager::getInstance();
 		worldmanager.registerInterest(this, event_type);
@@ -105,6 +113,10 @@ int Object::unregisterInterest(string event_type) {
 		GameManager &gamemanager = GameManager::getInstance();
 		gamemanager.unregisterInterest(this, event_type);
 	}
+	else if (event_type == MOUSE_EVENT || event_type == KEYBOARD_EVENT) {
+		InputManager &inputmanager = InputManager::getInstance();
+		inputmanager.unregisterInterest(this, event_type);
+	}
 	else {
 		WorldManager &worldmanager = WorldManager::getInstance();
 		worldmanager.unregisterInterest(this, event_type);
@@ -120,5 +132,26 @@ int Object::unregisterInterest(string event_type) {
 
 	event_count--;
 	return 0;
+
+}
+
+void Object::draw() {
+
+}
+
+int Object::setAltitude(int new_altitude) {
+
+	if (new_altitude >= 0 && new_altitude <= MAX_ALTITUDE) {
+		altitude = new_altitude;
+		return 0;
+	}
+
+	return -1;
+
+}
+
+int Object::getAltitude() {
+
+	return altitude;
 
 }

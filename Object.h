@@ -26,6 +26,7 @@ private:
 	Position pos;	//Position in world
 	int event_count;
 	string event_name[MAX_OBJ_EVENTS];
+	int altitude;	//0 to MAX supported
 
 public:
 	Object();
@@ -37,6 +38,9 @@ public:
 	virtual int eventHandler(Event *p_e);//(0 if ignored, 1 otherwise)
 	int registerInterest(string event_type);	//Add interest in event
 	int unregisterInterest(string event_type);	//Remove interest in event
+	virtual void draw();				//Draw single sprite frame
+	int setAltitude(int new_altitude);	//Set object altitude
+	int getAltitude();					//Return object altitude
 
 };
 

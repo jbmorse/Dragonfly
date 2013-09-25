@@ -14,6 +14,8 @@
 
 //Misc required headers
 
+#define MAX_ALTITUDE 4
+
 class WorldManager : public Manager {
 
 private:
@@ -33,6 +35,9 @@ public:
 	void update();						//Update world and delete objects in deletions
 	int markForDelete(Object *p_o);		//Indicate object should be deleted (0 if okay, -1 if error)
 	bool isValid(string event_name);	//Accepts world manager events
+	void draw(); 						//Draw all objects
+
+
 
 };
 

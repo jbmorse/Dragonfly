@@ -13,6 +13,8 @@
 #include "EventStep.h"
 #include "ObjectListIterator.h"
 #include "WorldManager.h"
+#include "GraphicsManager.h"
+#include "InputManager.h"
 
 //Misc required headers
 #include "time.h"
@@ -46,6 +48,18 @@ int GameManager::startUp(bool flush) {
 	LogManager &logmanager = LogManager::getInstance();
 	failedServices += logmanager.startUp(flush);
 	logmanager.writeLog("GameManager::startUp: Log Manager started\n");
+
+	//Start Graphics Manager
+	GraphicsManager &graphicsmanager = GraphicsManager::getInstance();
+	failedServices += graphicsmanager.startUp();
+	if (failedServices == 0) logmanager.writeLog("GameManager::startUp: Graphics Manager started\n");
+
+	//Start Input Manager
+	InputManager &inputmanager = InputManager::getInstance();
+	failedServices += inputmanager.startUp();
+	if (failedServices == 0) logmanager.writeLog("GameManager::startUp: Input Manager started\n");
+
+	//Start World Manager
 	WorldManager &worldmanager = WorldManager::getInstance();
 	failedServices += worldmanager.startUp();
 	logmanager.writeLog("GameManager::startUp: World Manager started\n");
@@ -69,42 +83,43 @@ void GameManager::shutDown() {
 
 }
 
+
+void sendStepEvent() {
+
+	WorldManager &worldmanager = WorldManager::getInstance();
+	ObjectList all_objects = worldmanager.getAllObjects();
+	EventStep s = EventStep();
+	ObjectListIterator iterator = ObjectListIterator(&all_objects);
+	while (!iterator.isDone()) {
+		iterator.currentObject()->eventHandler((Event*)&s);
+		iterator.next();
+	}
+
+}
+
 void GameManager::run(int fr_time) {
 
 	frame_time = fr_time;
 	long int loop_time;
 	Clock clock;
+	WorldManager &worldmanager = WorldManager::getInstance();
+	GraphicsManager &graphicsmanager = GraphicsManager::getInstance();
+	InputManager &inputmanager = InputManager::getInstance();
+	LogManager &logmanager = LogManager::getInstance();
 
 	//MAIN GAME LOOP
 	int i = 0;
 	int sleep_time;
-	LogManager &logmanager = LogManager::getInstance();
-	logmanager.writeLog("GameManager::run: Game loop begins (30 timing statements will follow)\n");
+	logmanager.writeLog("GameManager::run: Game loop begins\n");
 	while (!game_over) {
 		clock.delta();
-		//get input//
-		//update world//
-		//Send step event to all objects
-		WorldManager &worldmanager = WorldManager::getInstance();
-		ObjectList all_objects = worldmanager.getAllObjects();
-		EventStep *s = new EventStep();
-		ObjectListIterator iter = all_objects.createIterator();
-		while (!iter.isDone()) {
-			iter.currentObject()->eventHandler((Event *)s);
-			iter.next();
-		}
-		loop_time = clock.split();
-		sleep_time = frame_time - loop_time;
-		i++;
-		if (i == 30) setGameOver();
-		if (i == 20) {
-			iter.first();
-			worldmanager.markForDelete(iter.currentObject());
-		}
+		inputmanager.getInput();
+		sendStepEvent();
 		worldmanager.update();
-		//draw new screen//
-		//swap buffer//
-		usleep(sleep_time*1000);
+		worldmanager.draw();
+		graphicsmanager.swapBuffers();
+		loop_time = clock.split();
+		usleep((frame_time-loop_time)*1000);
 	}
 	logmanager.writeLog("GameManager::run: Game loop ends\n");
 	shutDown();
@@ -136,4 +151,3 @@ bool GameManager::isValid(string event_type) {
 	return false;
 
 }
-

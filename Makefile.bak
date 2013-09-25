@@ -18,7 +18,10 @@ LDFLAGS= -lncurses -lrt	# uncomment linux/cygwin
 #LDFLAGS= -lncurses 		# uncomment for macos
 INCPATH= include		# path to engine includes
 ENG= lib/libdragonfly.a		# dragonfly engine
-GAMEENG= Manager.cpp LogManager.cpp Utility.cpp Clock.cpp GameManager.cpp Position.cpp Object.cpp ObjectList.cpp ObjectListIterator.cpp Event.cpp EventStep.cpp WorldManager.cpp
+GAMEENG= Manager.cpp LogManager.cpp Utility.cpp Clock.cpp GameManager.cpp \
+		Position.cpp Object.cpp ObjectList.cpp ObjectListIterator.cpp Event.cpp \
+		EventStep.cpp WorldManager.cpp GraphicsManager.cpp InputManager.cpp \
+		EventKeyboard.cpp EventMouse.cpp
 GAME= game.cpp
 EXECUTABLE= game
 OBJECTS= $(GAMEENG:.cpp=.o)
@@ -59,8 +62,25 @@ GameManager.o: /usr/include/machine/time.h /usr/include/sys/types.h
 GameManager.o: /usr/include/machine/types.h LogManager.h /usr/include/stdio.h
 GameManager.o: /usr/include/sys/stdio.h /usr/include/sys/cdefs.h
 GameManager.o: /usr/include/stdint.h /usr/include/bits/wordsize.h Clock.h
-GameManager.o: EventStep.h WorldManager.h /usr/include/unistd.h
+GameManager.o: EventStep.h WorldManager.h GraphicsManager.h
+GameManager.o: /usr/include/curses.h /usr/include/ncurses_dll.h
+GameManager.o: /usr/include/unctrl.h /usr/include/unistd.h
 GameManager.o: /usr/include/sys/unistd.h
+GraphicsManager.o: GraphicsManager.h /usr/include/curses.h
+GraphicsManager.o: /usr/include/ncurses_dll.h /usr/include/stdio.h
+GraphicsManager.o: /usr/include/_ansi.h /usr/include/newlib.h
+GraphicsManager.o: /usr/include/sys/config.h /usr/include/machine/ieeefp.h
+GraphicsManager.o: /usr/include/sys/features.h /usr/include/sys/reent.h
+GraphicsManager.o: /usr/include/sys/_types.h /usr/include/machine/_types.h
+GraphicsManager.o: /usr/include/machine/_default_types.h
+GraphicsManager.o: /usr/include/sys/lock.h /usr/include/sys/types.h
+GraphicsManager.o: /usr/include/machine/types.h /usr/include/sys/stdio.h
+GraphicsManager.o: /usr/include/sys/cdefs.h /usr/include/stdint.h
+GraphicsManager.o: /usr/include/bits/wordsize.h /usr/include/unctrl.h
+GraphicsManager.o: Manager.h Object.h Position.h Event.h ObjectList.h
+GraphicsManager.o: ObjectListIterator.h
+InputManager.o: InputManager.h Manager.h Object.h Position.h Event.h
+InputManager.o: ObjectList.h ObjectListIterator.h
 LogManager.o: LogManager.h Manager.h Object.h Position.h Event.h ObjectList.h
 LogManager.o: ObjectListIterator.h /usr/include/stdio.h /usr/include/_ansi.h
 LogManager.o: /usr/include/newlib.h /usr/include/sys/config.h
@@ -91,6 +111,7 @@ Object.o: /usr/include/machine/_default_types.h /usr/include/sys/lock.h
 Object.o: /usr/include/sys/types.h /usr/include/machine/types.h
 Object.o: /usr/include/sys/stdio.h /usr/include/sys/cdefs.h
 Object.o: /usr/include/stdint.h /usr/include/bits/wordsize.h EventStep.h
+Object.o: GameManager.h /usr/include/time.h /usr/include/machine/time.h
 ObjectList.o: ObjectList.h Object.h Position.h Event.h ObjectListIterator.h
 ObjectList.o: LogManager.h Manager.h /usr/include/stdio.h
 ObjectList.o: /usr/include/_ansi.h /usr/include/newlib.h
