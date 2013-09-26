@@ -21,7 +21,7 @@ ENG= lib/libdragonfly.a		# dragonfly engine
 GAMEENG= Manager.cpp LogManager.cpp Utility.cpp Clock.cpp GameManager.cpp \
 		Position.cpp Object.cpp ObjectList.cpp ObjectListIterator.cpp Event.cpp \
 		EventStep.cpp WorldManager.cpp GraphicsManager.cpp InputManager.cpp \
-		EventKeyboard.cpp EventMouse.cpp
+		EventKeyboard.cpp EventMouse.cpp EventCollision.cpp EventOut.cpp
 GAME= game.cpp
 EXECUTABLE= game
 OBJECTS= $(GAMEENG:.cpp=.o)
@@ -50,6 +50,8 @@ Clock.o: /usr/include/machine/_types.h /usr/include/machine/_default_types.h
 Clock.o: /usr/include/sys/lock.h /usr/include/machine/time.h
 Clock.o: /usr/include/sys/types.h /usr/include/machine/types.h
 Event.o: Event.h
+EventKeyboard.o: EventKeyboard.h Event.h
+EventMouse.o: EventMouse.h Event.h
 EventStep.o: EventStep.h Event.h
 GameManager.o: GameManager.h Manager.h Object.h Position.h Event.h
 GameManager.o: ObjectList.h ObjectListIterator.h /usr/include/time.h
@@ -64,7 +66,7 @@ GameManager.o: /usr/include/sys/stdio.h /usr/include/sys/cdefs.h
 GameManager.o: /usr/include/stdint.h /usr/include/bits/wordsize.h Clock.h
 GameManager.o: EventStep.h WorldManager.h GraphicsManager.h
 GameManager.o: /usr/include/curses.h /usr/include/ncurses_dll.h
-GameManager.o: /usr/include/unctrl.h /usr/include/unistd.h
+GameManager.o: /usr/include/unctrl.h InputManager.h /usr/include/unistd.h
 GameManager.o: /usr/include/sys/unistd.h
 GraphicsManager.o: GraphicsManager.h /usr/include/curses.h
 GraphicsManager.o: /usr/include/ncurses_dll.h /usr/include/stdio.h
@@ -80,7 +82,18 @@ GraphicsManager.o: /usr/include/bits/wordsize.h /usr/include/unctrl.h
 GraphicsManager.o: Manager.h Object.h Position.h Event.h ObjectList.h
 GraphicsManager.o: ObjectListIterator.h
 InputManager.o: InputManager.h Manager.h Object.h Position.h Event.h
-InputManager.o: ObjectList.h ObjectListIterator.h
+InputManager.o: ObjectList.h ObjectListIterator.h GraphicsManager.h
+InputManager.o: /usr/include/curses.h /usr/include/ncurses_dll.h
+InputManager.o: /usr/include/stdio.h /usr/include/_ansi.h
+InputManager.o: /usr/include/newlib.h /usr/include/sys/config.h
+InputManager.o: /usr/include/machine/ieeefp.h /usr/include/sys/features.h
+InputManager.o: /usr/include/sys/reent.h /usr/include/sys/_types.h
+InputManager.o: /usr/include/machine/_types.h
+InputManager.o: /usr/include/machine/_default_types.h /usr/include/sys/lock.h
+InputManager.o: /usr/include/sys/types.h /usr/include/machine/types.h
+InputManager.o: /usr/include/sys/stdio.h /usr/include/sys/cdefs.h
+InputManager.o: /usr/include/stdint.h /usr/include/bits/wordsize.h
+InputManager.o: /usr/include/unctrl.h EventKeyboard.h EventMouse.h
 LogManager.o: LogManager.h Manager.h Object.h Position.h Event.h ObjectList.h
 LogManager.o: ObjectListIterator.h /usr/include/stdio.h /usr/include/_ansi.h
 LogManager.o: /usr/include/newlib.h /usr/include/sys/config.h

@@ -15,5 +15,8 @@
 //Misc required headers
 
 char *getTimeString();
+//Return true if two positions intersect, else false.
+bool positionsIntersect(Position p1, Position p2);
+
 
 #endif /* UTILITY_H_ */

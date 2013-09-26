@@ -6,6 +6,8 @@
  */
 
 //Game engine header files
+#include "Position.h"
+
 //Misc required headers
 #include "time.h"
 #include "stdio.h"
@@ -25,5 +27,12 @@ char *getTimeString() {
 	sprintf(time_str, "%02d:%02d:%02d", timeinfo -> tm_hour, timeinfo -> tm_min, timeinfo -> tm_sec);
 
 	return time_str;
+
+}
+
+// Return true if two positions intersect, else false.
+bool positionsIntersect(Position p1, Position p2) {
+
+	return ((p1.getX() == p2.getX()) && p1.getY() == p2.getY());
 
 }

@@ -36,7 +36,8 @@ public:
 	int markForDelete(Object *p_o);		//Indicate object should be deleted (0 if okay, -1 if error)
 	bool isValid(string event_name);	//Accepts world manager events
 	void draw(); 						//Draw all objects
-
+	ObjectList isCollision(Object *p_o, Position where); //Return list of Objects collided at where
+	int moveObject(Object *p_o, Position where);
 
 
 };

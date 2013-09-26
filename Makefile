@@ -21,8 +21,8 @@ ENG= lib/libdragonfly.a		# dragonfly engine
 GAMEENG= Manager.cpp LogManager.cpp Utility.cpp Clock.cpp GameManager.cpp \
 		Position.cpp Object.cpp ObjectList.cpp ObjectListIterator.cpp Event.cpp \
 		EventStep.cpp WorldManager.cpp GraphicsManager.cpp InputManager.cpp \
-		EventKeyboard.cpp EventMouse.cpp
-GAME= game.cpp
+		EventKeyboard.cpp EventMouse.cpp EventCollision.cpp EventOut.cpp
+GAME= game.cpp Hero.cpp
 EXECUTABLE= game
 OBJECTS= $(GAMEENG:.cpp=.o)
 
@@ -50,8 +50,10 @@ Clock.o: /usr/include/machine/_types.h /usr/include/machine/_default_types.h
 Clock.o: /usr/include/sys/lock.h /usr/include/machine/time.h
 Clock.o: /usr/include/sys/types.h /usr/include/machine/types.h
 Event.o: Event.h
+EventCollision.o: EventCollision.h Event.h Object.h Position.h
 EventKeyboard.o: EventKeyboard.h Event.h
 EventMouse.o: EventMouse.h Event.h
+EventOut.o: EventOut.h Event.h
 EventStep.o: EventStep.h Event.h
 GameManager.o: GameManager.h Manager.h Object.h Position.h Event.h
 GameManager.o: ObjectList.h ObjectListIterator.h /usr/include/time.h
@@ -125,6 +127,7 @@ Object.o: /usr/include/sys/types.h /usr/include/machine/types.h
 Object.o: /usr/include/sys/stdio.h /usr/include/sys/cdefs.h
 Object.o: /usr/include/stdint.h /usr/include/bits/wordsize.h EventStep.h
 Object.o: GameManager.h /usr/include/time.h /usr/include/machine/time.h
+Object.o: EventMouse.h EventKeyboard.h InputManager.h /usr/include/math.h
 ObjectList.o: ObjectList.h Object.h Position.h Event.h ObjectListIterator.h
 ObjectList.o: LogManager.h Manager.h /usr/include/stdio.h
 ObjectList.o: /usr/include/_ansi.h /usr/include/newlib.h
@@ -156,10 +159,11 @@ Position.o: /usr/include/machine/_default_types.h /usr/include/sys/lock.h
 Position.o: /usr/include/sys/types.h /usr/include/machine/types.h
 Position.o: /usr/include/sys/stdio.h /usr/include/sys/cdefs.h
 Position.o: /usr/include/stdint.h /usr/include/bits/wordsize.h
-Utility.o: /usr/include/time.h /usr/include/_ansi.h /usr/include/newlib.h
-Utility.o: /usr/include/sys/config.h /usr/include/machine/ieeefp.h
-Utility.o: /usr/include/sys/features.h /usr/include/sys/reent.h
-Utility.o: /usr/include/sys/_types.h /usr/include/machine/_types.h
+Utility.o: Position.h /usr/include/time.h /usr/include/_ansi.h
+Utility.o: /usr/include/newlib.h /usr/include/sys/config.h
+Utility.o: /usr/include/machine/ieeefp.h /usr/include/sys/features.h
+Utility.o: /usr/include/sys/reent.h /usr/include/sys/_types.h
+Utility.o: /usr/include/machine/_types.h
 Utility.o: /usr/include/machine/_default_types.h /usr/include/sys/lock.h
 Utility.o: /usr/include/machine/time.h /usr/include/sys/types.h
 Utility.o: /usr/include/machine/types.h /usr/include/stdio.h
@@ -175,7 +179,8 @@ WorldManager.o: /usr/include/machine/_types.h
 WorldManager.o: /usr/include/machine/_default_types.h /usr/include/sys/lock.h
 WorldManager.o: /usr/include/sys/types.h /usr/include/machine/types.h
 WorldManager.o: /usr/include/sys/stdio.h /usr/include/sys/cdefs.h
-WorldManager.o: /usr/include/stdint.h /usr/include/bits/wordsize.h
+WorldManager.o: /usr/include/stdint.h /usr/include/bits/wordsize.h Utility.h
+WorldManager.o: EventCollision.h
 game.o: Clock.h /usr/include/time.h /usr/include/_ansi.h
 game.o: /usr/include/newlib.h /usr/include/sys/config.h
 game.o: /usr/include/machine/ieeefp.h /usr/include/sys/features.h

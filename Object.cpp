@@ -17,11 +17,17 @@
 #include "InputManager.h"
 
 //Misc required headers
+#include "math.h"
 
 Object::Object() {
 
 	altitude = 0;
 	event_count = 0;
+	x_velocity = 0;
+	x_velocity_countdown = 0;
+	y_velocity = 0;
+	y_velocity_countdown = 0;
+	solidness = HARD;
 	LogManager &logmanager = LogManager::getInstance();
 	logmanager.writeLog("Object::Object: Creating Object\n");
 	type = "Object";
@@ -153,5 +159,82 @@ int Object::setAltitude(int new_altitude) {
 int Object::getAltitude() {
 
 	return altitude;
+
+}
+
+void Object::setXVelocity(float new_x_velocity) {
+
+	x_velocity = new_x_velocity;
+
+}
+
+float Object::getXVelocity(){
+
+	return x_velocity;
+
+}
+
+void Object::setYVelocity(float new_y_velocity) {
+
+	y_velocity = new_y_velocity;
+
+}
+
+float Object::getYVelocity() {
+
+	return y_velocity;
+
+}
+
+int Object::getXVelocityStep() {
+
+	if (x_velocity == 0) return 0; //No velocity
+
+	x_velocity_countdown -= fabs(x_velocity);
+	if (x_velocity_countdown > 0) return 0; //Not time to move
+
+	int spaces = floor(1 - x_velocity_countdown);
+	x_velocity_countdown = 1 + fmod(x_velocity_countdown, 1);
+
+	if (x_velocity > 0) return spaces; //Positive velocity
+	else return (-1 * spaces);	//Negative velocity
+
+}
+
+int Object::getYVelocityStep() {
+
+	if (y_velocity == 0) return 0; //No velocity
+
+	y_velocity_countdown -= fabs(y_velocity);
+	if (y_velocity_countdown > 0) return 0; //Not time to move
+
+	int spaces = floor(1 - y_velocity_countdown);
+	y_velocity_countdown = 1 + fmod(y_velocity_countdown, 1);
+
+	if (y_velocity > 0) return spaces; //Positive velocity
+	else return (-1 * spaces);	//Negative velocity
+
+}
+
+bool Object::isSolid() {
+
+	return (solidness == HARD || solidness == SOFT);
+
+}
+
+int Object::setSolidness(Solidness new_solid) {
+
+	if (new_solid == this->getSolidness()) {
+		return -1;
+	}
+
+	solidness = new_solid;
+	return 0;
+
+}
+
+Solidness Object::getSolidness() {
+
+	return solidness;
 
 }

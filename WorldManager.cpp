@@ -8,6 +8,10 @@
 //Game engine header files
 #include "WorldManager.h"
 #include "LogManager.h"
+#include "Utility.h"
+#include "EventCollision.h"
+#include "GraphicsManager.h"
+#include "EventOut.h"
 
 //Misc required headers
 
@@ -71,6 +75,19 @@ ObjectList WorldManager::getAllObjects() {
 
 void WorldManager::update() {
 
+	//Move objects based on velocity
+	ObjectListIterator v_i = ObjectListIterator(&updates);
+	while (!v_i.isDone()) {
+		int x = v_i.currentObject()->getXVelocityStep();
+		int y = v_i.currentObject()->getYVelocityStep();
+		if (x != 0 || y != 0) {
+			Position old_position = v_i.currentObject()->getPosition();
+			Position new_position = Position(old_position.getX() + x, old_position.getY() + y);
+			moveObject(v_i.currentObject(), new_position);
+		}
+		v_i.next();
+	}
+
 	ObjectList deletion_copy = deletions;   //Copy list so can delete during iteration.
 	ObjectListIterator deletion_I(&deletion_copy);
 	for (deletion_I.first(); !deletion_I.isDone(); deletion_I.next()) {
@@ -114,5 +131,83 @@ void WorldManager::draw() {
 		}
 		iterator.first();
 	}
+
+}
+
+ObjectList WorldManager::isCollision(Object *p_o, Position where) {
+
+	ObjectList collisions;
+	ObjectListIterator i = ObjectListIterator(&updates);
+	while (!i.isDone()) {
+		Object *p_temp_o = i.currentObject();
+		if (p_temp_o != p_o) {
+			if (positionsIntersect(p_temp_o->getPosition(), where) &&
+					(p_temp_o->isSolid()))
+			{
+				collisions.insert(p_temp_o);
+			}
+		}
+		i.next();
+	}
+
+	return collisions;
+
+}
+
+int WorldManager::moveObject(Object *p_o, Position where) {
+
+	bool doMove = true;
+
+	if (p_o->isSolid()) {
+		ObjectList collisions = isCollision(p_o, where);
+		if (!collisions.isEmpty()) {
+			ObjectListIterator i(&collisions);
+			while (!i.isDone()) {
+				Object *p_temp_o = i.currentObject();
+
+				EventCollision c(p_o, p_temp_o, where);
+				p_o->eventHandler(&c);
+				p_temp_o->eventHandler(&c);
+
+				if (p_temp_o->getSolidness() == HARD &&
+					p_o->getSolidness() == HARD) {
+					doMove = false; //Collision with hard solid
+				}
+				i.next();
+			}//End iterate
+
+			if (!doMove) {
+				return -1; //Can not move
+			}
+
+		}//No collisions
+	}//Not solid
+
+	Position prev_pos = p_o->getPosition();
+	p_o->setPosition(where);
+
+	//Check for out of bounds
+	bool out;
+	GraphicsManager &graphicsmanager = GraphicsManager::getInstance();
+	int xBorder = graphicsmanager.getHorizontal();
+	int yBorder = graphicsmanager.getVertical();
+	if (prev_pos.getX() >= 0 && where.getX() < 0) {
+		out = true; //Went out the left side
+	}
+	else if (prev_pos.getX() <= xBorder && where.getX() > xBorder) {
+		out = true; //Went out the right side
+	}
+	else if (prev_pos.getY() >= 0 && where.getY() < 0) {
+		out = true; //Went out the top side
+	}
+	else if (prev_pos.getY() <= yBorder && where.getY() > yBorder) {
+		out = true; //Went out the bottom side
+	}
+	if (out == true) {
+		EventOut ov = EventOut();
+		p_o->eventHandler(&ov);
+	}
+
+	return 0; //Successful move
 
 }
