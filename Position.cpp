@@ -13,9 +13,6 @@
 
 Position::Position(int init_x, int init_y) {
 
-	LogManager &logmanager = LogManager::getInstance();
-	logmanager.writeLog("Position::Position: Setting Position to (%d, %d)\n", init_x, init_y);
-
 	x = init_x;
 	y = init_y;
 

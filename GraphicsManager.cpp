@@ -7,6 +7,7 @@
 
 //Game engine header files
 #include "GraphicsManager.h"
+#include "LogManager.h"
 
 //Misc required headers
 
@@ -24,6 +25,9 @@ GraphicsManager &GraphicsManager::getInstance() {
 }
 
 int GraphicsManager::startUp() {
+
+	LogManager &logmanager = LogManager::getInstance();
+	logmanager.writeLog("GraphicsManager::startUp: GraphicsManager starting\n");
 
 	//Initialize screen
 	initscr();
@@ -46,8 +50,8 @@ int GraphicsManager::startUp() {
 
 	wattron(buffer, A_BOLD);
 
-	if (Manager::isStarted()) return 0;
-	else return -1;
+	is_started = true;
+	return 0;
 
 }
 

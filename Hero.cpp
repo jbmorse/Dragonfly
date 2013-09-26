@@ -11,6 +11,11 @@
 #include "GraphicsManager.h"
 #include "LogManager.h"
 #include "WorldManager.h"
+#include <string>
+#include <iostream>
+
+using namespace std;
+using std::string;
 
 Hero::Hero() {
 
@@ -33,6 +38,9 @@ Hero::~Hero() {
 
 int Hero::eventHandler(Event *p_e) {
 
+	LogManager &logmanager = LogManager::getInstance();
+	logmanager.writeLog("Hero::eventHandler: Hero got an event! \n");
+
 	if (p_e->getType() == KEYBOARD_EVENT) {
 		EventKeyboard *p_keyboard_event = static_cast <EventKeyboard *> (p_e);
 		kbd(p_keyboard_event);
@@ -46,18 +54,19 @@ int Hero::eventHandler(Event *p_e) {
 //Call move (or do nothing) according to key pressed
 void Hero::kbd(EventKeyboard *p_keyboard_event) {
 
+	LogManager &logmanager = LogManager::getInstance();
+
 	WorldManager &world_manager = WorldManager::getInstance();
 	switch(p_keyboard_event->getKey()) {
 	case KEY_UP:	//Up arrow
+		logmanager.writeLog("Hero:kbd: received UP\n");
 		move(-1);
 		break;
 	case KEY_DOWN:	//Down arrow
+		logmanager.writeLog("Hero:kbd: received UP\n");
 		move(+1);
 		break;
-	case 'q':
-		world_manager.markForDelete(this);
-		break;
-	};
+	}
 
 	return;
 

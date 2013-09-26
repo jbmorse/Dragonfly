@@ -7,12 +7,18 @@
 
 //Game engine header files
 #include "EventKeyboard.h"
+#include "LogManager.h"
 
 //Misc required headers
 
 EventKeyboard::EventKeyboard() {
 
-	key_val = NULL;
+	LogManager &logmanager = LogManager::getInstance();
+	logmanager.writeLog("EventKeyboard::EventKeyboard: Made keyboard event\n");
+
+	setType(KEYBOARD_EVENT);
+
+	key_val = 0;
 
 }
 

@@ -11,6 +11,7 @@
 #include "EventKeyboard.h"
 #include "EventMouse.h"
 #include "Manager.h"
+#include "LogManager.h"
 
 //Misc required headers
 
@@ -29,26 +30,24 @@ InputManager &InputManager::getInstance() {
 
 int InputManager::startUp() {
 
+	LogManager &logmanager = LogManager::getInstance();
+	logmanager.writeLog("InputManager::startUp: InputManager starting\n");
+
 	GraphicsManager &graphicsmanager = GraphicsManager::getInstance();
 	if (!graphicsmanager.isStarted()) {
 		return -1;
 	}
 
-	int success = 0;
+	keypad(stdscr, TRUE);	//Enable keypad
+	cbreak();				//Disable line buffering
+	nonl();					//Turn off newline
+	noecho();				//Disable echo
+	curs_set(0);				//Turn off cursor
+	nodelay(stdscr, TRUE);	//Set no delay
+	mousemask(BUTTON1_CLICKED, NULL);//Enable mouse events
 
-	success += keypad(stdscr, TRUE);	//Enable keypad
-	success += cbreak();				//Disable line buffering
-	success += nonl();					//Turn off newline
-	success += noecho();				//Disable echo
-	success += curs_set(0);				//Turn off cursor
-	success += nodelay(stdscr, TRUE);	//Set no delay
-	success += mousemask(BUTTON1_CLICKED, NULL);//Enable mouse events
-
-	if (success == 0) {
-		Manager::startUp();
-		return 0;
-	}
-	else return -1;
+	is_started = true;
+	return 0;
 
 }
 

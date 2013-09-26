@@ -11,6 +11,7 @@
 #include "GameManager.h"
 #include "WorldManager.h"
 #include "Hero.h"
+#include "Character.h"
 
 //Misc required headers
 #include "iostream"
@@ -22,11 +23,16 @@ int main() {
 
 	//Game manager startup
 	GameManager &gamemanager = GameManager::getInstance();
-	gamemanager.startUp(true);
+	int i = gamemanager.startUp(true);
+	LogManager &logmanager = LogManager::getInstance();
+	logmanager.writeLog("Game::main: %d <-- should be 0\n", i);
 
 	//World setup
 	WorldManager &worldmanager = WorldManager::getInstance();
 	new Hero();
+	new Character();
+	new Character();
+	new Character();
 
 	//Run program
 	gamemanager.run();

@@ -83,20 +83,6 @@ void GameManager::shutDown() {
 
 }
 
-
-void sendStepEvent() {
-
-	WorldManager &worldmanager = WorldManager::getInstance();
-	ObjectList all_objects = worldmanager.getAllObjects();
-	EventStep s = EventStep();
-	ObjectListIterator iterator = ObjectListIterator(&all_objects);
-	while (!iterator.isDone()) {
-		iterator.currentObject()->eventHandler((Event*)&s);
-		iterator.next();
-	}
-
-}
-
 void GameManager::run(int fr_time) {
 
 	frame_time = fr_time;
@@ -114,7 +100,8 @@ void GameManager::run(int fr_time) {
 	while (!game_over) {
 		clock.delta();
 		inputmanager.getInput();
-		sendStepEvent();
+		EventStep s = EventStep();
+		onEvent(&s);
 		worldmanager.update();
 		worldmanager.draw();
 		graphicsmanager.swapBuffers();
