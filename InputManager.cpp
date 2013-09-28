@@ -44,7 +44,7 @@ int InputManager::startUp() {
 	noecho();				//Disable echo
 	curs_set(0);				//Turn off cursor
 	nodelay(stdscr, TRUE);	//Set no delay
-	mousemask(BUTTON1_CLICKED, NULL);//Enable mouse events
+	mousemask(ALL_MOUSE_EVENTS, NULL);//Enable mouse events
 
 	is_started = true;
 	return 0;
@@ -53,8 +53,9 @@ int InputManager::startUp() {
 
 void InputManager::shutDown() {
 
+	LogManager &logmanager = LogManager::getInstance();
+	logmanager.writeLog("InputManager::shutDown: Shutting down InputManager\n");
 	curs_set(1);
-	Manager::shutDown();
 
 }
 
@@ -66,10 +67,13 @@ bool InputManager::isValid(string event_name) {
 
 void InputManager::getInput() {
 
+	LogManager &logmanager = LogManager::getInstance();
 	int c = getch();
 	if (c != ERR) {
 		MEVENT m_event;
-		if ((c == KEY_MOUSE) && getmouse(&m_event)) {
+		if (c == KEY_MOUSE) {
+			logmanager.writeLog("InputManager::getInput: MouseEvent!! :D\n");
+			getmouse(&m_event);
 			if (m_event.bstate & BUTTON1_CLICKED) {
 				EventMouse mouseEvent = EventMouse();
 				mouseEvent.setMouseX(m_event.x);

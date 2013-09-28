@@ -32,8 +32,6 @@ ObjectListIterator ObjectList::createIterator() const {
 
 int ObjectList::insert(Object *p_o) {
 
-	LogManager &logmanager = LogManager::getInstance();
-	logmanager.writeLog("ObjectList::insert: Object added\n");
 	if (count < 5000) {
 		list[count] = p_o;
 		count++;
@@ -46,9 +44,6 @@ int ObjectList::insert(Object *p_o) {
 
 int ObjectList::remove(Object *p_o) {
 
-	LogManager &logmanager = LogManager::getInstance();
-	logmanager.writeLog("ObjectList::remove: Removing object\n");
-
 	for (int i = 0; i < count; i++) {
 		if (list[i] == p_o) {
 			for (; i < count-1; i++) {
@@ -60,6 +55,7 @@ int ObjectList::remove(Object *p_o) {
 		}
 	}
 
+	LogManager &logmanager = LogManager::getInstance();
 	logmanager.writeLog("ObjectList::remove: Did not locate object!\n");
 
 	return -1; //Did not locate object

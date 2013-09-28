@@ -12,6 +12,7 @@
 #include "WorldManager.h"
 #include "GraphicsManager.h"
 #include "EventStep.h"
+#include "EventRefresh.h"
 
 Character::Character() {
 
@@ -21,14 +22,19 @@ Character::Character() {
 	//Set object type
 	setType("Character");
 
+	setAltitude(1);
+
 	//Set speed in horizontal direction
-	setXVelocity(-0.25);  //1 space every 4 frames
+	setXVelocity(-0.40);  //1 space every 4 frames
 
 	moveToStart();
 
-	//Register that a nuke can go off
+	//Register for step and refresh
 	registerInterest(STEP_EVENT);
-	drawchar = 'Y';
+	registerInterest(REFRESH_EVENT);
+
+	charnum = rand() % 26;
+	drawchar = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
 }
 
@@ -44,6 +50,8 @@ int Character::eventHandler(Event *p_e) {
 	}
 
 	if (p_e->getType() == COLLISION_EVENT) {
+		LogManager &logmanager = LogManager::getInstance();
+		logmanager.writeLog("Character::eventHandler: received Collision event!\n");
 		EventCollision *p_collision_event = static_cast <EventCollision *> (p_e);
 		hit(p_collision_event);
 		return 1;
@@ -51,10 +59,15 @@ int Character::eventHandler(Event *p_e) {
 
 	if (p_e->getType() == STEP_EVENT) {
 		stepcount++;
-		if (stepcount > 250) {
+		if (stepcount > 200) {
 			stepcount = 0;
-			drawchar = 'T';
+			charnum = rand() % 26;
 		}
+	}
+
+	if (p_e->getType() == REFRESH_EVENT) {
+		WorldManager &worldmanager = WorldManager::getInstance();
+		worldmanager.markForDelete(this);
 	}
 
     return 0;
@@ -74,7 +87,7 @@ void Character::out() {
 void Character::moveToStart() {
 
 	GraphicsManager &graphicsmanager = GraphicsManager::getInstance();
-	WorldManager &world_manager = WorldManager::getInstance();
+	WorldManager &worldmanager = WorldManager::getInstance();
 	Position new_pos;
 
 	int world_horiz = graphicsmanager.getHorizontal();
@@ -87,14 +100,14 @@ void Character::moveToStart() {
 	new_pos.setY(random()%(world_vert-4) + 4);
 
 	//If collision, move right slightly until empty space
-	ObjectList collision_list = world_manager.isCollision(this, new_pos);
+	ObjectList collision_list = worldmanager.isCollision(this, new_pos);
 	while (!collision_list.isEmpty()) {
 		new_pos.setX(new_pos.getX()+1);
-		collision_list = world_manager.isCollision(this, new_pos);
+		collision_list = worldmanager.isCollision(this, new_pos);
 	}
 
-	//Move the saucer
-	world_manager.moveObject(this, new_pos);
+	//Move the character
+	worldmanager.moveObject(this, new_pos);
 
 }
 
@@ -119,7 +132,14 @@ void Character::hit(EventCollision *p_c) {
 
 void Character::draw() {
 
+	int i = rand() % 26;
 	GraphicsManager &graphicsmanager = GraphicsManager::getInstance();
-	graphicsmanager.drawCh(this->getPosition(), drawchar, COLOR_WHITE);
+	graphicsmanager.drawCh(this->getPosition(), drawchar[charnum], COLOR_WHITE);
+
+}
+
+char Character::getChar() {
+
+	return drawchar[charnum];
 
 }

@@ -13,9 +13,6 @@
 
 EventKeyboard::EventKeyboard() {
 
-	LogManager &logmanager = LogManager::getInstance();
-	logmanager.writeLog("EventKeyboard::EventKeyboard: Made keyboard event\n");
-
 	setType(KEYBOARD_EVENT);
 
 	key_val = 0;

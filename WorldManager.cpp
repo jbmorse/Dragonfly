@@ -53,16 +53,12 @@ void WorldManager::shutDown() {
 
 int WorldManager::insertObject(Object *p_o) {
 
-	LogManager &logmanager = LogManager::getInstance();
-	logmanager.writeLog("WorldManager::insertObject: Inserting Object\n");
 	return updates.insert(p_o);
 
 }
 
 int WorldManager::removeObject(Object *p_o) {
 
-	LogManager &logmanager = LogManager::getInstance();
-	logmanager.writeLog("WorldManager::removeObject: Removing object!\n");
 	return updates.remove(p_o);
 
 }

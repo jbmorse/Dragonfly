@@ -38,7 +38,7 @@ public:
 	void setMouseX(int new_x);								//Set X
 	void setMouseY(int new_y);								//Set Y
 	int getMouseX();										//Get X
-	int getMousey();										//Get Y
+	int getMouseY();										//Get Y
 
 };
 

@@ -48,7 +48,7 @@ int EventMouse::getMouseX() {
 
 }
 
-int EventMouse::getMousey() {
+int EventMouse::getMouseY() {
 
 	return mouse_y;
 

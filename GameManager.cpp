@@ -78,6 +78,10 @@ void GameManager::shutDown() {
 
 	WorldManager &worldmanager = WorldManager::getInstance();
 	worldmanager.shutDown();
+	InputManager &inputmanager = InputManager::getInstance();
+	inputmanager.shutDown();
+	GraphicsManager &graphicsmanager = GraphicsManager::getInstance();
+	graphicsmanager.shutDown();
 	LogManager &logmanager = LogManager::getInstance();
 	logmanager.shutDown();
 

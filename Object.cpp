@@ -28,8 +28,6 @@ Object::Object() {
 	y_velocity = 0;
 	y_velocity_countdown = 0;
 	solidness = HARD;
-	LogManager &logmanager = LogManager::getInstance();
-	logmanager.writeLog("Object::Object: Creating Object\n");
 	type = "Object";
 	pos = Position();
 	WorldManager &worldmanager = WorldManager::getInstance();
@@ -40,10 +38,8 @@ Object::Object() {
 Object::~Object() {
 
 	for (int i = event_count; i > 0; i--) {
-		unregisterInterest(event_name[i]);
+		unregisterInterest(event_name[i-1]);
 	}
-	LogManager &logmanager = LogManager::getInstance();
-	logmanager.writeLog("Object::~Object: Destroying Object\n");
 	WorldManager &worldmanager = WorldManager::getInstance();
 	worldmanager.removeObject(this);
 

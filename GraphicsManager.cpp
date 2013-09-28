@@ -57,6 +57,8 @@ int GraphicsManager::startUp() {
 
 void GraphicsManager::shutDown() {
 
+	LogManager &logmanager = LogManager::getInstance();
+	logmanager.writeLog("GraphicsManager::shutDown: Shutting down GraphicsManager\n");
 	endwin();
 
 }

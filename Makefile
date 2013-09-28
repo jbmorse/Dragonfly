@@ -22,7 +22,7 @@ GAMEENG= Manager.cpp LogManager.cpp Utility.cpp Clock.cpp GameManager.cpp \
 		Position.cpp Object.cpp ObjectList.cpp ObjectListIterator.cpp Event.cpp \
 		EventStep.cpp WorldManager.cpp GraphicsManager.cpp InputManager.cpp \
 		EventKeyboard.cpp EventMouse.cpp EventCollision.cpp EventOut.cpp
-GAME= game.cpp Hero.cpp Character.cpp
+GAME= game.cpp Hero.cpp Character.cpp EventRefresh.cpp Star.cpp
 EXECUTABLE= game
 OBJECTS= $(GAMEENG:.cpp=.o)
 
@@ -54,7 +54,9 @@ Character.o: /usr/include/sys/stdio.h /usr/include/sys/cdefs.h
 Character.o: /usr/include/stdint.h /usr/include/bits/wordsize.h Character.h
 Character.o: EventCollision.h /usr/include/stdlib.h
 Character.o: /usr/include/machine/stdlib.h /usr/include/alloca.h
-Character.o: WorldManager.h
+Character.o: WorldManager.h GraphicsManager.h /usr/include/curses.h
+Character.o: /usr/include/ncurses_dll.h /usr/include/unctrl.h EventStep.h
+Character.o: EventRefresh.h
 Clock.o: Clock.h /usr/include/time.h /usr/include/_ansi.h
 Clock.o: /usr/include/newlib.h /usr/include/sys/config.h
 Clock.o: /usr/include/machine/ieeefp.h /usr/include/sys/features.h
@@ -89,6 +91,7 @@ EventKeyboard.o: /usr/include/sys/cdefs.h /usr/include/stdint.h
 EventKeyboard.o: /usr/include/bits/wordsize.h
 EventMouse.o: EventMouse.h Event.h
 EventOut.o: EventOut.h Event.h
+EventRefresh.o: EventRefresh.h Event.h Object.h Position.h
 EventStep.o: EventStep.h Event.h
 GameManager.o: GameManager.h Manager.h Object.h Position.h Event.h
 GameManager.o: ObjectList.h ObjectListIterator.h /usr/include/time.h
@@ -119,18 +122,19 @@ GraphicsManager.o: /usr/include/bits/wordsize.h /usr/include/unctrl.h
 GraphicsManager.o: Manager.h Object.h Position.h Event.h ObjectList.h
 GraphicsManager.o: ObjectListIterator.h LogManager.h
 Hero.o: EventStep.h Event.h Hero.h EventKeyboard.h Object.h Position.h
-Hero.o: GameManager.h Manager.h ObjectList.h ObjectListIterator.h
-Hero.o: /usr/include/time.h /usr/include/_ansi.h /usr/include/newlib.h
-Hero.o: /usr/include/sys/config.h /usr/include/machine/ieeefp.h
-Hero.o: /usr/include/sys/features.h /usr/include/sys/reent.h
-Hero.o: /usr/include/sys/_types.h /usr/include/machine/_types.h
-Hero.o: /usr/include/machine/_default_types.h /usr/include/sys/lock.h
-Hero.o: /usr/include/machine/time.h /usr/include/sys/types.h
-Hero.o: /usr/include/machine/types.h GraphicsManager.h /usr/include/curses.h
-Hero.o: /usr/include/ncurses_dll.h /usr/include/stdio.h
-Hero.o: /usr/include/sys/stdio.h /usr/include/sys/cdefs.h
-Hero.o: /usr/include/stdint.h /usr/include/bits/wordsize.h
-Hero.o: /usr/include/unctrl.h LogManager.h WorldManager.h
+Hero.o: EventCollision.h EventMouse.h GameManager.h Manager.h ObjectList.h
+Hero.o: ObjectListIterator.h /usr/include/time.h /usr/include/_ansi.h
+Hero.o: /usr/include/newlib.h /usr/include/sys/config.h
+Hero.o: /usr/include/machine/ieeefp.h /usr/include/sys/features.h
+Hero.o: /usr/include/sys/reent.h /usr/include/sys/_types.h
+Hero.o: /usr/include/machine/_types.h /usr/include/machine/_default_types.h
+Hero.o: /usr/include/sys/lock.h /usr/include/machine/time.h
+Hero.o: /usr/include/sys/types.h /usr/include/machine/types.h
+Hero.o: GraphicsManager.h /usr/include/curses.h /usr/include/ncurses_dll.h
+Hero.o: /usr/include/stdio.h /usr/include/sys/stdio.h
+Hero.o: /usr/include/sys/cdefs.h /usr/include/stdint.h
+Hero.o: /usr/include/bits/wordsize.h /usr/include/unctrl.h LogManager.h
+Hero.o: WorldManager.h EventRefresh.h Character.h
 InputManager.o: InputManager.h Manager.h Object.h Position.h Event.h
 InputManager.o: ObjectList.h ObjectListIterator.h GraphicsManager.h
 InputManager.o: /usr/include/curses.h /usr/include/ncurses_dll.h
@@ -208,6 +212,19 @@ Position.o: /usr/include/machine/_default_types.h /usr/include/sys/lock.h
 Position.o: /usr/include/sys/types.h /usr/include/machine/types.h
 Position.o: /usr/include/sys/stdio.h /usr/include/sys/cdefs.h
 Position.o: /usr/include/stdint.h /usr/include/bits/wordsize.h
+Star.o: EventOut.h Event.h GraphicsManager.h /usr/include/curses.h
+Star.o: /usr/include/ncurses_dll.h /usr/include/stdio.h /usr/include/_ansi.h
+Star.o: /usr/include/newlib.h /usr/include/sys/config.h
+Star.o: /usr/include/machine/ieeefp.h /usr/include/sys/features.h
+Star.o: /usr/include/sys/reent.h /usr/include/sys/_types.h
+Star.o: /usr/include/machine/_types.h /usr/include/machine/_default_types.h
+Star.o: /usr/include/sys/lock.h /usr/include/sys/types.h
+Star.o: /usr/include/machine/types.h /usr/include/sys/stdio.h
+Star.o: /usr/include/sys/cdefs.h /usr/include/stdint.h
+Star.o: /usr/include/bits/wordsize.h /usr/include/unctrl.h Manager.h Object.h
+Star.o: Position.h ObjectList.h ObjectListIterator.h LogManager.h Star.h
+Star.o: /usr/include/Stdlib.h /usr/include/machine/stdlib.h
+Star.o: /usr/include/alloca.h WorldManager.h
 Utility.o: Position.h /usr/include/time.h /usr/include/_ansi.h
 Utility.o: /usr/include/newlib.h /usr/include/sys/config.h
 Utility.o: /usr/include/machine/ieeefp.h /usr/include/sys/features.h
@@ -242,5 +259,5 @@ game.o: Manager.h Object.h Position.h Event.h ObjectList.h
 game.o: ObjectListIterator.h /usr/include/stdio.h /usr/include/sys/stdio.h
 game.o: /usr/include/sys/cdefs.h /usr/include/stdint.h
 game.o: /usr/include/bits/wordsize.h GameManager.h WorldManager.h Hero.h
-game.o: EventKeyboard.h Character.h EventCollision.h /usr/include/unistd.h
-game.o: /usr/include/sys/unistd.h
+game.o: EventKeyboard.h EventCollision.h EventMouse.h Character.h Star.h
+game.o: /usr/include/unistd.h /usr/include/sys/unistd.h
