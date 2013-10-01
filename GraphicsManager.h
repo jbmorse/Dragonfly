@@ -17,6 +17,7 @@
 //Game engine header files
 #include "Manager.h"
 #include "Position.h"
+#include "Frame.h"
 
 //Misc required headers
 
@@ -49,6 +50,8 @@ public:
 			char ch, int color = COLOR_DEFAULT);
 	int drawString(Position world_pos,	//Draw string at pos, justified
 			string str, Justification just, int color=COLOR_DEFAULT);
+	int drawFrame(Position world_pos, 	//Draw frame at location
+			Frame frame, bool centered, int color=COLOR_DEFAULT);
 
 };
 

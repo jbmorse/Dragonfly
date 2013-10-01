@@ -13,6 +13,7 @@
 #include "Hero.h"
 #include "Character.h"
 #include "Star.h"
+#include "ResourceManager.h"
 
 //Misc required headers
 #include "iostream"
@@ -26,6 +27,13 @@ int main() {
 	GameManager &gamemanager = GameManager::getInstance();
 	int i = gamemanager.startUp(true);
 
+	ResourceManager &resourcemanager = ResourceManager::getInstance();
+	int j = resourcemanager.loadSprite("ship-spr.txt", "ship");
+	if (j < 0) {
+		LogManager &logmanager = LogManager::getInstance();
+		logmanager.writeLog("Game.cpp: Error loading sprite!\n");
+	}
+
 	//World setup
 	WorldManager &worldmanager = WorldManager::getInstance();
 	new Hero();
@@ -35,6 +43,9 @@ int main() {
 	for (int i = 0; i < 40; i++) {
 			new Star();
 	}
+
+
+
 	//Run program
 	gamemanager.run();
 	//Program over, managers closed at end of loop in game manager

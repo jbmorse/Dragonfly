@@ -15,6 +15,7 @@ EventMouse::EventMouse() {
 	mouse_action = UNDEFINED;
 	mouse_x = 0;
 	mouse_y = 0;
+	setType(MOUSE_EVENT);
 
 }
 

@@ -19,6 +19,7 @@
 #include <iostream>
 #include "time.h"
 #include <cstdlib>
+#include "ResourceManager.h"
 
 using namespace std;
 using std::string;
@@ -32,7 +33,18 @@ Hero::Hero() {
 	//Player controls hero, so register with keyboard/mouse
 	registerInterest(KEYBOARD_EVENT);
 
+	ResourceManager &resourcemanager = ResourceManager::getInstance();
 	setType("Hero");
+
+	Sprite *p_temp_sprite = resourcemanager.getSprite("ship");
+	if (!p_temp_sprite) {
+			logmanager.writeLog("Hero::Hero(): Warning! Sprite '%s' not found", "ship");
+	}
+	else {
+		setSprite(p_temp_sprite);
+		setSpriteSlowdown(3);		//Third speed animation
+	}
+
 	GraphicsManager &graphicsmanager = GraphicsManager::getInstance();
 	Position pos(7, graphicsmanager.getVertical()/2);
 	setPosition(pos);
@@ -118,14 +130,6 @@ void Hero::moveX(int dx) {
 		(new_pos.getX() < graphicsmanager.getHorizontal())) {
 			worldmanager.moveObject(this, new_pos);
 	}
-
-}
-
-void Hero::draw() {
-
-	GraphicsManager &graphicsmanager = GraphicsManager::getInstance();
-	graphicsmanager.drawCh(this->getPosition(), '#', COLOR_CYAN);
-	graphicsmanager.drawString(Position(2,2), hashtag, LEFT_JUSTIFIED, COLOR_BLUE);
 
 }
 

@@ -15,6 +15,7 @@
 #include "EventMouse.h"
 #include "EventKeyboard.h"
 #include "InputManager.h"
+#include "GraphicsManager.h"
 
 //Misc required headers
 #include "math.h"
@@ -28,6 +29,11 @@ Object::Object() {
 	y_velocity = 0;
 	y_velocity_countdown = 0;
 	solidness = HARD;
+	p_sprite = NULL;
+	sprite_centered = true;
+	sprite_index = 0;
+	sprite_slowdown = 1;
+	sprite_slowdown_count = 0;
 	type = "Object";
 	pos = Position();
 	WorldManager &worldmanager = WorldManager::getInstance();
@@ -139,6 +145,27 @@ int Object::unregisterInterest(string event_type) {
 
 void Object::draw() {
 
+	if (p_sprite == NULL) return;	//No sprite to draw
+
+	//Draw current frame
+	GraphicsManager &graphicsmanager = GraphicsManager::getInstance();
+	graphicsmanager.drawFrame(pos, p_sprite->getFrame(sprite_index), p_sprite->getColor());
+
+	if (sprite_slowdown == 0) return;	//Frozen sprite
+
+	int count = sprite_slowdown_count + 1;
+	if (count >= sprite_slowdown) {
+		count = 0;
+		sprite_index++;
+
+		if (sprite_index >= p_sprite->getFrameCount()) {
+			sprite_index = 0;	//Loop frames to beginning
+		}
+
+	}
+
+	  setSpriteSlowdownCount(count);
+
 }
 
 int Object::setAltitude(int new_altitude) {
@@ -232,5 +259,73 @@ int Object::setSolidness(Solidness new_solid) {
 Solidness Object::getSolidness() {
 
 	return solidness;
+
+}
+
+void Object::setSprite(Sprite *p_new_sprite) {
+
+	p_sprite = p_new_sprite;
+	//TODO
+
+}
+
+void Object::setSprite(Sprite *p_new_sprite, bool set_box) {
+
+	p_sprite = p_new_sprite;
+	//TODO
+
+}
+
+Sprite *Object::getSprite() {
+
+	return p_sprite;
+
+}
+
+void Object::setCentered(bool centered) {
+
+	sprite_centered = centered;
+
+}
+
+bool Object::isCentered() {
+
+	return sprite_centered;
+
+}
+
+void Object::setSpriteIndex(int new_sprite_index) {
+
+	sprite_index = new_sprite_index;
+
+}
+
+int Object::getSpriteIndex() {
+
+	return sprite_index;
+
+}
+
+void Object::setSpriteSlowdown(int new_slowdown) {
+
+	sprite_slowdown = new_slowdown;
+
+}
+
+int Object::getSpriteSlowdown() {
+
+	return sprite_slowdown;
+
+}
+
+void Object::setSpriteSlowdownCount(int new_sd_count) {
+
+	sprite_slowdown_count = new_sd_count;
+
+}
+
+int Object::getSpriteSlowdownCount() {
+
+	return sprite_slowdown_count;
 
 }

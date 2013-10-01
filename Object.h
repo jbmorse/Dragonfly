@@ -11,6 +11,7 @@
 //Game engine header files
 #include "Position.h"
 #include "Event.h"
+#include "Sprite.h"
 
 //Misc required headers
 #include "string"
@@ -39,6 +40,11 @@ private:
 	float y_velocity;           		//Vertical speed in spaces per step
 	float y_velocity_countdown; 		//Countdown to vertical movement
 	Solidness solidness;				//Collision solidness
+	Sprite *p_sprite;					//Sprite associated with the object
+	bool sprite_centered;				//True if sprite is centered on object
+	int sprite_index;					//Current index frame for sprite
+	int sprite_slowdown;				//Slowdown rate (1 = no slowdown, 0 = stop)
+	int sprite_slowdown_count;			//Slowdown counter
 
 public:
 	Object();
@@ -59,9 +65,20 @@ public:
 	float getYVelocity();						//Get Y Velocity
 	int getXVelocityStep();						//Step in the X direction
 	int getYVelocityStep();						//Step in the Y direction
-	bool isSolid();
-	int setSolidness(Solidness new_solid);
-	Solidness getSolidness();
+	bool isSolid();								//Returns true if HARD or SOFT
+	int setSolidness(Solidness new_solid);		//Set solidness
+	Solidness getSolidness();					//Get solidness
+	void setSprite(Sprite *p_new_sprite);		//Set sprite to be associated with object
+	void setSprite(Sprite *p_new_sprite, bool set_box);	//Set box to size of sprite if true
+	Sprite *getSprite();						//Get sprite
+	void setCentered(bool centered);			//Set centered
+	bool isCentered();							//Get centered
+	void setSpriteIndex(int new_sprite_index);	//Set index of sprite frame
+	int getSpriteIndex();						//Get index of sprite frame
+	void setSpriteSlowdown(int new_slowdown);	//Set slowdown of animation
+	int getSpriteSlowdown();					//Get slowdown of animation
+	void setSpriteSlowdownCount(int new_sd_count);	//Set slowdown count
+	int getSpriteSlowdownCount();					//Get slowdown count
 
 };
 

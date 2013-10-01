@@ -28,7 +28,6 @@ class Hero : public Object {
 	Hero();
 	~Hero();
 	int eventHandler(Event *p_e);
-	void draw();
 
 };
 

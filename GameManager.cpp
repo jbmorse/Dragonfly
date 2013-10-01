@@ -15,6 +15,7 @@
 #include "WorldManager.h"
 #include "GraphicsManager.h"
 #include "InputManager.h"
+#include "ResourceManager.h"
 
 //Misc required headers
 #include "time.h"
@@ -64,6 +65,11 @@ int GameManager::startUp(bool flush) {
 	failedServices += worldmanager.startUp();
 	logmanager.writeLog("GameManager::startUp: World Manager started\n");
 
+	//Start World Manager
+	ResourceManager &resourcemanager = ResourceManager::getInstance();
+	failedServices += resourcemanager.startUp();
+	logmanager.writeLog("GameManager::startUp: Resource Manager started\n");
+
 	return failedServices; //If 0, complete success
 
 }
@@ -76,6 +82,8 @@ int GameManager::startUp() {
 
 void GameManager::shutDown() {
 
+	ResourceManager &resourcemanager = ResourceManager::getInstance();
+	resourcemanager.shutDown();
 	WorldManager &worldmanager = WorldManager::getInstance();
 	worldmanager.shutDown();
 	InputManager &inputmanager = InputManager::getInstance();

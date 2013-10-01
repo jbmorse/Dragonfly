@@ -1,10 +1,14 @@
-23:38:03 Message: GameManager::startUp: Log Manager started
-23:38:03 Message: GraphicsManager::startUp: GraphicsManager starting
-23:38:03 Message: GameManager::startUp: Graphics Manager started
-23:38:03 Message: InputManager::startUp: InputManager starting
-23:38:03 Message: GameManager::startUp: Input Manager started
-23:38:03 Message: WorldManager::startUp: Starting WorldManager
-23:38:03 Message: GameManager::startUp: World Manager started
-23:38:03 Message: Hero::Hero(): Made the hero!
-23:38:03 Message: GameManager::run: Game loop begins
-23:38:04 Message: InputManager::getInput: MouseEvent!! :D
+17:18:54 Message: GameManager::startUp: Log Manager started
+17:18:54 Message: GraphicsManager::startUp: GraphicsManager starting
+17:18:54 Message: GameManager::startUp: Graphics Manager started
+17:18:54 Message: InputManager::startUp: InputManager starting
+17:18:54 Message: GameManager::startUp: Input Manager started
+17:18:54 Message: WorldManager::startUp: Starting WorldManager
+17:18:54 Message: GameManager::startUp: World Manager started
+17:18:54 Message: ResourceManager::startUp: ResourceManager starting
+17:18:54 Message: GameManager::startUp: Resource Manager started
+17:18:54 Message: ResourceManager::LoadSprite: Loading Sprite!
+17:18:54 Message: ResourceManager::LoadSprite: Opened sprite file!
+17:18:54 Message: ResourceManager::LoadSprite: Sprite loaded!
+17:18:54 Message: Hero::Hero(): Made the hero!
+17:18:54 Message: GameManager::run: Game loop begins

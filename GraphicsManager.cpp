@@ -73,8 +73,7 @@ int GraphicsManager::drawCh(Position pos, char ch, int color) {
 
 }
 
-int GraphicsManager::drawString(Position world_pos,
-	string str, Justification just, int color) {
+int GraphicsManager::drawString(Position world_pos, string str, Justification just, int color) {
 
 	Position start_pos = world_pos;
 
@@ -100,6 +99,36 @@ int GraphicsManager::drawString(Position world_pos,
 	return 0;
 
 }
+
+int GraphicsManager::drawFrame(Position world_pos, Frame frame,bool centered, int color) {
+
+	string str = frame.getString();
+	if (str == "") {
+		return -1; //Empty frame
+	}
+
+	int x_offset, y_offset;
+	if (centered) {
+		x_offset = frame.getWidth() /2;
+		y_offset = frame.getHeight() /2;
+	}
+	else {
+		x_offset = 0;
+		y_offset = 0;
+	}
+
+	//Draw characters
+	for (int y = 0; y < frame.getHeight(); y++) {
+		for (int x = 0; x < frame.getWidth(); x++) {
+			Position temp_pos(world_pos.getX() - x_offset + x, world_pos.getY() - y_offset + y);
+			drawCh(temp_pos, str[y * frame.getWidth() + x], color);
+		}
+	}
+
+	return 0;
+
+}
+
 
 int GraphicsManager::swapBuffers() {
 
