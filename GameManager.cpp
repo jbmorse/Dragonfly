@@ -20,6 +20,7 @@
 //Misc required headers
 #include "time.h"
 #include "unistd.h"
+#include "stdlib.h"
 
 #define DEFAULT_FRAME_TIME 33 //Measured in milliseconds
 
@@ -41,7 +42,9 @@ GameManager &GameManager::getInstance() {
 
 }
 
-int GameManager::startUp(bool flush) {
+int GameManager::startUp(bool flush, time_t seed) {
+
+	srandom(seed);
 
 	int failedServices = 0; //Keeps track of how many things failed
 
@@ -79,7 +82,7 @@ int GameManager::startUp(bool flush) {
 
 int GameManager::startUp() {
 
-	return startUp(false);
+	return startUp(false, time(NULL));
 
 }
 

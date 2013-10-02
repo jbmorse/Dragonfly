@@ -52,7 +52,6 @@ Hero::Hero() {
 	GraphicsManager &graphicsmanager = GraphicsManager::getInstance();
 	Position pos(7, graphicsmanager.getVertical()/2);
 	setPosition(pos);
-	srand((unsigned)time(0));
 	setAltitude(2);
 
 }

@@ -12,6 +12,7 @@
 #include "EventCollision.h"
 #include "GraphicsManager.h"
 #include "EventOut.h"
+#include "ViewObject.h"
 
 //Misc required headers
 
@@ -129,7 +130,8 @@ void WorldManager::draw() {
 				Box temp_box = getWorldBox(p_temp_o);
 
 				//Only draw if Object would be visible on screen
-				if (boxIntersectsBox(temp_box, view)) {
+				if (boxIntersectsBox(temp_box, view) ||
+					dynamic_cast <ViewObject *> (p_temp_o)) {
 					p_temp_o->draw();
 				}
 			}

@@ -15,6 +15,9 @@
 #include "time.h"
 #include "stdio.h"
 #include "cstdlib"
+#include "sstream"
+
+using std::stringstream;
 
 char *getTimeString() {
 
@@ -108,3 +111,12 @@ Position worldToView(Position world_pos) {
 	return view_pos;
 
 }
+
+string intToString(int number) {
+
+	stringstream ss;
+	ss << number;
+	return ss.str();
+
+}
+

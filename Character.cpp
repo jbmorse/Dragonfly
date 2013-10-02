@@ -33,7 +33,7 @@ Character::Character() {
 	registerInterest(STEP_EVENT);
 	registerInterest(REFRESH_EVENT);
 
-	charnum = rand() % 26;
+	charnum = random() % 26;
 	drawchar = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
 }
@@ -131,7 +131,7 @@ void Character::hit(EventCollision *p_c) {
 
 void Character::draw() {
 
-	int i = rand() % 26;
+	int i = random() % 26;
 	GraphicsManager &graphicsmanager = GraphicsManager::getInstance();
 	graphicsmanager.drawCh(this->getPosition(), drawchar[charnum], COLOR_WHITE);
 

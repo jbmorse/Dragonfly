@@ -29,7 +29,7 @@ public:
 	~GameManager();							//Destructor
 	static GameManager &getInstance();		//Get singleton
 	int startUp();							//Start all game manager services
-	int startUp(bool flush);				//If true, call fflush after each write
+	int startUp(bool flush, time_t seed);				//If true, call fflush after each write
 	void shutDown();						//Shut down game manager services
 	void run(int fr_time=DEFAULT_FRAME_TIME);//Run the game loop
 	void setGameOver();						//Set game_over to true

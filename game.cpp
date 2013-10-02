@@ -14,6 +14,8 @@
 #include "Character.h"
 #include "Star.h"
 #include "ResourceManager.h"
+#include "GraphicsManager.h"
+#include "ViewObject.h"
 
 //Misc required headers
 #include "iostream"
@@ -25,7 +27,7 @@ int main() {
 
 	//Game manager startup
 	GameManager &gamemanager = GameManager::getInstance();
-	int i = gamemanager.startUp(true);
+	int i = gamemanager.startUp(true, time(NULL));
 
 	ResourceManager &resourcemanager = ResourceManager::getInstance();
 	int j = resourcemanager.loadSprite("ship-spr.txt", "ship");
@@ -44,6 +46,12 @@ int main() {
 	for (int i = 0; i < 40; i++) {
 			new Star();
 	}
+
+	ViewObject *p_vo = new ViewObject; //Used for points
+	p_vo->setViewString("Points");
+	p_vo->setValue(0);
+	p_vo->setLocation(TOP_RIGHT);
+	p_vo->setColor(COLOR_YELLOW);
 
 	//Run program
 	gamemanager.run();
