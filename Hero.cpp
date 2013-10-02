@@ -36,6 +36,10 @@ Hero::Hero() {
 	ResourceManager &resourcemanager = ResourceManager::getInstance();
 	setType("Hero");
 
+	//Keep hero centered
+	WorldManager &worldmanager = WorldManager::getInstance();
+	worldmanager.setViewFollowing(this);
+
 	Sprite *p_temp_sprite = resourcemanager.getSprite("ship");
 	if (!p_temp_sprite) {
 			logmanager.writeLog("Hero::Hero(): Warning! Sprite '%s' not found", "ship");
@@ -108,12 +112,11 @@ void Hero::kbd(EventKeyboard *p_keyboard_event) {
 //Move up or down
 void Hero::moveY(int dy) {
 
-	GraphicsManager &graphicsmanager = GraphicsManager::getInstance();
 	WorldManager &worldmanager = WorldManager::getInstance();
 	Position new_pos(getPosition().getX(), getPosition().getY() + dy);
 	//If stays on screen, allow move
 	if ((new_pos.getY() > 3) &&
-		(new_pos.getY() < graphicsmanager.getVertical())) {
+		(new_pos.getY() < worldmanager.getBoundary().getVertical())) {
 			worldmanager.moveObject(this, new_pos);
 	}
 
@@ -122,12 +125,11 @@ void Hero::moveY(int dy) {
 //Move left or right
 void Hero::moveX(int dx) {
 
-	GraphicsManager &graphicsmanager = GraphicsManager::getInstance();
 	WorldManager &worldmanager = WorldManager::getInstance();
 	Position new_pos(getPosition().getX() + dx, getPosition().getY());
 	//If stays on screen, allow move
 	if ((new_pos.getX() > 2) &&
-		(new_pos.getX() < graphicsmanager.getHorizontal())) {
+		(new_pos.getX() < worldmanager.getBoundary().getHorizontal())) {
 			worldmanager.moveObject(this, new_pos);
 	}
 

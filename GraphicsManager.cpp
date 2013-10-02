@@ -8,6 +8,7 @@
 //Game engine header files
 #include "GraphicsManager.h"
 #include "LogManager.h"
+#include "Utility.h"
 
 //Misc required headers
 
@@ -65,8 +66,9 @@ void GraphicsManager::shutDown() {
 
 int GraphicsManager::drawCh(Position pos, char ch, int color) {
 
+	Position view_pos = worldToView(pos);
 	wattron(buffer, COLOR_PAIR(color));
-	mvwaddch(buffer, pos.getY(), pos.getX() , ch);
+	mvwaddch(buffer, view_pos.getY(), view_pos.getX() , ch);
 	wattroff(buffer, COLOR_PAIR(color));
 
 	return 0;

@@ -9,6 +9,7 @@
 #include "Position.h"
 #include "Box.h"
 #include "Object.h"
+#include "WorldManager.h"
 
 //Misc required headers
 #include "time.h"
@@ -94,5 +95,16 @@ bool boxContainsPoint(Box b, Position p) {
 		b.getCorner().getX(), b.getCorner().getX() + b.getHorizontal()-1) &&
 			(valueInRange(p.getY(),
 		b.getCorner().getY(), b.getCorner().getY() + b.getVertical()-1)));
+
+}
+
+Position worldToView(Position world_pos) {
+
+	WorldManager &worldmanager = WorldManager::getInstance();
+	Position view_origin = worldmanager.getView().getCorner();
+	int view_x = view_origin.getX();
+	int view_y = view_origin.getY();
+	Position view_pos(world_pos.getX()-view_x, world_pos.getY()-view_y);
+	return view_pos;
 
 }

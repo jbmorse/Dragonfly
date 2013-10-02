@@ -18,8 +18,8 @@ Star::Star() {
 	setSolidness(SPECTRAL);
 	setXVelocity(-1.0 / (random()%10 + 1));
 	setAltitude(0);  //Make them in the background
-	GraphicsManager &graphics_manager = GraphicsManager::getInstance();
-	Position pos(random()%graphics_manager.getHorizontal(), random()%graphics_manager.getVertical());
+	WorldManager &worldmanager = WorldManager::getInstance();
+	Position pos(random()%worldmanager.getBoundary().getHorizontal(), random()%worldmanager.getBoundary().getVertical());
 	setPosition(pos);
 
 }
@@ -46,8 +46,8 @@ void Star::draw() {
 //If star moved off screen, move back to far right
 void Star::out() {
 
-	GraphicsManager &graphics_manager = GraphicsManager::getInstance();
-	Position pos(graphics_manager.getHorizontal() + random()%20, random() % graphics_manager.getVertical());
+	WorldManager &worldmanager = WorldManager::getInstance();
+	Position pos(worldmanager.getBoundary().getHorizontal() + random()%20, random() % worldmanager.getBoundary().getVertical());
 	setPosition(pos);
 	setXVelocity(-1.0 / (random()%10 + 1));
 

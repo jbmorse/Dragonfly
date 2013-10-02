@@ -35,4 +35,8 @@ float distance(Position p1, Position p2);
 //Return true of Point is within Box
 bool boxContainsPoint(Box b, Position p);
 
+//Convert world position to view position.
+Position worldToView(Position world_pos);
+
+
 #endif /* UTILITY_H_ */

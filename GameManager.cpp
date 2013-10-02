@@ -63,6 +63,9 @@ int GameManager::startUp(bool flush) {
 	//Start World Manager
 	WorldManager &worldmanager = WorldManager::getInstance();
 	failedServices += worldmanager.startUp();
+	Box defaultbox = Box(Position(0,0), graphicsmanager.getHorizontal(), graphicsmanager.getVertical());
+	worldmanager.setBoundary(defaultbox);
+	worldmanager.setView(defaultbox);
 	logmanager.writeLog("GameManager::startUp: World Manager started\n");
 
 	//Start World Manager

@@ -86,12 +86,11 @@ void Character::out() {
 
 void Character::moveToStart() {
 
-	GraphicsManager &graphicsmanager = GraphicsManager::getInstance();
 	WorldManager &worldmanager = WorldManager::getInstance();
 	Position new_pos;
 
-	int world_horiz = graphicsmanager.getHorizontal();
-	int world_vert = graphicsmanager.getVertical();
+	int world_horiz = worldmanager.getBoundary().getHorizontal();
+	int world_vert = worldmanager.getBoundary().getVertical();
 
 	//x is off the right side of screen
 	new_pos.setX(world_horiz + random()%world_horiz + 3);

@@ -36,6 +36,7 @@ int main() {
 
 	//World setup
 	WorldManager &worldmanager = WorldManager::getInstance();
+	worldmanager.setBoundary(Box(Position(0,0), 80, 50));
 	new Hero();
 	for (int i = 0; i < 10; i++) {
 		new Character();
@@ -43,8 +44,6 @@ int main() {
 	for (int i = 0; i < 40; i++) {
 			new Star();
 	}
-
-
 
 	//Run program
 	gamemanager.run();

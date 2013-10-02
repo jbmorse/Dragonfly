@@ -17,6 +17,8 @@
 
 WorldManager::WorldManager() {
 
+	p_view_following = NULL;
+
 }
 
 WorldManager &WorldManager::getInstance() {
@@ -120,8 +122,16 @@ void WorldManager::draw() {
 
 	for (int alt = 0; alt <= MAX_ALTITUDE; alt++) {
 		while (!iterator.isDone()) {
-			if (iterator.currentObject()->getAltitude() == alt) {
-				iterator.currentObject()->draw();
+			Object *p_temp_o = iterator.currentObject();
+			if (p_temp_o->getAltitude() == alt) {
+
+				//Convert to world coordinates
+				Box temp_box = getWorldBox(p_temp_o);
+
+				//Only draw if Object would be visible on screen
+				if (boxIntersectsBox(temp_box, view)) {
+					p_temp_o->draw();
+				}
 			}
 			iterator.next();
 		}
@@ -204,6 +214,84 @@ int WorldManager::moveObject(Object *p_o, Position where) {
 		p_o->eventHandler(&ov);
 	}
 
+	if (p_view_following == p_o) {
+		setViewPosition(p_o->getPosition());
+	}
+
 	return 0; //Successful move
+
+}
+
+Box WorldManager::getBoundary() {
+
+	return boundary;
+
+}
+
+void WorldManager::setBoundary(Box new_boundary) {
+
+	boundary = new_boundary;
+
+}
+
+Box WorldManager::getView() {
+
+	return view;
+
+}
+
+void WorldManager::setView(Box new_view) {
+
+	view = new_view;
+
+}
+
+void WorldManager::setViewPosition(Position view_pos) {
+
+	//Make sure horizontal inside boundary
+	int x = view_pos.getX() - view.getHorizontal() /2;
+	if (x + view.getHorizontal() > boundary.getHorizontal()) {
+		x = boundary.getHorizontal() - view.getHorizontal();
+	}
+
+	if (x < 0) {
+		x = 0;
+	}
+
+	//Make sure vertical inside boundary
+	int y = view_pos.getY() - view.getVertical() /2;
+	if (y + view.getVertical() > boundary.getVertical()) {
+		y = boundary.getVertical() - view.getVertical();
+	}
+
+	if (y < 0) {
+		y = 0;
+	}
+
+	Position new_corner(x, y);
+	view.setCorner(new_corner);
+
+}
+
+int WorldManager::setViewFollowing(Object *p_new_view_following) {
+
+	//Set to NULL to turn `off' following
+	if (p_new_view_following == NULL) {
+		p_view_following = NULL;
+		return 0;
+	}
+
+	ObjectListIterator i = ObjectListIterator(&updates);
+	while (!i.isDone()) {
+		Object *p_temp_o = i.currentObject();
+		if (p_temp_o == p_new_view_following) {
+			p_view_following = p_new_view_following;
+			setViewPosition(p_view_following -> getPosition());
+			return 0;
+		}
+		i.next();
+	}
+
+	return -1; //Did not find object
 
 }
