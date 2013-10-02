@@ -12,6 +12,7 @@
 #include "Position.h"
 #include "Event.h"
 #include "Sprite.h"
+#include "Box.h"
 
 //Misc required headers
 #include "string"
@@ -45,6 +46,7 @@ private:
 	int sprite_index;					//Current index frame for sprite
 	int sprite_slowdown;				//Slowdown rate (1 = no slowdown, 0 = stop)
 	int sprite_slowdown_count;			//Slowdown counter
+	Box box;							//Box for sprite boundary and collisions
 
 public:
 	Object();
@@ -79,6 +81,8 @@ public:
 	int getSpriteSlowdown();					//Get slowdown of animation
 	void setSpriteSlowdownCount(int new_sd_count);	//Set slowdown count
 	int getSpriteSlowdownCount();					//Get slowdown count
+	void setBox(Box new_box);					//Set bounding box
+	Box getBox();								//Get bounding box
 
 };
 

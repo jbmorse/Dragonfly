@@ -114,7 +114,7 @@ Frame readFrame(ifstream *p_file, int *p_line_number, int width, int height) {
 	}
 
 	getline(*p_file, line);
-	if (line.compare(0,3,"end")) {
+	if (line.compare(0,3,END_FRAME_TOKEN)) {
 		logmanager.writeLog("ResourceManager::LoadSprite: Error line %d. Line height at least %d, expected %d\n",
 				*p_line_number, height + 1, height);
 		return Frame(); //Error
@@ -144,22 +144,22 @@ int ResourceManager::loadSprite(string filename, string label) {
 	spriteFile.open(filename.c_str());
 	if (spriteFile.is_open()) {
 		logmanager.writeLog("ResourceManager::LoadSprite: Opened sprite file!\n");
-		frames = readLineInt(&spriteFile, &lineNum, "frames");
+		frames = readLineInt(&spriteFile, &lineNum, FRAMES_TOKEN);
 		if (frames <= 0) {
 			return -1;
 		}
 
-		width = readLineInt(&spriteFile, &lineNum, "width");
+		width = readLineInt(&spriteFile, &lineNum, WIDTH_TOKEN);
 		if (width <= 0) {
 			return -1;
 		}
 
-		height = readLineInt(&spriteFile, &lineNum, "height");
+		height = readLineInt(&spriteFile, &lineNum, HEIGHT_TOKEN);
 		if (height <= 0) {
 			return -1;
 		}
 
-		color = readLineStr(&spriteFile, &lineNum, "color");
+		color = readLineStr(&spriteFile, &lineNum, COLOR_TOKEN);
 		if (color == "error") {
 			return -1;
 		}

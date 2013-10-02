@@ -1,14 +1,18 @@
-17:18:54 Message: GameManager::startUp: Log Manager started
-17:18:54 Message: GraphicsManager::startUp: GraphicsManager starting
-17:18:54 Message: GameManager::startUp: Graphics Manager started
-17:18:54 Message: InputManager::startUp: InputManager starting
-17:18:54 Message: GameManager::startUp: Input Manager started
-17:18:54 Message: WorldManager::startUp: Starting WorldManager
-17:18:54 Message: GameManager::startUp: World Manager started
-17:18:54 Message: ResourceManager::startUp: ResourceManager starting
-17:18:54 Message: GameManager::startUp: Resource Manager started
-17:18:54 Message: ResourceManager::LoadSprite: Loading Sprite!
-17:18:54 Message: ResourceManager::LoadSprite: Opened sprite file!
-17:18:54 Message: ResourceManager::LoadSprite: Sprite loaded!
-17:18:54 Message: Hero::Hero(): Made the hero!
-17:18:54 Message: GameManager::run: Game loop begins
+20:18:40 Message: GameManager::startUp: Log Manager started
+20:18:40 Message: GraphicsManager::startUp: GraphicsManager starting
+20:18:40 Message: GameManager::startUp: Graphics Manager started
+20:18:40 Message: InputManager::startUp: InputManager starting
+20:18:40 Message: GameManager::startUp: Input Manager started
+20:18:40 Message: WorldManager::startUp: Starting WorldManager
+20:18:40 Message: GameManager::startUp: World Manager started
+20:18:40 Message: ResourceManager::startUp: ResourceManager starting
+20:18:40 Message: GameManager::startUp: Resource Manager started
+20:18:40 Message: ResourceManager::LoadSprite: Loading Sprite!
+20:18:40 Message: ResourceManager::LoadSprite: Opened sprite file!
+20:18:40 Message: ResourceManager::LoadSprite: Sprite loaded!
+20:18:40 Message: Hero::Hero(): Made the hero!
+20:18:40 Message: GameManager::run: Game loop begins
+20:18:41 Message: InputManager::getInput: MouseEvent!! :D
+20:18:43 Message: Character::eventHandler: received Collision event!
+20:18:43 Message: Hero::eventHandler: Hero got a collision event! 
+20:18:43 Message: Hero::addLetter: received Collision event! Adding letter to hashtag

@@ -22,7 +22,7 @@ GAMEENG= Manager.cpp LogManager.cpp Utility.cpp Clock.cpp GameManager.cpp \
 		Position.cpp Object.cpp ObjectList.cpp ObjectListIterator.cpp Event.cpp \
 		EventStep.cpp WorldManager.cpp GraphicsManager.cpp InputManager.cpp \
 		EventKeyboard.cpp EventMouse.cpp EventCollision.cpp EventOut.cpp \
-		Frame.cpp Sprite.cpp ResourceManager.cpp
+		Frame.cpp Sprite.cpp ResourceManager.cpp Box.cpp
 GAME= game.cpp Hero.cpp Character.cpp EventRefresh.cpp Star.cpp
 EXECUTABLE= game
 OBJECTS= $(GAMEENG:.cpp=.o)

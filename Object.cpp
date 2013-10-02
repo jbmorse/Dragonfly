@@ -35,6 +35,7 @@ Object::Object() {
 	sprite_slowdown = 1;
 	sprite_slowdown_count = 0;
 	type = "Object";
+	box = Box();
 	pos = Position();
 	WorldManager &worldmanager = WorldManager::getInstance();
 	worldmanager.insertObject(this);
@@ -265,14 +266,39 @@ Solidness Object::getSolidness() {
 void Object::setSprite(Sprite *p_new_sprite) {
 
 	p_sprite = p_new_sprite;
-	//TODO
+	Position temp_pos;
+	if (sprite_centered) {
+		int x_offset = p_sprite->getWidth() /-2;
+		int y_offset = p_sprite->getHeight() /-2;
+		temp_pos = Position(x_offset, y_offset);
+	}
+	else {
+		temp_pos = Position(0,0);
+	}
+
+	box = Box(temp_pos, p_sprite->getWidth(), p_sprite->getHeight());
 
 }
 
 void Object::setSprite(Sprite *p_new_sprite, bool set_box) {
 
 	p_sprite = p_new_sprite;
-	//TODO
+	if (set_box) {
+		Position temp_pos;
+		if (sprite_centered) {
+			int x_offset = p_sprite->getWidth() /-2;
+			int y_offset = p_sprite->getHeight() /-2;
+			temp_pos = Position(x_offset, y_offset);
+		}
+		else {
+			temp_pos = Position(0,0);
+		}
+
+		box = Box(temp_pos, p_sprite->getWidth(), p_sprite->getHeight());
+	}
+	else {
+		box = Box();
+	}
 
 }
 
@@ -284,7 +310,17 @@ Sprite *Object::getSprite() {
 
 void Object::setCentered(bool centered) {
 
-	sprite_centered = centered;
+	if (sprite_centered != centered) {
+		if (centered) {
+			int x_offset = p_sprite->getWidth() /-2;
+			int y_offset = p_sprite->getHeight() /-2;
+			box.setCorner(Position(x_offset, y_offset));
+		}
+		else {
+			box.setCorner(Position(0,0));
+		}
+		sprite_centered = centered;
+	}
 
 }
 
@@ -327,5 +363,17 @@ void Object::setSpriteSlowdownCount(int new_sd_count) {
 int Object::getSpriteSlowdownCount() {
 
 	return sprite_slowdown_count;
+
+}
+
+void Object::setBox(Box new_box) {
+
+	box = new_box;
+
+}
+
+Box Object::getBox() {
+
+	return box;
 
 }
