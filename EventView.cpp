@@ -6,7 +6,7 @@
  */
 
 //Game engine header files
-#include "ViewEvent.h"
+#include "EventView.h"
 
 //Misc required headers
 

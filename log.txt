@@ -1,18 +1,44 @@
-22:39:41 Message: GameManager::startUp: Log Manager started
-22:39:41 Message: GraphicsManager::startUp: GraphicsManager starting
-22:39:41 Message: GameManager::startUp: Graphics Manager started
-22:39:41 Message: InputManager::startUp: InputManager starting
-22:39:41 Message: GameManager::startUp: Input Manager started
-22:39:41 Message: WorldManager::startUp: Starting WorldManager
-22:39:41 Message: GameManager::startUp: World Manager started
-22:39:41 Message: ResourceManager::startUp: ResourceManager starting
-22:39:41 Message: GameManager::startUp: Resource Manager started
-22:39:41 Message: ResourceManager::LoadSprite: Loading Sprite!
-22:39:41 Message: ResourceManager::LoadSprite: Opened sprite file!
-22:39:41 Message: ResourceManager::LoadSprite: Sprite loaded!
-22:39:41 Message: Hero::Hero(): Made the hero!
-22:39:41 Message: GameManager::run: Game loop begins
-22:39:42 Message: InputManager::getInput: MouseEvent!! :D
-22:39:47 Message: Character::eventHandler: received Collision event!
-22:39:47 Message: Hero::eventHandler: Hero got a collision event! 
-22:39:47 Message: Hero::addLetter: received Collision event! Adding letter to hashtag
+23:05:00 Message: GameManager::startUp: Log Manager started
+23:05:00 Message: GraphicsManager::startUp: GraphicsManager starting
+23:05:00 Message: GameManager::startUp: Graphics Manager started
+23:05:00 Message: InputManager::startUp: InputManager starting
+23:05:00 Message: GameManager::startUp: Input Manager started
+23:05:00 Message: WorldManager::startUp: Starting WorldManager
+23:05:00 Message: GameManager::startUp: World Manager started
+23:05:00 Message: ResourceManager::startUp: ResourceManager starting
+23:05:00 Message: GameManager::startUp: Resource Manager started
+23:05:00 Message: ResourceManager::LoadSprite: Loading Sprite!
+23:05:00 Message: ResourceManager::LoadSprite: Opened sprite file!
+23:05:00 Message: ResourceManager::LoadSprite: Sprite loaded!
+23:05:00 Message: ResourceManager::LoadSprite: Loading Sprite!
+23:05:00 Message: ResourceManager::LoadSprite: Opened sprite file!
+23:05:00 Message: ResourceManager::LoadSprite: Sprite loaded!
+23:05:00 Message: ResourceManager::LoadSprite: Loading Sprite!
+23:05:00 Message: ResourceManager::LoadSprite: Opened sprite file!
+23:05:00 Message: ResourceManager::LoadSprite: Sprite loaded!
+23:05:00 Message: ResourceManager::LoadSprite: Loading Sprite!
+23:05:00 Message: ResourceManager::LoadSprite: Opened sprite file!
+23:05:00 Message: ResourceManager::LoadSprite: Sprite loaded!
+23:05:00 Message: ResourceManager::LoadSprite: Loading Sprite!
+23:05:00 Message: ResourceManager::LoadSprite: Opened sprite file!
+23:05:00 Message: ResourceManager::LoadSprite: Sprite loaded!
+23:05:00 Message: ResourceManager::LoadSprite: Loading Sprite!
+23:05:00 Message: ResourceManager::LoadSprite: Opened sprite file!
+23:05:00 Message: ResourceManager::LoadSprite: Sprite loaded!
+23:05:00 Message: ResourceManager::LoadSprite: Loading Sprite!
+23:05:00 Message: ResourceManager::LoadSprite: Opened sprite file!
+23:05:00 Message: ResourceManager::LoadSprite: Sprite loaded!
+23:05:00 Message: GameManager::run: Game loop begins
+23:05:01 Message: InputManager::getInput: MouseEvent!! :D
+23:05:08 Message: GameManager::setGameOver: Game Over!
+23:05:08 Message: GameManager::run: Game loop ends
+23:05:08 Message: ResourceManager::shutDown: Shutting down ResourceManager
+23:05:08 Message: WorldManager::shutDown: Shutting down WorldManager
+23:05:08 Message: InputManager::shutDown: Shutting down InputManager
+23:05:08 Message: GraphicsManager::shutDown: Shutting down GraphicsManager
+23:05:08 Message: LogManager::shutDown: Log Manager shutting down
+23:05:08 Message: ResourceManager::shutDown: Shutting down ResourceManager
+23:05:08 Message: WorldManager::shutDown: Shutting down WorldManager
+23:05:08 Message: InputManager::shutDown: Shutting down InputManager
+23:05:08 Message: GraphicsManager::shutDown: Shutting down GraphicsManager
+23:05:08 Message: LogManager::shutDown: Log Manager shutting down

@@ -8,7 +8,7 @@
 //Game engine header files
 #include "ViewObject.h"
 #include "Utility.h"
-#include "ViewEvent.h"
+#include "EventView.h"
 #include "GraphicsManager.h"
 #include "WorldManager.h"
 

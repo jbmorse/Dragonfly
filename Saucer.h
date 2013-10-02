@@ -1,35 +1,32 @@
 /*
- * Character.h
+ * Saucer.h
  *
  *  Created on: Sep 3, 2013
  *      Author: Josh
  */
 
-#ifndef CHARACTER_H_
-#define CHARACTER_H_
+#ifndef SAUCER_H_
+#define SAUCER_H_
 
 #include "EventCollision.h"
 #include "Object.h"
+#include "ResourceManager.h"
 
-class Character : public Object {
+class Saucer : public Object {
 
 	protected:
 	void move();
 	void out();
 	void moveToStart();
 	void hit(EventCollision *p_c);
-	int stepcount;
-	string drawchar;
-	int charnum;
 
 	public:
-	Character();
-	~Character();
+	Saucer();
+	~Saucer();
 	int eventHandler(Event *p_e);
-	void draw();
-	char getChar();
+
 
   };
 
 
-#endif /* CHARACTER_H_ */
+#endif /* SAUCER_H_ */

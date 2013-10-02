@@ -54,7 +54,6 @@ void ResourceManager::shutDown() {
 	LogManager &logmanager = LogManager::getInstance();
 	logmanager.writeLog("ResourceManager::shutDown: Shutting down ResourceManager\n");
 	endwin();
-	delete []*p_sprite;
 
 }
 
