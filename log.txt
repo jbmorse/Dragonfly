@@ -1,44 +1,36 @@
-23:05:00 Message: GameManager::startUp: Log Manager started
-23:05:00 Message: GraphicsManager::startUp: GraphicsManager starting
-23:05:00 Message: GameManager::startUp: Graphics Manager started
-23:05:00 Message: InputManager::startUp: InputManager starting
-23:05:00 Message: GameManager::startUp: Input Manager started
-23:05:00 Message: WorldManager::startUp: Starting WorldManager
-23:05:00 Message: GameManager::startUp: World Manager started
-23:05:00 Message: ResourceManager::startUp: ResourceManager starting
-23:05:00 Message: GameManager::startUp: Resource Manager started
-23:05:00 Message: ResourceManager::LoadSprite: Loading Sprite!
-23:05:00 Message: ResourceManager::LoadSprite: Opened sprite file!
-23:05:00 Message: ResourceManager::LoadSprite: Sprite loaded!
-23:05:00 Message: ResourceManager::LoadSprite: Loading Sprite!
-23:05:00 Message: ResourceManager::LoadSprite: Opened sprite file!
-23:05:00 Message: ResourceManager::LoadSprite: Sprite loaded!
-23:05:00 Message: ResourceManager::LoadSprite: Loading Sprite!
-23:05:00 Message: ResourceManager::LoadSprite: Opened sprite file!
-23:05:00 Message: ResourceManager::LoadSprite: Sprite loaded!
-23:05:00 Message: ResourceManager::LoadSprite: Loading Sprite!
-23:05:00 Message: ResourceManager::LoadSprite: Opened sprite file!
-23:05:00 Message: ResourceManager::LoadSprite: Sprite loaded!
-23:05:00 Message: ResourceManager::LoadSprite: Loading Sprite!
-23:05:00 Message: ResourceManager::LoadSprite: Opened sprite file!
-23:05:00 Message: ResourceManager::LoadSprite: Sprite loaded!
-23:05:00 Message: ResourceManager::LoadSprite: Loading Sprite!
-23:05:00 Message: ResourceManager::LoadSprite: Opened sprite file!
-23:05:00 Message: ResourceManager::LoadSprite: Sprite loaded!
-23:05:00 Message: ResourceManager::LoadSprite: Loading Sprite!
-23:05:00 Message: ResourceManager::LoadSprite: Opened sprite file!
-23:05:00 Message: ResourceManager::LoadSprite: Sprite loaded!
-23:05:00 Message: GameManager::run: Game loop begins
-23:05:01 Message: InputManager::getInput: MouseEvent!! :D
-23:05:08 Message: GameManager::setGameOver: Game Over!
-23:05:08 Message: GameManager::run: Game loop ends
-23:05:08 Message: ResourceManager::shutDown: Shutting down ResourceManager
-23:05:08 Message: WorldManager::shutDown: Shutting down WorldManager
-23:05:08 Message: InputManager::shutDown: Shutting down InputManager
-23:05:08 Message: GraphicsManager::shutDown: Shutting down GraphicsManager
-23:05:08 Message: LogManager::shutDown: Log Manager shutting down
-23:05:08 Message: ResourceManager::shutDown: Shutting down ResourceManager
-23:05:08 Message: WorldManager::shutDown: Shutting down WorldManager
-23:05:08 Message: InputManager::shutDown: Shutting down InputManager
-23:05:08 Message: GraphicsManager::shutDown: Shutting down GraphicsManager
-23:05:08 Message: LogManager::shutDown: Log Manager shutting down
+18:06:20 Message: GameManager::startUp: Log Manager started
+18:06:20 Message: GraphicsManager::startUp: GraphicsManager starting
+18:06:20 Message: GameManager::startUp: Graphics Manager started
+18:06:20 Message: InputManager::startUp: InputManager starting
+18:06:20 Message: GameManager::startUp: Input Manager started
+18:06:20 Message: WorldManager::startUp: Starting WorldManager
+18:06:20 Message: GameManager::startUp: World Manager started
+18:06:20 Message: ResourceManager::startUp: ResourceManager starting
+18:06:20 Message: GameManager::startUp: Resource Manager started
+18:06:20 Message: ResourceManager::LoadSprite: Loading Sprite!
+18:06:20 Message: ResourceManager::LoadSprite: Opened sprite file!
+18:06:20 Message: ResourceManager::LoadSprite: Sprite loaded!
+18:06:20 Message: ResourceManager::LoadSprite: Loading Sprite!
+18:06:20 Message: ResourceManager::LoadSprite: Opened sprite file!
+18:06:20 Message: ResourceManager::LoadSprite: Sprite loaded!
+18:06:20 Message: ResourceManager::LoadSprite: Loading Sprite!
+18:06:20 Message: ResourceManager::LoadSprite: Opened sprite file!
+18:06:20 Message: ResourceManager::LoadSprite: Sprite loaded!
+18:06:20 Message: ResourceManager::LoadSprite: Loading Sprite!
+18:06:20 Message: ResourceManager::LoadSprite: Opened sprite file!
+18:06:20 Message: ResourceManager::LoadSprite: Sprite loaded!
+18:06:20 Message: ResourceManager::LoadSprite: Loading Sprite!
+18:06:20 Message: ResourceManager::LoadSprite: Opened sprite file!
+18:06:20 Message: ResourceManager::LoadSprite: Sprite loaded!
+18:06:20 Message: ResourceManager::LoadSprite: Loading Sprite!
+18:06:20 Message: ResourceManager::LoadSprite: Opened sprite file!
+18:06:20 Message: ResourceManager::LoadSprite: Sprite loaded!
+18:06:20 Message: ResourceManager::LoadSprite: Loading Sprite!
+18:06:20 Message: ResourceManager::LoadSprite: Opened sprite file!
+18:06:20 Message: ResourceManager::LoadSprite: Sprite loaded!
+18:06:20 Message: Loaded Resources!
+18:06:20 Message: Game Started!
+18:06:20 Message: Woooo star!
+18:06:20 Message: Still good!
+18:06:20 Message: Still very good!
+18:06:20 Message: Why does this die on the next line!???!!

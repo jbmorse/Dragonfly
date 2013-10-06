@@ -67,12 +67,10 @@ bool InputManager::isValid(string event_name) {
 
 void InputManager::getInput() {
 
-	LogManager &logmanager = LogManager::getInstance();
 	int c = getch();
 	if (c != ERR) {
 		MEVENT m_event;
 		if (c == KEY_MOUSE) {
-			logmanager.writeLog("InputManager::getInput: MouseEvent!! :D\n");
 			getmouse(&m_event);
 			if (m_event.bstate & BUTTON1_CLICKED) {
 				EventMouse mouseEvent = EventMouse();

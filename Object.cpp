@@ -16,6 +16,7 @@
 #include "EventKeyboard.h"
 #include "InputManager.h"
 #include "GraphicsManager.h"
+#include "Utility.h"
 
 //Misc required headers
 #include "math.h"
@@ -39,6 +40,7 @@ Object::Object() {
 	pos = Position();
 	WorldManager &worldmanager = WorldManager::getInstance();
 	worldmanager.insertObject(this);
+	is_persistent = false;
 
 }
 
@@ -150,7 +152,7 @@ void Object::draw() {
 
 	//Draw current frame
 	GraphicsManager &graphicsmanager = GraphicsManager::getInstance();
-	graphicsmanager.drawFrame(pos, p_sprite->getFrame(sprite_index), p_sprite->getColor());
+	graphicsmanager.drawFrame(pos, p_sprite->getFrame(sprite_index), sprite_centered, p_sprite->getColor());
 
 	if (sprite_slowdown == 0) return;	//Frozen sprite
 
@@ -171,12 +173,15 @@ void Object::draw() {
 
 int Object::setAltitude(int new_altitude) {
 
-	if (new_altitude >= 0 && new_altitude <= MAX_ALTITUDE) {
-		altitude = new_altitude;
-		return 0;
+	if (!valueInRange(new_altitude, 0, MAX_ALTITUDE)) {
+		return -1;
 	}
 
-	return -1;
+	WorldManager &worldmanager = WorldManager::getInstance();
+	worldmanager.getSceneGraph().updateAltitude(this, new_altitude);
+	altitude = new_altitude;
+
+	return 0;
 
 }
 
@@ -201,7 +206,6 @@ float Object::getXVelocity(){
 void Object::setYVelocity(float new_y_velocity) {
 
 	y_velocity = new_y_velocity;
-
 }
 
 float Object::getYVelocity() {
@@ -252,6 +256,8 @@ int Object::setSolidness(Solidness new_solid) {
 		return -1;
 	}
 
+	WorldManager &worldmanager = WorldManager::getInstance();
+	worldmanager.getSceneGraph().updateSolidness(this, new_solid);
 	solidness = new_solid;
 	return 0;
 
@@ -375,5 +381,27 @@ void Object::setBox(Box new_box) {
 Box Object::getBox() {
 
 	return box;
+
+}
+
+int Object::setPersistence(bool persistent)	{
+
+	LogManager &logmanager = LogManager::getInstance();
+	logmanager.writeLog("Woooo pers!\n");
+	WorldManager &worldmanager = WorldManager::getInstance();
+	logmanager.writeLog("Why are you being so dumb omg!\n");
+	SceneGraph scene_graph = worldmanager.getSceneGraph();
+	if (scene_graph.updatePersistence(this, persistent)) {
+		return -1;
+	}
+
+	is_persistent = persistent;
+
+	return 0;
+
+}
+bool Object::isPersistent() {
+
+	return is_persistent;
 
 }

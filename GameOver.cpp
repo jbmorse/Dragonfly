@@ -59,6 +59,9 @@ GameOver::~GameOver() {
 		}
 	}
 
+	//Go to start level
+	world_manager.setLevel(1);
+
 }
 
 int GameOver::eventHandler(Event *p_e) {
@@ -79,8 +82,6 @@ void GameOver::step() {
 	if (time_to_live <= 0) {
 		WorldManager &world_manager = WorldManager::getInstance();
 		world_manager.markForDelete(this);
-		GameManager &gamemanager = GameManager::getInstance();
-		gamemanager.setGameOver();
 	}
 
 }

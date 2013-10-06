@@ -19,6 +19,7 @@
 WorldManager::WorldManager() {
 
 	p_view_following = NULL;
+	next_level = 0;
 
 }
 
@@ -33,7 +34,6 @@ int WorldManager::startUp() {
 
 	LogManager &logmanager = LogManager::getInstance();
 	logmanager.writeLog("WorldManager::startUp: Starting WorldManager\n");
-	updates.clear();
 	deletions.clear();
 	Manager::startUp();
 	return 0;
@@ -44,8 +44,8 @@ void WorldManager::shutDown() {
 
 	LogManager &logmanager = LogManager::getInstance();
 	logmanager.writeLog("WorldManager::shutDown: Shutting down WorldManager\n");
-	ObjectList update_copy = updates;   //Copy list so can delete during iteration.
-	ObjectListIterator update_I(&update_copy);
+	ObjectList objects_copy = scene_graph.allObjects();   //Copy list so can delete during iteration.
+	ObjectListIterator update_I(&objects_copy);
 	for (update_I.first(); !update_I.isDone(); update_I.next()) {
 		delete update_I.currentObject();
 	}
@@ -56,26 +56,27 @@ void WorldManager::shutDown() {
 
 int WorldManager::insertObject(Object *p_o) {
 
-	return updates.insert(p_o);
+	return scene_graph.insertObject(p_o);
 
 }
 
 int WorldManager::removeObject(Object *p_o) {
 
-	return updates.remove(p_o);
+	return scene_graph.removeObject(p_o);
 
 }
 
 ObjectList WorldManager::getAllObjects() {
 
-	return updates;
+	return scene_graph.allObjects();
 
 }
 
 void WorldManager::update() {
 
 	//Move objects based on velocity
-	ObjectListIterator v_i = ObjectListIterator(&updates);
+	ObjectList all_objects = scene_graph.allObjects();
+	ObjectListIterator v_i = ObjectListIterator(&all_objects);
 	while (!v_i.isDone()) {
 		int x = v_i.currentObject()->getXVelocityStep();
 		int y = v_i.currentObject()->getYVelocityStep();
@@ -93,6 +94,11 @@ void WorldManager::update() {
 		delete deletion_I.currentObject();
 	}
 	deletions.clear();
+
+	if (next_level) {
+		scene_graph.setLevel(next_level);
+		next_level = 0;
+	}
 
 }
 
@@ -119,9 +125,10 @@ bool WorldManager::isValid(string event_type) {
 
 void WorldManager::draw() {
 
-	ObjectListIterator iterator(&updates);
-
 	for (int alt = 0; alt <= MAX_ALTITUDE; alt++) {
+		ObjectList alt_objs = scene_graph.visibleObjects(alt);
+		ObjectListIterator iterator = ObjectListIterator(&alt_objs);
+
 		while (!iterator.isDone()) {
 			Object *p_temp_o = iterator.currentObject();
 			if (p_temp_o->getAltitude() == alt) {
@@ -137,7 +144,6 @@ void WorldManager::draw() {
 			}
 			iterator.next();
 		}
-		iterator.first();
 	}
 
 }
@@ -145,9 +151,11 @@ void WorldManager::draw() {
 ObjectList WorldManager::isCollision(Object *p_o, Position where) {
 
 	ObjectList collisions;
-	ObjectListIterator i = ObjectListIterator(&updates);
-	while (!i.isDone()) {
-		Object *p_temp_o = i.currentObject();
+	ObjectList solid_objects = scene_graph.solidObjects();
+	ObjectListIterator iterator = ObjectListIterator(&solid_objects);
+
+	while (!iterator.isDone()) {
+		Object *p_temp_o = iterator.currentObject();
 		if (p_temp_o != p_o) {
 			if (boxIntersectsBox(getWorldBox(p_temp_o), getWorldBox(p_o)) &&
 					(p_temp_o->isSolid()))
@@ -155,7 +163,7 @@ ObjectList WorldManager::isCollision(Object *p_o, Position where) {
 				collisions.insert(p_temp_o);
 			}
 		}
-		i.next();
+		iterator.next();
 	}
 
 	return collisions;
@@ -283,17 +291,40 @@ int WorldManager::setViewFollowing(Object *p_new_view_following) {
 		return 0;
 	}
 
-	ObjectListIterator i = ObjectListIterator(&updates);
-	while (!i.isDone()) {
-		Object *p_temp_o = i.currentObject();
+	ObjectList all_objects = scene_graph.allObjects();
+	ObjectListIterator iterator = ObjectListIterator(&all_objects);
+	while (!iterator.isDone()) {
+		Object *p_temp_o = iterator.currentObject();
 		if (p_temp_o == p_new_view_following) {
 			p_view_following = p_new_view_following;
 			setViewPosition(p_view_following -> getPosition());
 			return 0;
 		}
-		i.next();
+		iterator.next();
 	}
 
 	return -1; //Did not find object
+
+}
+
+SceneGraph &WorldManager::getSceneGraph() {
+
+	return scene_graph;
+
+}
+
+int WorldManager::getLevel() {
+
+	return scene_graph.getLevel();
+
+}
+int WorldManager::setLevel(int new_level) {
+
+	if (valueInRange(new_level, 0, MAX_LEVEL)) {
+		next_level = new_level;
+		return 0;
+	}
+
+	return -1;
 
 }

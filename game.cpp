@@ -28,6 +28,8 @@ void loadResources() {
 void populateWorld() {
 	//Start the game
 	new GameStart();
+	LogManager &log_manager = LogManager::getInstance();
+	log_manager.writeLog("Game Started!\n");
 	//Create some stars
 	for (int i=0; i<16; i++) {
 		new Star;
@@ -46,9 +48,12 @@ int main(int argc, char *argv[]) {
     	exit(1);
     }
 
+
     //Set up the Game
     loadResources();
+    log_manager.writeLog("Loaded Resources!\n");
     populateWorld();
+    log_manager.writeLog("Populated world!\n");
 
     //Run the game!
     game_manager.run();

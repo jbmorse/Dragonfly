@@ -6,6 +6,7 @@
  */
 
 #include "Bullet.h"
+#include "EventNuke.h"
 #include "EventStep.h"
 #include "EventView.h"
 #include "Explosion.h"
@@ -42,6 +43,7 @@ Hero::Hero() {
 	//initialize variables
 	fire_slowdown = 15;
 	fire_countdown = fire_slowdown;
+	nuke_count = 1;
 	laser_charge = 500;
 
 	setType("Hero");
@@ -105,6 +107,9 @@ void Hero::kbd(EventKeyboard *p_keyboard_event) {
 	case 'q':
 		world_manager.markForDelete(this);
 		break;
+	case 'm':
+		laser();
+		break;
 	};
 
 	return;
@@ -148,6 +153,24 @@ void Hero::step() {
 	if (laser_charge > 500) {
 		laser_charge = 500;
 	}
+
+}
+
+void Hero::nuke() {
+
+	//Check if nukes left
+	if (!nuke_count) {
+		return;
+	}
+	nuke_count--;
+	//Create a "nuke" event and send to all interested objects
+	WorldManager &world_manager = WorldManager::getInstance();
+	EventNuke nuke;
+	world_manager.onEvent(&nuke);
+
+	//Send "view" event with nukes to interested ViewObjects
+	EventView ev("Nukes", -1, true);
+	world_manager.onEvent(&ev);
 
 }
 

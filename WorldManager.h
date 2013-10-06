@@ -12,6 +12,7 @@
 #include "Manager.h"
 #include "ObjectList.h"
 #include "Box.h"
+#include "SceneGraph.h"
 
 //Misc required headers
 
@@ -23,11 +24,12 @@ private:
 	WorldManager();					 		//Singleton
 	WorldManager(WorldManager const&); 		//Disallow copying
 	void operator=(WorldManager const&);	//Disallow assignment
-	ObjectList updates;			//List of all Objects in the world to update
 	ObjectList deletions;		//List of all Objects in the world to delete
 	Box boundary;				//World boundary
 	Box view;					//Player view of game world
 	Object *p_view_following;	//Object view is following
+	SceneGraph scene_graph;		//Storage for all objects
+	int next_level;				//Next level to assign
 
 public:
 	static WorldManager &getInstance();	//Get the singleton
@@ -48,6 +50,9 @@ public:
 	void setView(Box new_view);			//Set player view of world
 	void setViewPosition(Position view_pos);	//Set view center on pos
 	int setViewFollowing(Object *p_newvf);		//Set view center on object
+	SceneGraph &getSceneGraph();		//Return reference to scenegraph
+	int getLevel();						//get current game level
+	int setLevel(int new_level);		//Set game level at end of update()
 
 };
 

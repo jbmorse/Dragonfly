@@ -8,27 +8,19 @@
 #include "EventOut.h"
 #include "GraphicsManager.h"
 #include "LogManager.h"
-#include "ResourceManager.h"
 #include "Star.h"
 #include "Stdlib.h"
 #include "WorldManager.h"
 
 Star::Star() {
 
-	LogManager &logmanager = LogManager::getInstance();
-	logmanager.writeLog("Woooo star!\n");
 	setType("Star");
 	setSolidness(SPECTRAL);
 	setXVelocity(-1.0 / (random()%10 + 1));
 	setAltitude(0);  //Make them in the background
-	logmanager.writeLog("Still good!\n");
-	WorldManager &world_manager = WorldManager::getInstance();
-	Position pos(random()%world_manager.getBoundary().getHorizontal(), random()%world_manager.getBoundary().getVertical());
-	logmanager.writeLog("Still very good!\n");
+	WorldManager &worldmanager = WorldManager::getInstance();
+	Position pos(random()%worldmanager.getBoundary().getHorizontal(), random()%worldmanager.getBoundary().getVertical());
 	setPosition(pos);
-	logmanager.writeLog("Why does this die on the next line!???!!\n");
-	setPersistence(true);
-	logmanager.writeLog("WOO STAR IT WORKED!\n");
 
 }
 
@@ -54,8 +46,8 @@ void Star::draw() {
 //If star moved off screen, move back to far right
 void Star::out() {
 
-	WorldManager &world_manager = WorldManager::getInstance();
-	Position pos(world_manager.getBoundary().getHorizontal() + random()%20, random() % world_manager.getBoundary().getVertical());
+	WorldManager &worldmanager = WorldManager::getInstance();
+	Position pos(worldmanager.getBoundary().getHorizontal() + random()%20, random() % worldmanager.getBoundary().getVertical());
 	setPosition(pos);
 	setXVelocity(-1.0 / (random()%10 + 1));
 

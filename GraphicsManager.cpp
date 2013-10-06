@@ -118,12 +118,12 @@ int GraphicsManager::drawFrame(Position world_pos, Frame frame,bool centered, in
 		x_offset = 0;
 		y_offset = 0;
 	}
-
+	int z = color;
 	//Draw characters
 	for (int y = 0; y < frame.getHeight(); y++) {
 		for (int x = 0; x < frame.getWidth(); x++) {
 			Position temp_pos(world_pos.getX() - x_offset + x, world_pos.getY() - y_offset + y);
-			drawCh(temp_pos, str[y * frame.getWidth() + x], color);
+			drawCh(temp_pos, str[y * frame.getWidth() + x], z);
 		}
 	}
 

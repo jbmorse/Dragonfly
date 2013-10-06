@@ -76,7 +76,10 @@ int GameStart::eventHandler(Event *p_e) {
 void GameStart::start() {
 
 	WorldManager &world_manager = WorldManager::getInstance();
-	world_manager.markForDelete(this);
+	SceneGraph &scene_graph = world_manager.getSceneGraph();
+
+	//Will populate play world with objects
+	scene_graph.setLevel(PLAY_LEVEL);
 
 	//Spawn the enemies
 	for (int i=0; i<16; i++)
@@ -87,6 +90,19 @@ void GameStart::start() {
 
 	//Setup Points display
 	new Points;
+
+	//Setup Nuke Count
+	ViewObject *p_vo = new ViewObject;
+	p_vo->setLocation(TOP_LEFT);
+	p_vo->setViewString("Nukes");
+	p_vo->setValue(1);
+	p_vo->setColor(COLOR_YELLOW);
+
+	//Revert back to menu
+	scene_graph.setLevel(MENU_LEVEL);
+
+	//Tell world manager to goto game level
+	world_manager.setLevel(PLAY_LEVEL);
 
 }
 

@@ -47,6 +47,7 @@ private:
 	int sprite_slowdown;				//Slowdown rate (1 = no slowdown, 0 = stop)
 	int sprite_slowdown_count;			//Slowdown counter
 	Box box;							//Box for sprite boundary and collisions
+	bool is_persistent;					//If true, object active on all levels
 
 public:
 	Object();
@@ -83,6 +84,8 @@ public:
 	int getSpriteSlowdownCount();					//Get slowdown count
 	void setBox(Box new_box);					//Set bounding box
 	Box getBox();								//Get bounding box
+	int setPersistence(bool persistent);		//Set persistence of object
+	bool isPersistent();						//Get persistence
 
 };
 

@@ -87,7 +87,7 @@ string readLineStr(ifstream *p_file, int *p_line_number, const char *tag) {
 		return "error";
 	}
 
-	string str = line.substr(strlen(tag));
+	string str = line.substr(strlen(tag) + 1);
 	++*p_line_number;
 	return str;
 
@@ -180,15 +180,16 @@ int ResourceManager::loadSprite(string filename, string label) {
 	sprite->setLabel(label);
 	sprite->setHeight(height);
 	sprite->setWidth(width);
+	color = color.substr(0, color.length()-1);
 
-	if (color == "black") sprite->setColor(COLOR_BLACK);
-	else if (color == "red") sprite->setColor(COLOR_RED);
-	else if (color == "green") sprite->setColor(COLOR_GREEN);
-	else if (color == "yellow") sprite->setColor(COLOR_YELLOW);
-	else if (color == "blue") sprite->setColor(COLOR_BLUE);
-	else if (color == "magenta") sprite->setColor(COLOR_MAGENTA);
-	else if (color == "cyan") sprite->setColor(COLOR_CYAN);
-	else if (color == "white") sprite->setColor(COLOR_WHITE);
+	if (color.compare("black") ==  0) sprite->setColor(COLOR_BLACK);
+	else if (color.compare("red") ==  0) sprite->setColor(COLOR_RED);
+	else if (color.compare("green") ==  0) sprite->setColor(COLOR_GREEN);
+	else if (color.compare("yellow") ==  0) sprite->setColor(COLOR_YELLOW);
+	else if (color.compare("blue") ==  0) sprite->setColor(COLOR_BLUE);
+	else if (color.compare("magenta") ==  0) sprite->setColor(COLOR_MAGENTA);
+	else if (color.compare("cyan") ==  0) sprite->setColor(COLOR_CYAN);
+	else if (color.compare("white") ==  0) sprite->setColor(COLOR_WHITE);
 	else sprite->setColor(COLOR_DEFAULT);
 
 	p_sprite[sprite_count] = sprite;

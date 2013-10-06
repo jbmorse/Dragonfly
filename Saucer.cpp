@@ -5,6 +5,7 @@
  *      Author: Josh
  */
 
+#include "EventNuke.h"
 #include "EventOut.h"
 #include "EventView.h"
 #include "Explosion.h"
@@ -39,6 +40,9 @@ Saucer::Saucer() {
 
 	moveToStart();
 
+	//Register that a nuke can go off
+	registerInterest(NUKE_EVENT);
+
 }
 
 Saucer::~Saucer() {
@@ -61,6 +65,16 @@ int Saucer::eventHandler(Event *p_e) {
 		EventCollision *p_collision_event = static_cast <EventCollision *> (p_e);
 		hit(p_collision_event);
 		return 1;
+	}
+
+	if (p_e->getType() == NUKE_EVENT) {
+		//Saucer dies, explode
+		Explosion *p_explosion = new Explosion;
+		p_explosion -> setPosition(this -> getPosition());
+		WorldManager &world_manager = WorldManager::getInstance();
+		world_manager.markForDelete(this);
+		//Need to replace the Saucers
+		new Saucer;
 	}
 
     return 0;
