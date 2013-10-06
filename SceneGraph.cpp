@@ -8,6 +8,7 @@
 //Game engine header files
 #include "SceneGraph.h"
 #include "Utility.h"
+#include "ObjectListIterator.h"
 
 //Misc required headers
 
@@ -53,7 +54,17 @@ int SceneGraph::removeObject(Object *p_o) {
 
 ObjectList SceneGraph::allObjects() {
 
-	return objects[level];
+	ObjectList *objectsAll = new ObjectList();
+	ObjectListIterator persIter(&objects[0]);
+	for (persIter.first(); !persIter.isDone(); persIter.next()) {
+		objectsAll->insert(persIter.currentObject());
+	}
+	ObjectListIterator levelIter(&objects[level]);
+	for (levelIter.first(); !levelIter.isDone(); levelIter.next()) {
+		objectsAll->insert(levelIter.currentObject());
+	}
+
+	return *objectsAll;
 
 }
 

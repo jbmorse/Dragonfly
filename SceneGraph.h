@@ -15,7 +15,7 @@
 //Misc required headers
 
 #define MAX_ALTITUDE 4
-#define MAX_LEVEL 100		//Level 0 objects are persistent
+#define MAX_LEVEL 10		//Level 0 objects are persistent
 
 class SceneGraph {
 

@@ -1,36 +1,130 @@
-18:06:20 Message: GameManager::startUp: Log Manager started
-18:06:20 Message: GraphicsManager::startUp: GraphicsManager starting
-18:06:20 Message: GameManager::startUp: Graphics Manager started
-18:06:20 Message: InputManager::startUp: InputManager starting
-18:06:20 Message: GameManager::startUp: Input Manager started
-18:06:20 Message: WorldManager::startUp: Starting WorldManager
-18:06:20 Message: GameManager::startUp: World Manager started
-18:06:20 Message: ResourceManager::startUp: ResourceManager starting
-18:06:20 Message: GameManager::startUp: Resource Manager started
-18:06:20 Message: ResourceManager::LoadSprite: Loading Sprite!
-18:06:20 Message: ResourceManager::LoadSprite: Opened sprite file!
-18:06:20 Message: ResourceManager::LoadSprite: Sprite loaded!
-18:06:20 Message: ResourceManager::LoadSprite: Loading Sprite!
-18:06:20 Message: ResourceManager::LoadSprite: Opened sprite file!
-18:06:20 Message: ResourceManager::LoadSprite: Sprite loaded!
-18:06:20 Message: ResourceManager::LoadSprite: Loading Sprite!
-18:06:20 Message: ResourceManager::LoadSprite: Opened sprite file!
-18:06:20 Message: ResourceManager::LoadSprite: Sprite loaded!
-18:06:20 Message: ResourceManager::LoadSprite: Loading Sprite!
-18:06:20 Message: ResourceManager::LoadSprite: Opened sprite file!
-18:06:20 Message: ResourceManager::LoadSprite: Sprite loaded!
-18:06:20 Message: ResourceManager::LoadSprite: Loading Sprite!
-18:06:20 Message: ResourceManager::LoadSprite: Opened sprite file!
-18:06:20 Message: ResourceManager::LoadSprite: Sprite loaded!
-18:06:20 Message: ResourceManager::LoadSprite: Loading Sprite!
-18:06:20 Message: ResourceManager::LoadSprite: Opened sprite file!
-18:06:20 Message: ResourceManager::LoadSprite: Sprite loaded!
-18:06:20 Message: ResourceManager::LoadSprite: Loading Sprite!
-18:06:20 Message: ResourceManager::LoadSprite: Opened sprite file!
-18:06:20 Message: ResourceManager::LoadSprite: Sprite loaded!
-18:06:20 Message: Loaded Resources!
-18:06:20 Message: Game Started!
-18:06:20 Message: Woooo star!
-18:06:20 Message: Still good!
-18:06:20 Message: Still very good!
-18:06:20 Message: Why does this die on the next line!???!!
+19:47:18 Message: GameManager::startUp: Log Manager started
+19:47:18 Message: GraphicsManager::startUp: GraphicsManager starting
+19:47:18 Message: GameManager::startUp: Graphics Manager started
+19:47:18 Message: InputManager::startUp: InputManager starting
+19:47:18 Message: GameManager::startUp: Input Manager started
+19:47:18 Message: WorldManager::startUp: Starting WorldManager
+19:47:18 Message: GameManager::startUp: World Manager started
+19:47:18 Message: ResourceManager::startUp: ResourceManager starting
+19:47:18 Message: GameManager::startUp: Resource Manager started
+19:47:18 Message: ResourceManager::LoadSprite: Loading Sprite!
+19:47:18 Message: ResourceManager::LoadSprite: Opened sprite file!
+19:47:18 Message: ResourceManager::LoadSprite: Sprite loaded!
+19:47:18 Message: ResourceManager::LoadSprite: Loading Sprite!
+19:47:18 Message: ResourceManager::LoadSprite: Opened sprite file!
+19:47:18 Message: ResourceManager::LoadSprite: Sprite loaded!
+19:47:18 Message: ResourceManager::LoadSprite: Loading Sprite!
+19:47:18 Message: ResourceManager::LoadSprite: Opened sprite file!
+19:47:18 Message: ResourceManager::LoadSprite: Sprite loaded!
+19:47:18 Message: ResourceManager::LoadSprite: Loading Sprite!
+19:47:18 Message: ResourceManager::LoadSprite: Opened sprite file!
+19:47:18 Message: ResourceManager::LoadSprite: Sprite loaded!
+19:47:18 Message: ResourceManager::LoadSprite: Loading Sprite!
+19:47:18 Message: ResourceManager::LoadSprite: Opened sprite file!
+19:47:18 Message: ResourceManager::LoadSprite: Sprite loaded!
+19:47:18 Message: ResourceManager::LoadSprite: Loading Sprite!
+19:47:18 Message: ResourceManager::LoadSprite: Opened sprite file!
+19:47:18 Message: ResourceManager::LoadSprite: Sprite loaded!
+19:47:18 Message: ResourceManager::LoadSprite: Loading Sprite!
+19:47:18 Message: ResourceManager::LoadSprite: Opened sprite file!
+19:47:18 Message: ResourceManager::LoadSprite: Sprite loaded!
+19:47:18 Message: Loaded Resources!
+19:47:18 Message: Game Started!
+19:47:18 Message: Woooo star!
+19:47:18 Message: Still good!
+19:47:18 Message: Still very good!
+19:47:18 Message: Why does this die on the next line!?!
+19:47:18 Message: Why are you being so dumb omg!
+19:47:18 Message: WOO STAR IT WORKED!
+19:47:18 Message: Woooo star!
+19:47:18 Message: Still good!
+19:47:18 Message: Still very good!
+19:47:18 Message: Why does this die on the next line!?!
+19:47:18 Message: Why are you being so dumb omg!
+19:47:18 Message: WOO STAR IT WORKED!
+19:47:18 Message: Woooo star!
+19:47:18 Message: Still good!
+19:47:18 Message: Still very good!
+19:47:18 Message: Why does this die on the next line!?!
+19:47:18 Message: Why are you being so dumb omg!
+19:47:18 Message: WOO STAR IT WORKED!
+19:47:18 Message: Woooo star!
+19:47:18 Message: Still good!
+19:47:18 Message: Still very good!
+19:47:18 Message: Why does this die on the next line!?!
+19:47:18 Message: Why are you being so dumb omg!
+19:47:18 Message: WOO STAR IT WORKED!
+19:47:18 Message: Woooo star!
+19:47:18 Message: Still good!
+19:47:18 Message: Still very good!
+19:47:18 Message: Why does this die on the next line!?!
+19:47:18 Message: Why are you being so dumb omg!
+19:47:18 Message: WOO STAR IT WORKED!
+19:47:18 Message: Woooo star!
+19:47:18 Message: Still good!
+19:47:18 Message: Still very good!
+19:47:18 Message: Why does this die on the next line!?!
+19:47:18 Message: Why are you being so dumb omg!
+19:47:18 Message: WOO STAR IT WORKED!
+19:47:18 Message: Woooo star!
+19:47:18 Message: Still good!
+19:47:18 Message: Still very good!
+19:47:18 Message: Why does this die on the next line!?!
+19:47:18 Message: Why are you being so dumb omg!
+19:47:18 Message: WOO STAR IT WORKED!
+19:47:18 Message: Woooo star!
+19:47:18 Message: Still good!
+19:47:18 Message: Still very good!
+19:47:18 Message: Why does this die on the next line!?!
+19:47:18 Message: Why are you being so dumb omg!
+19:47:18 Message: WOO STAR IT WORKED!
+19:47:18 Message: Woooo star!
+19:47:18 Message: Still good!
+19:47:18 Message: Still very good!
+19:47:18 Message: Why does this die on the next line!?!
+19:47:18 Message: Why are you being so dumb omg!
+19:47:18 Message: WOO STAR IT WORKED!
+19:47:18 Message: Woooo star!
+19:47:18 Message: Still good!
+19:47:18 Message: Still very good!
+19:47:18 Message: Why does this die on the next line!?!
+19:47:18 Message: Why are you being so dumb omg!
+19:47:18 Message: WOO STAR IT WORKED!
+19:47:18 Message: Woooo star!
+19:47:18 Message: Still good!
+19:47:18 Message: Still very good!
+19:47:18 Message: Why does this die on the next line!?!
+19:47:18 Message: Why are you being so dumb omg!
+19:47:18 Message: WOO STAR IT WORKED!
+19:47:18 Message: Woooo star!
+19:47:18 Message: Still good!
+19:47:18 Message: Still very good!
+19:47:18 Message: Why does this die on the next line!?!
+19:47:18 Message: Why are you being so dumb omg!
+19:47:18 Message: WOO STAR IT WORKED!
+19:47:18 Message: Woooo star!
+19:47:18 Message: Still good!
+19:47:18 Message: Still very good!
+19:47:18 Message: Why does this die on the next line!?!
+19:47:18 Message: Why are you being so dumb omg!
+19:47:18 Message: WOO STAR IT WORKED!
+19:47:18 Message: Woooo star!
+19:47:18 Message: Still good!
+19:47:18 Message: Still very good!
+19:47:18 Message: Why does this die on the next line!?!
+19:47:18 Message: Why are you being so dumb omg!
+19:47:18 Message: WOO STAR IT WORKED!
+19:47:18 Message: Woooo star!
+19:47:18 Message: Still good!
+19:47:18 Message: Still very good!
+19:47:18 Message: Why does this die on the next line!?!
+19:47:18 Message: Why are you being so dumb omg!
+19:47:18 Message: WOO STAR IT WORKED!
+19:47:18 Message: Woooo star!
+19:47:18 Message: Still good!
+19:47:18 Message: Still very good!
+19:47:18 Message: Why does this die on the next line!?!
+19:47:18 Message: Why are you being so dumb omg!
+19:47:18 Message: WOO STAR IT WORKED!
+19:47:18 Message: Populated world!
+19:47:18 Message: GameManager::run: Game loop begins

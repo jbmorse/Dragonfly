@@ -26,7 +26,7 @@ Star::Star() {
 	Position pos(random()%world_manager.getBoundary().getHorizontal(), random()%world_manager.getBoundary().getVertical());
 	logmanager.writeLog("Still very good!\n");
 	setPosition(pos);
-	logmanager.writeLog("Why does this die on the next line!???!!\n");
+	logmanager.writeLog("Why does this die on the next line!?!\n");
 	setPersistence(true);
 	logmanager.writeLog("WOO STAR IT WORKED!\n");
 

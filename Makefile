@@ -90,6 +90,7 @@ EventKeyboard.o: /usr/include/machine/types.h /usr/include/sys/stdio.h
 EventKeyboard.o: /usr/include/sys/cdefs.h /usr/include/stdint.h
 EventKeyboard.o: /usr/include/bits/wordsize.h
 EventMouse.o: EventMouse.h Event.h
+EventNuke.o: EventNuke.h Event.h Object.h Position.h Sprite.h Frame.h Box.h
 EventOut.o: EventOut.h Event.h
 EventStep.o: EventStep.h Event.h
 EventView.o: EventView.h Event.h
@@ -169,10 +170,10 @@ GraphicsManager.o: Manager.h Object.h Position.h Event.h Sprite.h Frame.h
 GraphicsManager.o: Box.h ObjectList.h ObjectListIterator.h LogManager.h
 GraphicsManager.o: Utility.h
 Hero.o: Bullet.h EventCollision.h Event.h Object.h Position.h Sprite.h
-Hero.o: Frame.h Box.h EventStep.h EventView.h Explosion.h ResourceManager.h
-Hero.o: Manager.h ObjectList.h ObjectListIterator.h Hero.h EventKeyboard.h
-Hero.o: GameManager.h /usr/include/time.h /usr/include/_ansi.h
-Hero.o: /usr/include/newlib.h /usr/include/sys/config.h
+Hero.o: Frame.h Box.h EventNuke.h EventStep.h EventView.h Explosion.h
+Hero.o: ResourceManager.h Manager.h ObjectList.h ObjectListIterator.h Hero.h
+Hero.o: EventKeyboard.h GameManager.h /usr/include/time.h
+Hero.o: /usr/include/_ansi.h /usr/include/newlib.h /usr/include/sys/config.h
 Hero.o: /usr/include/machine/ieeefp.h /usr/include/sys/features.h
 Hero.o: /usr/include/sys/reent.h /usr/include/sys/_types.h
 Hero.o: /usr/include/machine/_types.h /usr/include/machine/_default_types.h
@@ -305,9 +306,9 @@ ResourceManager.o: Manager.h Object.h Position.h Event.h Sprite.h Frame.h
 ResourceManager.o: Box.h ObjectList.h ObjectListIterator.h LogManager.h
 ResourceManager.o: ResourceManager.h /usr/include/stdlib.h
 ResourceManager.o: /usr/include/machine/stdlib.h /usr/include/alloca.h
-Saucer.o: EventOut.h Event.h EventView.h Explosion.h Object.h Position.h
-Saucer.o: Sprite.h Frame.h Box.h ResourceManager.h Manager.h ObjectList.h
-Saucer.o: ObjectListIterator.h LogManager.h /usr/include/stdio.h
+Saucer.o: EventNuke.h Event.h Object.h Position.h Sprite.h Frame.h Box.h
+Saucer.o: EventOut.h EventView.h Explosion.h ResourceManager.h Manager.h
+Saucer.o: ObjectList.h ObjectListIterator.h LogManager.h /usr/include/stdio.h
 Saucer.o: /usr/include/_ansi.h /usr/include/newlib.h
 Saucer.o: /usr/include/sys/config.h /usr/include/machine/ieeefp.h
 Saucer.o: /usr/include/sys/features.h /usr/include/sys/reent.h
