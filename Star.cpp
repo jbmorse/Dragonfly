@@ -16,19 +16,14 @@
 Star::Star() {
 
 	LogManager &logmanager = LogManager::getInstance();
-	logmanager.writeLog("Woooo star!\n");
 	setType("Star");
 	setSolidness(SPECTRAL);
 	setXVelocity(-1.0 / (random()%10 + 1));
 	setAltitude(0);  //Make them in the background
-	logmanager.writeLog("Still good!\n");
 	WorldManager &world_manager = WorldManager::getInstance();
 	Position pos(random()%world_manager.getBoundary().getHorizontal(), random()%world_manager.getBoundary().getVertical());
-	logmanager.writeLog("Still very good!\n");
 	setPosition(pos);
-	logmanager.writeLog("Why does this die on the next line!?!\n");
 	setPersistence(true);
-	logmanager.writeLog("WOO STAR IT WORKED!\n");
 
 }
 

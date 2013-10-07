@@ -9,6 +9,7 @@
 #include "SceneGraph.h"
 #include "Utility.h"
 #include "ObjectListIterator.h"
+#include "LogManager.h"
 
 //Misc required headers
 
@@ -70,17 +71,38 @@ ObjectList SceneGraph::allObjects() {
 
 ObjectList SceneGraph::solidObjects() {
 
-	return solid_objects[level];
+	ObjectList *objectsSolid = new ObjectList();
+	ObjectListIterator persIter(&solid_objects[0]);
+	for (persIter.first(); !persIter.isDone(); persIter.next()) {
+		objectsSolid->insert(persIter.currentObject());
+	}
+	ObjectListIterator levelIter(&solid_objects[level]);
+	for (levelIter.first(); !levelIter.isDone(); levelIter.next()) {
+		objectsSolid->insert(levelIter.currentObject());
+	}
+
+	return *objectsSolid;
 
 }
 
 ObjectList SceneGraph::visibleObjects(int altitude) {
 
 	if (valueInRange(altitude, 0, MAX_ALTITUDE)) {
+		ObjectList *objectsVisible = new ObjectList();
+		ObjectListIterator persIter(&visible_objects[0][altitude]);
+		for (persIter.first(); !persIter.isDone(); persIter.next()) {
+			objectsVisible->insert(persIter.currentObject());
+		}
+		ObjectListIterator levelIter(&visible_objects[level][altitude]);
+		for (levelIter.first(); !levelIter.isDone(); levelIter.next()) {
+			objectsVisible->insert(levelIter.currentObject());
+		}
+
+		return *objectsVisible;
 		return visible_objects[level][altitude];
 	}
 
-	else return visible_objects[level][MAX_ALTITUDE];
+	else return visible_objects[0][MAX_ALTITUDE];
 
 }
 
@@ -117,7 +139,7 @@ int SceneGraph::updateSolidness(Object *p_o, Solidness new_solidness) {
 
 int SceneGraph::setLevel(int new_level) {
 
-	if (!valueInRange(new_level, 0, MAX_LEVEL)) {
+	if (valueInRange(new_level, 0, MAX_LEVEL)) {
 		level = new_level;
 		return 0;
 	}

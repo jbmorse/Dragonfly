@@ -387,7 +387,6 @@ Box Object::getBox() {
 int Object::setPersistence(bool persistent)	{
 
 	LogManager &logmanager = LogManager::getInstance();
-	logmanager.writeLog("Why are you being so dumb omg!\n");
 	WorldManager &worldmanager = WorldManager::getInstance();
 	SceneGraph &scene_graph = worldmanager.getSceneGraph();
 	if (scene_graph.updatePersistence(this, persistent)) {

@@ -102,7 +102,7 @@ void Hero::kbd(EventKeyboard *p_keyboard_event) {
 		fire();
 		break;
 	case 13:
-		laser();
+		nuke();
 		break;
 	case 'q':
 		world_manager.markForDelete(this);

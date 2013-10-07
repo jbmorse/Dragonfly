@@ -1,130 +1,165 @@
-19:47:18 Message: GameManager::startUp: Log Manager started
-19:47:18 Message: GraphicsManager::startUp: GraphicsManager starting
-19:47:18 Message: GameManager::startUp: Graphics Manager started
-19:47:18 Message: InputManager::startUp: InputManager starting
-19:47:18 Message: GameManager::startUp: Input Manager started
-19:47:18 Message: WorldManager::startUp: Starting WorldManager
-19:47:18 Message: GameManager::startUp: World Manager started
-19:47:18 Message: ResourceManager::startUp: ResourceManager starting
-19:47:18 Message: GameManager::startUp: Resource Manager started
-19:47:18 Message: ResourceManager::LoadSprite: Loading Sprite!
-19:47:18 Message: ResourceManager::LoadSprite: Opened sprite file!
-19:47:18 Message: ResourceManager::LoadSprite: Sprite loaded!
-19:47:18 Message: ResourceManager::LoadSprite: Loading Sprite!
-19:47:18 Message: ResourceManager::LoadSprite: Opened sprite file!
-19:47:18 Message: ResourceManager::LoadSprite: Sprite loaded!
-19:47:18 Message: ResourceManager::LoadSprite: Loading Sprite!
-19:47:18 Message: ResourceManager::LoadSprite: Opened sprite file!
-19:47:18 Message: ResourceManager::LoadSprite: Sprite loaded!
-19:47:18 Message: ResourceManager::LoadSprite: Loading Sprite!
-19:47:18 Message: ResourceManager::LoadSprite: Opened sprite file!
-19:47:18 Message: ResourceManager::LoadSprite: Sprite loaded!
-19:47:18 Message: ResourceManager::LoadSprite: Loading Sprite!
-19:47:18 Message: ResourceManager::LoadSprite: Opened sprite file!
-19:47:18 Message: ResourceManager::LoadSprite: Sprite loaded!
-19:47:18 Message: ResourceManager::LoadSprite: Loading Sprite!
-19:47:18 Message: ResourceManager::LoadSprite: Opened sprite file!
-19:47:18 Message: ResourceManager::LoadSprite: Sprite loaded!
-19:47:18 Message: ResourceManager::LoadSprite: Loading Sprite!
-19:47:18 Message: ResourceManager::LoadSprite: Opened sprite file!
-19:47:18 Message: ResourceManager::LoadSprite: Sprite loaded!
-19:47:18 Message: Loaded Resources!
-19:47:18 Message: Game Started!
-19:47:18 Message: Woooo star!
-19:47:18 Message: Still good!
-19:47:18 Message: Still very good!
-19:47:18 Message: Why does this die on the next line!?!
-19:47:18 Message: Why are you being so dumb omg!
-19:47:18 Message: WOO STAR IT WORKED!
-19:47:18 Message: Woooo star!
-19:47:18 Message: Still good!
-19:47:18 Message: Still very good!
-19:47:18 Message: Why does this die on the next line!?!
-19:47:18 Message: Why are you being so dumb omg!
-19:47:18 Message: WOO STAR IT WORKED!
-19:47:18 Message: Woooo star!
-19:47:18 Message: Still good!
-19:47:18 Message: Still very good!
-19:47:18 Message: Why does this die on the next line!?!
-19:47:18 Message: Why are you being so dumb omg!
-19:47:18 Message: WOO STAR IT WORKED!
-19:47:18 Message: Woooo star!
-19:47:18 Message: Still good!
-19:47:18 Message: Still very good!
-19:47:18 Message: Why does this die on the next line!?!
-19:47:18 Message: Why are you being so dumb omg!
-19:47:18 Message: WOO STAR IT WORKED!
-19:47:18 Message: Woooo star!
-19:47:18 Message: Still good!
-19:47:18 Message: Still very good!
-19:47:18 Message: Why does this die on the next line!?!
-19:47:18 Message: Why are you being so dumb omg!
-19:47:18 Message: WOO STAR IT WORKED!
-19:47:18 Message: Woooo star!
-19:47:18 Message: Still good!
-19:47:18 Message: Still very good!
-19:47:18 Message: Why does this die on the next line!?!
-19:47:18 Message: Why are you being so dumb omg!
-19:47:18 Message: WOO STAR IT WORKED!
-19:47:18 Message: Woooo star!
-19:47:18 Message: Still good!
-19:47:18 Message: Still very good!
-19:47:18 Message: Why does this die on the next line!?!
-19:47:18 Message: Why are you being so dumb omg!
-19:47:18 Message: WOO STAR IT WORKED!
-19:47:18 Message: Woooo star!
-19:47:18 Message: Still good!
-19:47:18 Message: Still very good!
-19:47:18 Message: Why does this die on the next line!?!
-19:47:18 Message: Why are you being so dumb omg!
-19:47:18 Message: WOO STAR IT WORKED!
-19:47:18 Message: Woooo star!
-19:47:18 Message: Still good!
-19:47:18 Message: Still very good!
-19:47:18 Message: Why does this die on the next line!?!
-19:47:18 Message: Why are you being so dumb omg!
-19:47:18 Message: WOO STAR IT WORKED!
-19:47:18 Message: Woooo star!
-19:47:18 Message: Still good!
-19:47:18 Message: Still very good!
-19:47:18 Message: Why does this die on the next line!?!
-19:47:18 Message: Why are you being so dumb omg!
-19:47:18 Message: WOO STAR IT WORKED!
-19:47:18 Message: Woooo star!
-19:47:18 Message: Still good!
-19:47:18 Message: Still very good!
-19:47:18 Message: Why does this die on the next line!?!
-19:47:18 Message: Why are you being so dumb omg!
-19:47:18 Message: WOO STAR IT WORKED!
-19:47:18 Message: Woooo star!
-19:47:18 Message: Still good!
-19:47:18 Message: Still very good!
-19:47:18 Message: Why does this die on the next line!?!
-19:47:18 Message: Why are you being so dumb omg!
-19:47:18 Message: WOO STAR IT WORKED!
-19:47:18 Message: Woooo star!
-19:47:18 Message: Still good!
-19:47:18 Message: Still very good!
-19:47:18 Message: Why does this die on the next line!?!
-19:47:18 Message: Why are you being so dumb omg!
-19:47:18 Message: WOO STAR IT WORKED!
-19:47:18 Message: Woooo star!
-19:47:18 Message: Still good!
-19:47:18 Message: Still very good!
-19:47:18 Message: Why does this die on the next line!?!
-19:47:18 Message: Why are you being so dumb omg!
-19:47:18 Message: WOO STAR IT WORKED!
-19:47:18 Message: Woooo star!
-19:47:18 Message: Still good!
-19:47:18 Message: Still very good!
-19:47:18 Message: Why does this die on the next line!?!
-19:47:18 Message: Why are you being so dumb omg!
-19:47:18 Message: WOO STAR IT WORKED!
-19:47:18 Message: Woooo star!
-19:47:18 Message: Still good!
-19:47:18 Message: Still very good!
-19:47:18 Message: Why does this die on the next line!?!
-19:47:18 Message: Why are you being so dumb omg!
-19:47:18 Message: WOO STAR IT WORKED!
-19:47:18 Message: Populated world!
-19:47:18 Message: GameManager::run: Game loop begins
+23:17:00 Message: GameManager::startUp: Log Manager started
+23:17:00 Message: GraphicsManager::startUp: GraphicsManager starting
+23:17:00 Message: GameManager::startUp: Graphics Manager started
+23:17:00 Message: InputManager::startUp: InputManager starting
+23:17:00 Message: GameManager::startUp: Input Manager started
+23:17:00 Message: WorldManager::startUp: Starting WorldManager
+23:17:00 Message: GameManager::startUp: World Manager started
+23:17:00 Message: ResourceManager::startUp: ResourceManager starting
+23:17:00 Message: GameManager::startUp: Resource Manager started
+23:17:00 Message: ResourceManager::LoadSprite: Loading Sprite!
+23:17:00 Message: ResourceManager::LoadSprite: Opened sprite file!
+23:17:00 Message: ResourceManager::LoadSprite: Sprite loaded!
+23:17:00 Message: ResourceManager::LoadSprite: Loading Sprite!
+23:17:00 Message: ResourceManager::LoadSprite: Opened sprite file!
+23:17:00 Message: ResourceManager::LoadSprite: Sprite loaded!
+23:17:00 Message: ResourceManager::LoadSprite: Loading Sprite!
+23:17:00 Message: ResourceManager::LoadSprite: Opened sprite file!
+23:17:00 Message: ResourceManager::LoadSprite: Sprite loaded!
+23:17:00 Message: ResourceManager::LoadSprite: Loading Sprite!
+23:17:00 Message: ResourceManager::LoadSprite: Opened sprite file!
+23:17:00 Message: ResourceManager::LoadSprite: Sprite loaded!
+23:17:00 Message: ResourceManager::LoadSprite: Loading Sprite!
+23:17:00 Message: ResourceManager::LoadSprite: Opened sprite file!
+23:17:00 Message: ResourceManager::LoadSprite: Sprite loaded!
+23:17:00 Message: ResourceManager::LoadSprite: Loading Sprite!
+23:17:00 Message: ResourceManager::LoadSprite: Opened sprite file!
+23:17:00 Message: ResourceManager::LoadSprite: Sprite loaded!
+23:17:00 Message: ResourceManager::LoadSprite: Loading Sprite!
+23:17:00 Message: ResourceManager::LoadSprite: Opened sprite file!
+23:17:00 Message: ResourceManager::LoadSprite: Sprite loaded!
+23:17:00 Message: Loaded Resources!
+23:17:00 Message: Game Started!
+23:17:00 Message: Populated world!
+23:17:00 Message: GameManager::run: Game loop begins
+23:17:05 Message: deletion 1
+23:17:05 Message: deletion 2
+23:17:05 Message: deletion 1
+23:17:05 Message: ObjectList::remove: Did not locate object!
+23:17:05 Message: deletion 2
+23:17:05 Message: ObjectList::remove: Did not locate object!
+23:17:06 Message: deletion 1
+23:17:06 Message: deletion 1
+23:17:07 Message: deletion 1
+23:17:07 Message: deletion 2
+23:17:07 Message: deletion 1
+23:17:07 Message: ObjectList::remove: Did not locate object!
+23:17:08 Message: deletion 1
+23:17:08 Message: deletion 2
+23:17:08 Message: deletion 1
+23:17:08 Message: deletion 1
+23:17:08 Message: ObjectList::remove: Did not locate object!
+23:17:08 Message: deletion 1
+23:17:08 Message: deletion 2
+23:17:09 Message: deletion 1
+23:17:09 Message: ObjectList::remove: Did not locate object!
+23:17:10 Message: deletion 1
+23:17:10 Message: deletion 1
+23:17:10 Message: deletion 2
+23:17:10 Message: deletion 1
+23:17:10 Message: ObjectList::remove: Did not locate object!
+23:17:10 Message: deletion 2
+23:17:12 Message: deletion 1
+23:17:12 Message: deletion 1
+23:17:13 Message: deletion 1
+23:17:13 Message: deletion 1
+23:17:13 Message: deletion 2
+23:17:13 Message: deletion 3
+23:17:14 Message: deletion 1
+23:17:14 Message: ObjectList::remove: Did not locate object!
+23:17:14 Message: deletion 2
+23:17:14 Message: ObjectList::remove: Did not locate object!
+23:17:14 Message: deletion 3
+23:17:14 Message: ObjectList::remove: Did not locate object!
+23:17:14 Message: deletion 4
+23:17:14 Message: deletion 5
+23:17:14 Message: deletion 6
+23:17:14 Message: deletion 1
+23:17:14 Message: deletion 1
+23:17:14 Message: ObjectList::remove: Did not locate object!
+23:17:14 Message: deletion 2
+23:17:14 Message: ObjectList::remove: Did not locate object!
+23:17:16 Message: deletion 1
+23:17:16 Message: deletion 2
+23:17:16 Message: deletion 1
+23:17:16 Message: ObjectList::remove: Did not locate object!
+23:17:17 Message: deletion 1
+23:17:17 Message: deletion 1
+23:17:17 Message: deletion 2
+23:17:18 Message: deletion 1
+23:17:18 Message: ObjectList::remove: Did not locate object!
+23:17:18 Message: deletion 1
+23:17:18 Message: deletion 2
+23:17:18 Message: deletion 1
+23:17:18 Message: deletion 2
+23:17:18 Message: deletion 1
+23:17:18 Message: ObjectList::remove: Did not locate object!
+23:17:18 Message: deletion 1
+23:17:18 Message: ObjectList::remove: Did not locate object!
+23:17:19 Message: deletion 1
+23:17:19 Message: deletion 2
+23:17:19 Message: deletion 1
+23:17:19 Message: ObjectList::remove: Did not locate object!
+23:17:19 Message: deletion 2
+23:17:19 Message: ObjectList::remove: Did not locate object!
+23:17:20 Message: deletion 1
+23:17:20 Message: deletion 2
+23:17:21 Message: deletion 1
+23:17:21 Message: ObjectList::remove: Did not locate object!
+23:17:21 Message: deletion 1
+23:17:22 Message: deletion 1
+23:17:22 Message: deletion 2
+23:17:22 Message: deletion 1
+23:17:23 Message: deletion 1
+23:17:23 Message: ObjectList::remove: Did not locate object!
+23:17:23 Message: deletion 2
+23:17:23 Message: ObjectList::remove: Did not locate object!
+23:17:23 Message: deletion 1
+23:17:24 Message: deletion 1
+23:17:25 Message: deletion 1
+23:17:26 Message: deletion 1
+23:17:26 Message: deletion 2
+23:17:26 Message: deletion 1
+23:17:26 Message: deletion 1
+23:17:26 Message: ObjectList::remove: Did not locate object!
+23:17:27 Message: deletion 1
+23:17:27 Message: deletion 1
+23:17:27 Message: deletion 2
+23:17:27 Message: deletion 3
+23:17:27 Message: deletion 4
+23:17:27 Message: deletion 1
+23:17:27 Message: ObjectList::remove: Did not locate object!
+23:17:27 Message: deletion 2
+23:17:27 Message: ObjectList::remove: Did not locate object!
+23:17:29 Message: deletion 1
+23:17:29 Message: deletion 2
+23:17:29 Message: deletion 3
+23:17:30 Message: deletion 1
+23:17:30 Message: ObjectList::remove: Did not locate object!
+23:17:30 Message: deletion 1
+23:17:31 Message: deletion 1
+23:17:31 Message: deletion 1
+23:17:31 Message: deletion 2
+23:17:31 Message: deletion 1
+23:17:31 Message: ObjectList::remove: Did not locate object!
+23:17:33 Message: deletion 1
+23:17:34 Message: deletion 1
+23:17:34 Message: ObjectList::remove: Did not locate object!
+23:17:34 Message: deletion 1
+23:17:37 Message: deletion 1
+23:17:37 Message: deletion 2
+23:17:37 Message: deletion 3
+23:17:37 Message: deletion 1
+23:17:37 Message: ObjectList::remove: Did not locate object!
+23:17:37 Message: deletion 2
+23:17:37 Message: ObjectList::remove: Did not locate object!
+23:17:37 Message: deletion 1
+23:17:37 Message: deletion 2
+23:17:38 Message: deletion 1
+23:17:38 Message: ObjectList::remove: Did not locate object!
+23:17:39 Message: deletion 1
+23:17:39 Message: deletion 2
+23:17:39 Message: deletion 1
+23:17:39 Message: deletion 1
+23:17:39 Message: ObjectList::remove: Did not locate object!
+23:17:39 Message: deletion 1

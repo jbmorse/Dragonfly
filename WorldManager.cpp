@@ -90,7 +90,11 @@ void WorldManager::update() {
 
 	ObjectList deletion_copy = deletions;   //Copy list so can delete during iteration.
 	ObjectListIterator deletion_I(&deletion_copy);
+	LogManager &logmanager = LogManager::getInstance();
+	int i = 0;
 	for (deletion_I.first(); !deletion_I.isDone(); deletion_I.next()) {
+		i++;
+		logmanager.writeLog("deletion %d\n", i);
 		delete deletion_I.currentObject();
 	}
 	deletions.clear();
