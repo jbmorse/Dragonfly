@@ -23,39 +23,48 @@
 #include "stdarg.h"
 #include "unistd.h"
 
+void loadResources() {
+
+	//Load sprites
+	ResourceManager &resource_manager = ResourceManager::getInstance();
+	resource_manager.loadSprite("sprites/hashtag-spr.txt", "hashtag");
+
+}
+
+void populateWorld() {
+
+	//World setup
+	WorldManager &worldmanager = WorldManager::getInstance();
+	new Hero();
+	for (int i = 0; i < 10; i++) {
+		new Character();
+	}
+	for (int i = 0; i < 40; i++) {
+		//TODO
+		//Maybe make stars move different directions?
+		//No longer flying to right all the time
+		new Star();
+	}
+
+	//TODO
+	//Add points
+
+}
+
 int main() {
 
 	//Game manager startup
 	GameManager &gamemanager = GameManager::getInstance();
 	int i = gamemanager.startUp(true, time(NULL));
 
-	ResourceManager &resourcemanager = ResourceManager::getInstance();
-	int j = resourcemanager.loadSprite("ship-spr.txt", "ship");
-	if (j < 0) {
-		LogManager &logmanager = LogManager::getInstance();
-		logmanager.writeLog("Game.cpp: Error loading sprite!\n");
-	}
+    //Load the sprites
+    loadResources();
 
-	//World setup
-	WorldManager &worldmanager = WorldManager::getInstance();
-	worldmanager.setBoundary(Box(Position(0,0), 80, 50));
-	new Hero();
-	for (int i = 0; i < 10; i++) {
-		new Character();
-	}
-	for (int i = 0; i < 40; i++) {
-			new Star();
-	}
+    //Populate world with objects
+    populateWorld();
 
-	ViewObject *p_vo = new ViewObject; //Used for points
-	p_vo->setViewString("Points");
-	p_vo->setValue(0);
-	p_vo->setLocation(TOP_RIGHT);
-	p_vo->setColor(COLOR_YELLOW);
-
-	//Run program
+	//Run game
 	gamemanager.run();
-	//Program over, managers closed at end of loop in game manager
 
 }
 

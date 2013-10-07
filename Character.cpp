@@ -80,6 +80,9 @@ void Character::out() {
 		return;
 	}
 
+	//setXVelocity(getXVelocity() * -1);
+	//setYVelocity(getYVelocity() * -1);
+
 	moveToStart();
 
 }

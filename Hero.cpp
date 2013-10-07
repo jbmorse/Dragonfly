@@ -40,13 +40,13 @@ Hero::Hero() {
 	WorldManager &worldmanager = WorldManager::getInstance();
 	worldmanager.setViewFollowing(this);
 
-	Sprite *p_temp_sprite = resourcemanager.getSprite("ship");
+	Sprite *p_temp_sprite = resourcemanager.getSprite("hashtag");
 	if (!p_temp_sprite) {
-			logmanager.writeLog("Hero::Hero(): Warning! Sprite '%s' not found", "ship");
+			logmanager.writeLog("Hero::Hero(): Warning! Sprite '%s' not found", "hashtag");
 	}
 	else {
 		setSprite(p_temp_sprite);
-		setSpriteSlowdown(3);		//Third speed animation
+		setSpriteSlowdown(0);
 	}
 
 	GraphicsManager &graphicsmanager = GraphicsManager::getInstance();
