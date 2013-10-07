@@ -1,63 +1,62 @@
 /*
- * Coding Project for IMGD 3000 completed by Joshua Morse
+ * game.cpp
+ *
+ *  Created on: Sep 14, 2013
+ *      Author: Josh
  */
 
-#include "GameManager.h"
-#include "Gamestart.h"
-#include "GraphicsManager.h"
+//Game engine header files
+#include "Clock.h"
 #include "LogManager.h"
-#include "ResourceManager.h"
+#include "GameManager.h"
+#include "WorldManager.h"
+#include "Hero.h"
+#include "Character.h"
 #include "Star.h"
-#include "stdlib.h"
-#include "Utility.h"
+#include "ResourceManager.h"
+#include "GraphicsManager.h"
+#include "ViewObject.h"
 
-void loadResources() {
+//Misc required headers
+#include "iostream"
+#include "stdio.h"
+#include "stdarg.h"
+#include "unistd.h"
 
-	//Load sprites
-	ResourceManager &resource_manager = ResourceManager::getInstance();
-	resource_manager.loadSprite("sprites/saucer-spr.txt", "saucer");
-	resource_manager.loadSprite("sprites/ship-spr.txt", "ship");
-	resource_manager.loadSprite("sprites/bullet-spr.txt", "bullet");
-	resource_manager.loadSprite("sprites/explosion-spr.txt", "explosion");
-	resource_manager.loadSprite("sprites/gameover-spr.txt", "gameover");
-	resource_manager.loadSprite("sprites/gamestart-spr.txt", "gamestart");
-	resource_manager.loadSprite("sprites/laser-spr.txt", "laser");
+int main() {
 
-}
+	//Game manager startup
+	GameManager &gamemanager = GameManager::getInstance();
+	int i = gamemanager.startUp(true, time(NULL));
 
-void populateWorld() {
-	//Start the game
-	new GameStart();
-	LogManager &log_manager = LogManager::getInstance();
-	log_manager.writeLog("Game Started!\n");
-	//Create some stars
-	for (int i=0; i<16; i++) {
-		new Star;
+	ResourceManager &resourcemanager = ResourceManager::getInstance();
+	int j = resourcemanager.loadSprite("ship-spr.txt", "ship");
+	if (j < 0) {
+		LogManager &logmanager = LogManager::getInstance();
+		logmanager.writeLog("Game.cpp: Error loading sprite!\n");
 	}
 
+	//World setup
+	WorldManager &worldmanager = WorldManager::getInstance();
+	worldmanager.setBoundary(Box(Position(0,0), 80, 50));
+	new Hero();
+	for (int i = 0; i < 10; i++) {
+		new Character();
+	}
+	for (int i = 0; i < 40; i++) {
+			new Star();
+	}
+
+	ViewObject *p_vo = new ViewObject; //Used for points
+	p_vo->setViewString("Points");
+	p_vo->setValue(0);
+	p_vo->setLocation(TOP_RIGHT);
+	p_vo->setColor(COLOR_YELLOW);
+
+	//Run program
+	gamemanager.run();
+	//Program over, managers closed at end of loop in game manager
+
 }
 
-int main(int argc, char *argv[]) {
-	LogManager &log_manager = LogManager::getInstance();
 
-	//Start up Game Manager
-    GameManager &game_manager = GameManager::getInstance();
-    if (game_manager.startUp())  {
-    	log_manager.writeLog("Error starting game manager!\n");
-    	game_manager.shutDown();
-    	exit(1);
-    }
-
-
-    //Set up the Game
-    loadResources();
-    log_manager.writeLog("Loaded Resources!\n");
-    populateWorld();
-    log_manager.writeLog("Populated world!\n");
-
-    //Run the game!
-    game_manager.run();
-
-    //Shut everything down
-    game_manager.shutDown();
-}

@@ -1,72 +1,65 @@
 /*
  * Hero.cpp
  *
- *  Created on: Sep 3, 2013
+ *  Created on: Sep 25, 2013
  *      Author: Josh
  */
 
-#include "Bullet.h"
-#include "EventNuke.h"
 #include "EventStep.h"
-#include "EventView.h"
-#include "Explosion.h"
 #include "Hero.h"
 #include "GameManager.h"
-#include "GameOver.h"
 #include "GraphicsManager.h"
-#include "Laser.h"
 #include "LogManager.h"
-#include "ResourceManager.h"
 #include "WorldManager.h"
+#include "EventCollision.h"
+#include "EventRefresh.h"
+#include "Character.h"
+#include "EventMouse.h"
+#include <string>
+#include <iostream>
+#include "time.h"
+#include <cstdlib>
+#include "ResourceManager.h"
+
+using namespace std;
+using std::string;
 
 Hero::Hero() {
 
-	//Link to ship sprite
-	ResourceManager &rm = ResourceManager::getInstance();
-	LogManager &lm = LogManager::getInstance();
-	Sprite *p_temp_sprite;
-	p_temp_sprite = rm.getSprite("ship");
+	LogManager &logmanager = LogManager::getInstance();
+	logmanager.writeLog("Hero::Hero(): Made the hero!\n");
+	round = 1;
+
+	//Player controls hero, so register with keyboard/mouse
+	registerInterest(KEYBOARD_EVENT);
+
+	ResourceManager &resourcemanager = ResourceManager::getInstance();
+	setType("Hero");
+
+	//Keep hero centered
+	WorldManager &worldmanager = WorldManager::getInstance();
+	worldmanager.setViewFollowing(this);
+
+	Sprite *p_temp_sprite = resourcemanager.getSprite("ship");
 	if (!p_temp_sprite) {
-		lm.writeLog("Hero::Hero(): Warning! Sprite '%s' not found", "ship");
+			logmanager.writeLog("Hero::Hero(): Warning! Sprite '%s' not found", "ship");
 	}
 	else {
 		setSprite(p_temp_sprite);
 		setSpriteSlowdown(3);		//Third speed animation
-		}
+	}
 
-	//Player controls hero, so register with keyboard
-	registerInterest(KEYBOARD_EVENT);
-
-	//System needs to properly deal with firing
-	registerInterest(STEP_EVENT);
-
-	//initialize variables
-	fire_slowdown = 15;
-	fire_countdown = fire_slowdown;
-	nuke_count = 1;
-	laser_charge = 500;
-
-	setType("Hero");
-	WorldManager &world_manager = WorldManager::getInstance();
-	Position pos(7, world_manager.getBoundary().getVertical()/2);
+	GraphicsManager &graphicsmanager = GraphicsManager::getInstance();
+	Position pos(7, graphicsmanager.getVertical()/2);
 	setPosition(pos);
+	setAltitude(2);
 
 }
 
 Hero::~Hero() {
 
-	//Create GameOver object
-	GameOver *p_go = new GameOver;
-	//Make big explosion
-	for (int i=-8; i<=8; i+=5) {
-		for (int j=-5; j<=5; j+=3) {
-			Position temp_pos = this->getPosition();
-			temp_pos.setX(this->getPosition().getX() + i);
-			temp_pos.setY(this->getPosition().getY() + j);
-			Explosion *p_explosion = new Explosion;
-			p_explosion -> setPosition(temp_pos);
-		}
-	}
+	GameManager &gamemanager = GameManager::getInstance();
+	gamemanager.setGameOver();
 
 }
 
@@ -77,9 +70,11 @@ int Hero::eventHandler(Event *p_e) {
 		kbd(p_keyboard_event);
 		return 1;
 	}
-
-	if (p_e->getType() == STEP_EVENT) {
-		step();
+	if (p_e->getType() == COLLISION_EVENT) {
+		LogManager &logmanager = LogManager::getInstance();
+		logmanager.writeLog("Hero::eventHandler: Hero got a collision event! \n");
+		EventCollision *p_collision_event = static_cast <EventCollision *> (p_e);
+		addLetter(p_collision_event);
 		return 1;
 	}
 
@@ -93,96 +88,80 @@ void Hero::kbd(EventKeyboard *p_keyboard_event) {
 	WorldManager &world_manager = WorldManager::getInstance();
 	switch(p_keyboard_event->getKey()) {
 	case KEY_UP:	//Up arrow
-		move(-1);
+		moveY(-1);
 		break;
 	case KEY_DOWN:	//Down arrow
-		move(+1);
+		moveY(+1);
 		break;
-	case (' '):
-		fire();
+	case KEY_LEFT:	//Up arrow
+		moveX(-1);
 		break;
-	case 13:
-		nuke();
+	case KEY_RIGHT:	//Down arrow
+		moveX(+1);
 		break;
 	case 'q':
 		world_manager.markForDelete(this);
 		break;
-	case 'm':
-		laser();
-		break;
-	};
+	}
 
 	return;
 
 }
 
 //Move up or down
-void Hero::move(int dy) {
+void Hero::moveY(int dy) {
 
-	WorldManager &world_manager = WorldManager::getInstance();
+	WorldManager &worldmanager = WorldManager::getInstance();
 	Position new_pos(getPosition().getX(), getPosition().getY() + dy);
 	//If stays on screen, allow move
 	if ((new_pos.getY() > 3) &&
-		(new_pos.getY() < world_manager.getBoundary().getVertical())) {
-			world_manager.moveObject(this, new_pos);
+		(new_pos.getY() < worldmanager.getBoundary().getVertical())) {
+			worldmanager.moveObject(this, new_pos);
 	}
 
 }
 
-//Fire a bullet
-void Hero::fire() {
+//Move left or right
+void Hero::moveX(int dx) {
 
-	if (fire_countdown > 0) {
-		return;
-	}
-
-	fire_countdown = fire_slowdown;
-	new Bullet(getPosition());
-
-}
-
-//Decrease fire restriction
-void Hero::step() {
-
-	fire_countdown--;
-	if (fire_countdown < 0) {
-		fire_countdown = 0;
-	}
-
-	laser_charge++;
-	if (laser_charge > 500) {
-		laser_charge = 500;
+	WorldManager &worldmanager = WorldManager::getInstance();
+	Position new_pos(getPosition().getX() + dx, getPosition().getY());
+	//If stays on screen, allow move
+	if ((new_pos.getX() > 2) &&
+		(new_pos.getX() < worldmanager.getBoundary().getHorizontal())) {
+			worldmanager.moveObject(this, new_pos);
 	}
 
 }
 
-void Hero::nuke() {
+void Hero::addLetter(EventCollision *p_e) {
 
-	//Check if nukes left
-	if (!nuke_count) {
-		return;
+	LogManager &logmanager = LogManager::getInstance();
+	logmanager.writeLog("Hero::addLetter: received Collision event! Adding letter to hashtag\n");
+
+	Character *character;
+	if (p_e->getObject1()->getType() == "Character") {
+		character = static_cast <Character *> (p_e->getObject1());
+		hashtag += character->getChar();
 	}
-	nuke_count--;
-	//Create a "nuke" event and send to all interested objects
-	WorldManager &world_manager = WorldManager::getInstance();
-	EventNuke nuke;
-	world_manager.onEvent(&nuke);
-
-	//Send "view" event with nukes to interested ViewObjects
-	EventView ev("Nukes", -1, true);
-	world_manager.onEvent(&ev);
-
-}
-
-void Hero::laser() {
-
-	//Check is laser is charged
-	if (laser_charge < 500) {
-		return;
+	else {
+		character = static_cast <Character *> (p_e->getObject2());
+		hashtag += character->getChar();
 	}
-	laser_charge = 0;
 
-	//Hero unleashes a powerful laser
-	new Laser(getPosition());
+	if (hashtag.length() > 6) {
+		logmanager.writeLog("Hero::addLetter: Hashtag full! Refreshing game!\n");
+
+		EventRefresh er = EventRefresh();
+		WorldManager &worldmanager = WorldManager::getInstance();
+		worldmanager.onEvent(&er);
+
+		round++;
+		for (int i = 0; i < round * 10; i++) {
+			new Character();
+		}
+		hashtag = "";
+
+	}
 
 }

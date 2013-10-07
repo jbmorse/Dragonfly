@@ -10,20 +10,19 @@
 
 #include "EventKeyboard.h"
 #include "Object.h"
+#include "EventCollision.h"
+#include "EventMouse.h"
 
 class Hero : public Object {
 
 	protected:
-	int fire_slowdown;
-	int fire_countdown;
-	int nuke_count;
-	int laser_charge;
 	void kbd(EventKeyboard *p_keyboard_event);
-	void move(int dy);
-	void fire();
-	void step();
-	void nuke();
-	void laser();
+	void moveY(int dy);
+	void moveX(int dx);
+	void moveXY(EventMouse *me);
+	string hashtag;
+	void addLetter(EventCollision *p_e);
+	int round;
 
 	public:
 	Hero();
