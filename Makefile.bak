@@ -223,8 +223,8 @@ LogManager.o: /usr/include/sys/types.h /usr/include/machine/types.h
 LogManager.o: /usr/include/sys/stdio.h /usr/include/sys/cdefs.h
 LogManager.o: /usr/include/stdint.h /usr/include/bits/wordsize.h Utility.h
 Manager.o: Manager.h Object.h Position.h Event.h Sprite.h Frame.h Box.h
-Manager.o: ObjectList.h ObjectListIterator.h EventView.h LogManager.h
-Manager.o: /usr/include/stdio.h /usr/include/_ansi.h /usr/include/newlib.h
+Manager.o: ObjectList.h ObjectListIterator.h /usr/include/stdio.h
+Manager.o: /usr/include/_ansi.h /usr/include/newlib.h
 Manager.o: /usr/include/sys/config.h /usr/include/machine/ieeefp.h
 Manager.o: /usr/include/sys/features.h /usr/include/sys/reent.h
 Manager.o: /usr/include/sys/_types.h /usr/include/machine/_types.h
@@ -321,16 +321,7 @@ Saucer.o: ViewObject.h Saucer.h EventCollision.h /usr/include/stdlib.h
 Saucer.o: /usr/include/machine/stdlib.h /usr/include/alloca.h WorldManager.h
 Saucer.o: SceneGraph.h
 SceneGraph.o: SceneGraph.h Object.h Position.h Event.h Sprite.h Frame.h Box.h
-SceneGraph.o: ObjectList.h ObjectListIterator.h Utility.h LogManager.h
-SceneGraph.o: Manager.h /usr/include/stdio.h /usr/include/_ansi.h
-SceneGraph.o: /usr/include/newlib.h /usr/include/sys/config.h
-SceneGraph.o: /usr/include/machine/ieeefp.h /usr/include/sys/features.h
-SceneGraph.o: /usr/include/sys/reent.h /usr/include/sys/_types.h
-SceneGraph.o: /usr/include/machine/_types.h
-SceneGraph.o: /usr/include/machine/_default_types.h /usr/include/sys/lock.h
-SceneGraph.o: /usr/include/sys/types.h /usr/include/machine/types.h
-SceneGraph.o: /usr/include/sys/stdio.h /usr/include/sys/cdefs.h
-SceneGraph.o: /usr/include/stdint.h /usr/include/bits/wordsize.h
+SceneGraph.o: ObjectList.h ObjectListIterator.h Utility.h
 Sprite.o: Sprite.h Frame.h GraphicsManager.h /usr/include/curses.h
 Sprite.o: /usr/include/ncurses_dll.h /usr/include/stdio.h
 Sprite.o: /usr/include/_ansi.h /usr/include/newlib.h
@@ -380,7 +371,7 @@ ViewObject.o: /usr/include/sys/types.h /usr/include/machine/types.h
 ViewObject.o: /usr/include/sys/stdio.h /usr/include/sys/cdefs.h
 ViewObject.o: /usr/include/stdint.h /usr/include/bits/wordsize.h
 ViewObject.o: /usr/include/unctrl.h Manager.h ObjectList.h
-ViewObject.o: ObjectListIterator.h WorldManager.h SceneGraph.h LogManager.h
+ViewObject.o: ObjectListIterator.h WorldManager.h SceneGraph.h
 WorldManager.o: WorldManager.h Manager.h Object.h Position.h Event.h Sprite.h
 WorldManager.o: Frame.h Box.h ObjectList.h ObjectListIterator.h SceneGraph.h
 WorldManager.o: LogManager.h /usr/include/stdio.h /usr/include/_ansi.h

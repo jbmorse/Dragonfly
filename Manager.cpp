@@ -8,6 +8,8 @@
 //Game engine header files
 #include "Manager.h"
 #include "ObjectListIterator.h"
+#include "EventView.h"
+#include "LogManager.h"
 
 //Misc required headers
 #include "stdio.h"
