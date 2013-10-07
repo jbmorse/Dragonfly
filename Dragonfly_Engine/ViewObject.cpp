@@ -11,6 +11,7 @@
 #include "EventView.h"
 #include "GraphicsManager.h"
 #include "WorldManager.h"
+#include "LogManager.h"
 
 //Misc required headers
 
@@ -48,19 +49,19 @@ void ViewObject::draw() {
 	graphicsmanager.drawString(pos, temp_str, CENTER_JUSTIFIED, getColor());
 
 	if (border) {
-		string top_border, bottom_border = "";
+		string top_border = "";
 		char side_border = '|';
 		for (int i = 0; i < temp_str.length(); i++) {
-			top_border += "_";
-			bottom_border += "-";
+			top_border += "-";
 		}
-	//	Position top_pos = Position(pos.getX(), pos.getY() + 1);
-	//	Position bottom_pos = Position(pos.getX(), pos.getY() + 1);
-	//	Position right_border = Position(pos.getX() + temp_str.length(), pos.getY());
-	///	graphicsmanager.drawString(top_pos, top_border, CENTER_JUSTIFIED, getColor());
-	//	graphicsmanager.drawString(bottom_pos, bottom_border, CENTER_JUSTIFIED, getColor());
-	//	graphicsmanager.drawCh(pos, side_border, getColor());
-	//	graphicsmanager.drawCh(right_border, side_border, getColor());
+		Position bottom_pos = Position(pos.getX(), pos.getY() + 1);
+		Position top_pos = Position(pos.getX(), pos.getY() - 1);
+		Position left_border = Position(pos.getX() - temp_str.length()/2 - 1, pos.getY());
+		Position right_border = Position(pos.getX() + temp_str.length()/2 + 1, pos.getY());
+		graphicsmanager.drawString(top_pos, top_border, CENTER_JUSTIFIED, getColor());
+		graphicsmanager.drawString(bottom_pos, top_border, CENTER_JUSTIFIED, getColor());
+		graphicsmanager.drawCh(left_border, side_border, getColor());
+		graphicsmanager.drawCh(right_border, side_border, getColor());
 
 	}
 

@@ -13,6 +13,7 @@
 EventView::EventView() {
 
 	tag = VIEW_EVENT;
+	setType(VIEW_EVENT);
 	value = 0;
 	delta = false;
 
@@ -21,6 +22,7 @@ EventView::EventView() {
 EventView::EventView(string new_tag, int new_value, bool new_delta) {
 
 	tag = new_tag;
+	setType(VIEW_EVENT);
 	value = new_value;
 	delta = new_delta;
 
