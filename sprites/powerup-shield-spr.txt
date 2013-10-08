@@ -1,0 +1,21 @@
+frames 4
+width 3
+height 3
+color white
+ * 
+ S 
+ * 
+end
+*  
+ S 
+  *
+end
+   
+*S*
+   
+end
+  *
+ S 
+*  
+end
+eof

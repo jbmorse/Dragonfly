@@ -49,8 +49,8 @@ Hero::Hero() {
 		setSpriteSlowdown(0);
 	}
 
-	GraphicsManager &graphicsmanager = GraphicsManager::getInstance();
-	Position pos(7, graphicsmanager.getVertical()/2);
+	WorldManager &world_manager = WorldManager::getInstance();
+	Position pos(7, world_manager.getBoundary().getVertical()/2);
 	setPosition(pos);
 	setAltitude(2);
 

@@ -16,6 +16,7 @@
 #include "ResourceManager.h"
 #include "GraphicsManager.h"
 #include "ViewObject.h"
+#include "BossSkull.h"
 
 //Misc required headers
 #include "iostream"
@@ -28,6 +29,7 @@ void loadResources() {
 	//Load sprites
 	ResourceManager &resource_manager = ResourceManager::getInstance();
 	resource_manager.loadSprite("sprites/hashtag-spr.txt", "hashtag");
+	resource_manager.loadSprite("sprites/boss1-spr.txt", "skull");
 
 }
 
@@ -45,6 +47,7 @@ void populateWorld() {
 		//No longer flying to right all the time
 		new Star();
 	}
+	new BossSkull();
 
 	//TODO
 	//Add points

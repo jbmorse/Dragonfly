@@ -23,7 +23,7 @@ GAMEENG= Manager.cpp LogManager.cpp Utility.cpp Clock.cpp GameManager.cpp \
 		EventKeyboard.cpp EventMouse.cpp EventCollision.cpp EventOut.cpp \
 		Frame.cpp Sprite.cpp ResourceManager.cpp Box.cpp ViewObject.cpp \
 		EventView.cpp SceneGraph.cpp
-GAMESRC= Character.cpp EventRefresh.cpp Hero.cpp Star.cpp
+GAMESRC= Character.cpp EventRefresh.cpp Hero.cpp Star.cpp BossSkull.cpp
 GAME= game.cpp
 EXECUTABLE= game
 OBJECTS= $(addprefix $(ENGPATH)/, $(GAMEENG:.cpp=.o)) $(GAMESRC:.cpp=.o)
@@ -45,14 +45,15 @@ depend:
 
 # DO NOT DELETE
 
-Character.o: Character.h /usr/include/stdlib.h /usr/include/machine/ieeefp.h
-Character.o: /usr/include/_ansi.h /usr/include/newlib.h
-Character.o: /usr/include/sys/config.h /usr/include/sys/features.h
-Character.o: /usr/include/sys/reent.h /usr/include/sys/_types.h
-Character.o: /usr/include/machine/_types.h
-Character.o: /usr/include/machine/_default_types.h /usr/include/sys/lock.h
-Character.o: /usr/include/machine/stdlib.h /usr/include/alloca.h
-Character.o: EventRefresh.h
+BossSkull.o: /usr/include/Stdlib.h /usr/include/machine/ieeefp.h
+BossSkull.o: /usr/include/_ansi.h /usr/include/newlib.h
+BossSkull.o: /usr/include/sys/config.h /usr/include/sys/features.h
+BossSkull.o: /usr/include/sys/reent.h /usr/include/sys/_types.h
+BossSkull.o: /usr/include/machine/_types.h
+BossSkull.o: /usr/include/machine/_default_types.h /usr/include/sys/lock.h
+BossSkull.o: /usr/include/machine/stdlib.h /usr/include/alloca.h
+BossSkull.o: /usr/include/stdlib.h
+Character.o: Character.h /usr/include/stdlib.h EventRefresh.h
 EventRefresh.o: EventRefresh.h
 Hero.o: Hero.h EventRefresh.h Character.h /usr/include/time.h
 Hero.o: /usr/include/_ansi.h /usr/include/newlib.h /usr/include/sys/config.h
@@ -194,8 +195,6 @@ Dragonfly_Engine/GameManager.o: Dragonfly_Engine/ResourceManager.h
 Dragonfly_Engine/GameManager.o: /usr/include/unistd.h
 Dragonfly_Engine/GameManager.o: /usr/include/sys/unistd.h
 Dragonfly_Engine/GameManager.o: /usr/include/stdlib.h
-Dragonfly_Engine/GameManager.o: /usr/include/machine/stdlib.h
-Dragonfly_Engine/GameManager.o: /usr/include/alloca.h
 Dragonfly_Engine/GameOver.o: Dragonfly_Engine/EventStep.h
 Dragonfly_Engine/GameOver.o: Dragonfly_Engine/Event.h
 Dragonfly_Engine/GameOver.o: Dragonfly_Engine/GameManager.h
@@ -510,8 +509,6 @@ Dragonfly_Engine/ResourceManager.o: Dragonfly_Engine/ObjectListIterator.h
 Dragonfly_Engine/ResourceManager.o: Dragonfly_Engine/LogManager.h
 Dragonfly_Engine/ResourceManager.o: Dragonfly_Engine/ResourceManager.h
 Dragonfly_Engine/ResourceManager.o: /usr/include/stdlib.h
-Dragonfly_Engine/ResourceManager.o: /usr/include/machine/stdlib.h
-Dragonfly_Engine/ResourceManager.o: /usr/include/alloca.h
 Dragonfly_Engine/SceneGraph.o: Dragonfly_Engine/SceneGraph.h
 Dragonfly_Engine/SceneGraph.o: Dragonfly_Engine/Object.h
 Dragonfly_Engine/SceneGraph.o: Dragonfly_Engine/Position.h
