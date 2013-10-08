@@ -14,6 +14,9 @@
 
 class CapturedString : public ViewObject {
 
+private:
+	void addLetter(char letter);
+
 public:
 	CapturedString();
 	int eventHandler(Event *p_e);

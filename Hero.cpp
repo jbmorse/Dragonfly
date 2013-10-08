@@ -21,6 +21,7 @@
 #include <cstdlib>
 #include <math.h>
 #include "ResourceManager.h"
+#include "EventCapturedLetter.h"
 
 using namespace std;
 using std::string;
@@ -138,23 +139,29 @@ void Hero::moveX(int dx) {
 void Hero::addLetter(EventCollision *p_e) {
 
 	LogManager &logmanager = LogManager::getInstance();
+	WorldManager &worldmanager = WorldManager::getInstance();
 	logmanager.writeLog("Hero::addLetter: received Collision event! Adding letter to hashtag\n");
 
 	Character *character;
 	if (p_e->getObject1()->getType() == "Character") {
 		character = static_cast <Character *> (p_e->getObject1());
 		hashtag += character->getChar();
+		EventCapturedLetter ecl;
+		ecl.setCapturedLetter(character->getChar());
+		worldmanager.onEvent(&ecl);
 	}
 	else {
 		character = static_cast <Character *> (p_e->getObject2());
 		hashtag += character->getChar();
+		EventCapturedLetter ecl;
+		ecl.setCapturedLetter(character->getChar());
+		worldmanager.onEvent(&ecl);
 	}
 
 	if (hashtag.length() > 6) {
 		logmanager.writeLog("Hero::addLetter: Hashtag full! Refreshing game!\n");
 
 		EventRefresh er = EventRefresh();
-		WorldManager &worldmanager = WorldManager::getInstance();
 		worldmanager.onEvent(&er);
 
 		round++;

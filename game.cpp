@@ -54,7 +54,6 @@ void populateWorld() {
 	new Pointstemp;
 
 	CapturedString *cs = new CapturedString();
-	cs->setViewString("testing");
 
 	//TODO
 	//Add points

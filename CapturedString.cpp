@@ -8,14 +8,24 @@
 // Class include
 #include "CapturedString.h"
 // Engine includes
+#include "EventCapturedLetter.h"
 #include "GraphicsManager.h"
 #include "Utility.h"
 
 CapturedString::CapturedString() {
+	setType("CapturedString");
 
+	registerInterest(CAPTURED_LETTER_EVENT);
 }
 
 int CapturedString::eventHandler(Event *p_e) {
+
+	if(p_e->getType() == CAPTURED_LETTER_EVENT) {
+		EventCapturedLetter *ecl = (EventCapturedLetter *) p_e;
+		addLetter(ecl->getCapturedLetter());
+		return 1;
+	}
+
 	return 0;
 }
 
@@ -50,4 +60,10 @@ void CapturedString::draw() {
 		graphicsmanager.drawCh(right_border, side_border, getColor());
 
 	}
+}
+
+void CapturedString::addLetter(char letter) {
+	string temp_str = getViewString();
+	temp_str.append(1, letter);
+	setViewString(temp_str);
 }
