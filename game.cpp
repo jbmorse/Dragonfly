@@ -18,6 +18,7 @@
 #include "ViewObject.h"
 #include "BossSkull.h"
 #include "Pointstemp.h"
+#include "CapturedString.h"
 
 //Misc required headers
 #include "iostream"
@@ -51,6 +52,9 @@ void populateWorld() {
 	new BossSkull();
 	//Setup Points display
 	new Pointstemp;
+
+	CapturedString *cs = new CapturedString();
+	cs->setViewString("testing");
 
 	//TODO
 	//Add points
