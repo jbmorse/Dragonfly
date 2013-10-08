@@ -30,7 +30,6 @@ Character::Character() {
 	moveToStart();
 
 	//Register for step and refresh
-	registerInterest(STEP_EVENT);
 	registerInterest(REFRESH_EVENT);
 
 	charnum = random() % 26;
@@ -55,14 +54,6 @@ int Character::eventHandler(Event *p_e) {
 		EventCollision *p_collision_event = static_cast <EventCollision *> (p_e);
 		hit(p_collision_event);
 		return 1;
-	}
-
-	if (p_e->getType() == STEP_EVENT) {
-		stepcount++;
-		if (stepcount > 200) {
-			stepcount = 0;
-			charnum = rand() % 26;
-		}
 	}
 
 	if (p_e->getType() == REFRESH_EVENT) {
@@ -134,7 +125,6 @@ void Character::hit(EventCollision *p_c) {
 
 void Character::draw() {
 
-	int i = random() % 26;
 	GraphicsManager &graphicsmanager = GraphicsManager::getInstance();
 	graphicsmanager.drawCh(this->getPosition(), drawchar[charnum], COLOR_WHITE);
 

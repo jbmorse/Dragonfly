@@ -19,6 +19,7 @@
 #include <iostream>
 #include "time.h"
 #include <cstdlib>
+#include <math.h>
 #include "ResourceManager.h"
 
 using namespace std;
@@ -88,16 +89,16 @@ void Hero::kbd(EventKeyboard *p_keyboard_event) {
 	WorldManager &world_manager = WorldManager::getInstance();
 	switch(p_keyboard_event->getKey()) {
 	case KEY_UP:	//Up arrow
-		moveY(-1);
+		setYVelocity(max(getYVelocity() - VELOCITY_CHANGE, (-1) *  MAX_VELOCITY));
 		break;
 	case KEY_DOWN:	//Down arrow
-		moveY(+1);
+		setYVelocity(min(getYVelocity() + VELOCITY_CHANGE, MAX_VELOCITY));
 		break;
-	case KEY_LEFT:	//Up arrow
-		moveX(-1);
+	case KEY_LEFT:	//Left arrow
+		setXVelocity(max(getXVelocity() - VELOCITY_CHANGE, (-1) * MAX_VELOCITY));
 		break;
-	case KEY_RIGHT:	//Down arrow
-		moveX(+1);
+	case KEY_RIGHT:	//Right arrow
+		setXVelocity(min(getXVelocity() + VELOCITY_CHANGE, MAX_VELOCITY));
 		break;
 	case 'q':
 		world_manager.markForDelete(this);

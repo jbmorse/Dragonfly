@@ -1,3 +1,5 @@
 *.o
 game.exe*
 log.txt
+Makefile.bak
+
