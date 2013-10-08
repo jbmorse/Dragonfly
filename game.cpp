@@ -17,6 +17,7 @@
 #include "GraphicsManager.h"
 #include "ViewObject.h"
 #include "BossSkull.h"
+#include "Pointstemp.h"
 
 //Misc required headers
 #include "iostream"
@@ -48,6 +49,8 @@ void populateWorld() {
 		new Star();
 	}
 	new BossSkull();
+	//Setup Points display
+	new Pointstemp;
 
 	//TODO
 	//Add points
