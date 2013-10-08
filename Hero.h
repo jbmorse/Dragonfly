@@ -13,6 +13,9 @@
 #include "EventCollision.h"
 #include "EventMouse.h"
 
+#define VELOCITY_CHANGE 0.25
+#define MAX_VELOCITY 1.50
+
 class Hero : public Object {
 
 	protected:
