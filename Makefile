@@ -23,8 +23,8 @@ GAMEENG= Manager.cpp LogManager.cpp Utility.cpp Clock.cpp GameManager.cpp \
 		EventKeyboard.cpp EventMouse.cpp EventCollision.cpp EventOut.cpp \
 		Frame.cpp Sprite.cpp ResourceManager.cpp Box.cpp ViewObject.cpp \
 		EventView.cpp SceneGraph.cpp
-GAMESRC= Character.cpp EventRefresh.cpp Hero.cpp Star.cpp BossSkull.cpp Pointstemp.cpp \
-		EvilCharacter.cpp
+GAMESRC= Character.cpp EventRefresh.cpp Hero.cpp Star.cpp BossSkull.cpp Pointstemp.cpp\
+         CapturedString.cpp EventCapturedLetter.cpp EvilCharacter.cpp
 GAME= game.cpp
 EXECUTABLE= game
 OBJECTS= $(addprefix $(ENGPATH)/, $(GAMEENG:.cpp=.o)) $(GAMESRC:.cpp=.o)
@@ -54,8 +54,19 @@ BossSkull.o: /usr/include/machine/_types.h
 BossSkull.o: /usr/include/machine/_default_types.h /usr/include/sys/lock.h
 BossSkull.o: /usr/include/machine/stdlib.h /usr/include/alloca.h
 BossSkull.o: /usr/include/stdlib.h
+CapturedString.o: CapturedString.h
 Character.o: Character.h /usr/include/stdlib.h EventRefresh.h
 EventRefresh.o: EventRefresh.h
+game.o: Hero.h Character.h Star.h BossSkull.h Pointstemp.h CapturedString.h
+game.o: /usr/include/stdio.h /usr/include/_ansi.h /usr/include/newlib.h
+game.o: /usr/include/sys/config.h /usr/include/machine/ieeefp.h
+game.o: /usr/include/sys/features.h /usr/include/sys/reent.h
+game.o: /usr/include/sys/_types.h /usr/include/machine/_types.h
+game.o: /usr/include/machine/_default_types.h /usr/include/sys/lock.h
+game.o: /usr/include/sys/types.h /usr/include/machine/types.h
+game.o: /usr/include/sys/stdio.h /usr/include/sys/cdefs.h
+game.o: /usr/include/stdint.h /usr/include/bits/wordsize.h
+game.o: /usr/include/unistd.h /usr/include/sys/unistd.h
 Hero.o: Hero.h EventRefresh.h Character.h /usr/include/time.h
 Hero.o: /usr/include/_ansi.h /usr/include/newlib.h /usr/include/sys/config.h
 Hero.o: /usr/include/machine/ieeefp.h /usr/include/sys/features.h
@@ -71,16 +82,6 @@ Star.o: /usr/include/sys/features.h /usr/include/sys/reent.h
 Star.o: /usr/include/sys/_types.h /usr/include/machine/_types.h
 Star.o: /usr/include/machine/_default_types.h /usr/include/sys/lock.h
 Star.o: /usr/include/machine/stdlib.h /usr/include/alloca.h
-game.o: Hero.h Character.h Star.h BossSkull.h Pointstemp.h
-game.o: /usr/include/stdio.h /usr/include/_ansi.h /usr/include/newlib.h
-game.o: /usr/include/sys/config.h /usr/include/machine/ieeefp.h
-game.o: /usr/include/sys/features.h /usr/include/sys/reent.h
-game.o: /usr/include/sys/_types.h /usr/include/machine/_types.h
-game.o: /usr/include/machine/_default_types.h /usr/include/sys/lock.h
-game.o: /usr/include/sys/types.h /usr/include/machine/types.h
-game.o: /usr/include/sys/stdio.h /usr/include/sys/cdefs.h
-game.o: /usr/include/stdint.h /usr/include/bits/wordsize.h
-game.o: /usr/include/unistd.h /usr/include/sys/unistd.h
 Dragonfly_Engine/Box.o: Dragonfly_Engine/Box.h Dragonfly_Engine/Position.h
 Dragonfly_Engine/Clock.o: Dragonfly_Engine/Clock.h /usr/include/time.h
 Dragonfly_Engine/Clock.o: /usr/include/_ansi.h /usr/include/newlib.h
