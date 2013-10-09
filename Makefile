@@ -23,7 +23,8 @@ GAMEENG= Manager.cpp LogManager.cpp Utility.cpp Clock.cpp GameManager.cpp \
 		EventKeyboard.cpp EventMouse.cpp EventCollision.cpp EventOut.cpp \
 		Frame.cpp Sprite.cpp ResourceManager.cpp Box.cpp ViewObject.cpp \
 		EventView.cpp SceneGraph.cpp
-GAMESRC= Character.cpp EventRefresh.cpp Hero.cpp Star.cpp BossSkull.cpp Pointstemp.cpp
+GAMESRC= Character.cpp EventRefresh.cpp Hero.cpp Star.cpp BossSkull.cpp Pointstemp.cpp \
+		EvilCharacter.cpp
 GAME= game.cpp
 EXECUTABLE= game
 OBJECTS= $(addprefix $(ENGPATH)/, $(GAMEENG:.cpp=.o)) $(GAMESRC:.cpp=.o)

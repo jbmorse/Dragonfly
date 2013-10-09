@@ -1,5 +1,5 @@
 /*
- * Character.cpp
+ * EvilCharacter.cpp
  *
  *  Created on: Sep 25, 2013
  *      Author: Josh
@@ -7,41 +7,40 @@
 
 #include "EventOut.h"
 #include "LogManager.h"
-#include "Character.h"
+#include "EvilCharacter.h"
 #include "stdlib.h"
 #include "WorldManager.h"
 #include "GraphicsManager.h"
 #include "EventStep.h"
 #include "EventRefresh.h"
 
-Character::Character() {
+EvilCharacter::EvilCharacter(int charnumber, bool outDeath) {
 
 	//Dragonfly managers needed for this method
 	LogManager &log_manager = LogManager::getInstance();
 
 	//Set object type
-	setType("Character");
+	setType("EvilCharacter");
 
 	setAltitude(1);
 
 	//Set speed in horizontal direction
-	setXVelocity(-0.40);  //1 space every 4 frames
-
-	moveToStart();
+	setXVelocity(-1);
 
 	//Register for step and refresh
 	registerInterest(REFRESH_EVENT);
 
-	charnum = random() % 26;
+	charnum = charnumber;
+	outIsDeath = outDeath;
 	drawchar = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
 }
 
-Character::~Character() {
+EvilCharacter::~EvilCharacter() {
 
 }
 
-int Character::eventHandler(Event *p_e) {
+int EvilCharacter::eventHandler(Event *p_e) {
 
 	if (p_e->getType() == OUT_EVENT) {
 		out();
@@ -50,6 +49,7 @@ int Character::eventHandler(Event *p_e) {
 
 	if (p_e->getType() == COLLISION_EVENT) {
 		LogManager &logmanager = LogManager::getInstance();
+		logmanager.writeLog("Character::eventHandler: received Collision event!\n");
 		EventCollision *p_collision_event = static_cast <EventCollision *> (p_e);
 		hit(p_collision_event);
 		return 1;
@@ -64,8 +64,12 @@ int Character::eventHandler(Event *p_e) {
 
 }
 
-void Character::out() {
+void EvilCharacter::out() {
 
+	WorldManager &worldmanager = WorldManager::getInstance();
+	if (outIsDeath) {
+		worldmanager.markForDelete(this);
+	}
 	if (getPosition().getX() >= 0) {
 		return;
 	}
@@ -77,7 +81,7 @@ void Character::out() {
 
 }
 
-void Character::moveToStart() {
+void EvilCharacter::moveToStart() {
 
 	WorldManager &worldmanager = WorldManager::getInstance();
 	Position new_pos;
@@ -103,7 +107,7 @@ void Character::moveToStart() {
 
 }
 
-void Character::hit(EventCollision *p_c) {
+void EvilCharacter::hit(EventCollision *p_c) {
 
 	//If Character on Character, ignore
 	if ((p_c -> getObject1() -> getType() == "Character") &&
@@ -114,22 +118,22 @@ void Character::hit(EventCollision *p_c) {
 	WorldManager &world_manager = WorldManager::getInstance();
 	//If hero, mark for destruction
 	if (p_c -> getObject1() -> getType() == "Hero") {
-		world_manager.markForDelete(p_c -> getObject2());
-	}
-	else if (p_c -> getObject2() -> getType() == "Hero") {
 		world_manager.markForDelete(p_c -> getObject1());
 	}
+	else if (p_c -> getObject2() -> getType() == "Hero") {
+		world_manager.markForDelete(p_c -> getObject2());
+	}
 
 }
 
-void Character::draw() {
+void EvilCharacter::draw() {
 
 	GraphicsManager &graphicsmanager = GraphicsManager::getInstance();
-	graphicsmanager.drawCh(this->getPosition(), drawchar[charnum], COLOR_WHITE);
+	graphicsmanager.drawCh(this->getPosition(), drawchar[charnum], COLOR_RED);
 
 }
 
-char Character::getChar() {
+char EvilCharacter::getChar() {
 
 	return drawchar[charnum];
 

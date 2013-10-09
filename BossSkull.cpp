@@ -13,6 +13,7 @@
 #include "LogManager.h"
 #include "ResourceManager.h"
 #include "WorldManager.h"
+#include "EvilCharacter.h"
 
 using namespace std;
 using std::string;
@@ -34,6 +35,9 @@ BossSkull::BossSkull() {
 		setSpriteSlowdown(4);
 	}
 
+	//Step to disappear
+	registerInterest(STEP_EVENT);
+
 	WorldManager &world_manager = WorldManager::getInstance();
 	Position pos(((world_manager.getBoundary().getHorizontal()*5)/6), world_manager.getBoundary().getVertical()/2);
 	setPosition(pos);
@@ -52,6 +56,8 @@ BossSkull::~BossSkull() {
 int BossSkull::eventHandler(Event *p_e) {
 
 	if (p_e->getType() == COLLISION_EVENT) {
+		EventCollision *p_collision_event = static_cast <EventCollision *> (p_e);
+		hit(p_collision_event);
 		health--;
 		return 1;
 	}
@@ -60,11 +66,13 @@ int BossSkull::eventHandler(Event *p_e) {
 		attack_countup++;
 		move_countdown--;
 		if (move_countdown <= 0) {
-			int move = random() % 5 - 2;
+			move_countdown = 4;
+			int move = random() % 3 - 1;
 			moveY(move);
 		}
-		else if ((random() % (150 - (attack_countup/2)) + attack_countup) > 200) {
+		else if ((random() % 200 + attack_countup) > 200) {
 			attack();
+			attack_countup = 0;
 		}
 		return 1;
 	}
@@ -88,7 +96,22 @@ void BossSkull::moveY(int dy) {
 
 void BossSkull::attack() {
 
-	//TODO
+	LogManager &logmanager = LogManager::getInstance();
+	logmanager.writeLog("attacking");
+	WorldManager &worldmanager = WorldManager::getInstance();
+	EvilCharacter *attackchar = new EvilCharacter(0, true);
+	worldmanager.moveObject(attackchar,Position(60,this->getPosition().getY()));
 
 }
 
+void BossSkull::hit(EventCollision *p_c) {
+
+	WorldManager &world_manager = WorldManager::getInstance();
+	if ((p_c -> getObject1() -> getType()) == "BossSkull") {
+		world_manager.markForDelete(p_c->getObject2());
+	}
+	else {
+		world_manager.markForDelete(p_c->getObject1());
+	}
+
+}

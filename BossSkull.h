@@ -19,6 +19,7 @@ class BossSkull : public Object {
 	void moveY(int dy);
 	void moveX(int dx);
 	void attack();
+	void hit(EventCollision *p_c);
 	int attack_countup;
 	int health;
 	int move_countdown;
