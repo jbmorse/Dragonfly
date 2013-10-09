@@ -19,6 +19,7 @@
 #include "BossSkull.h"
 #include "Pointstemp.h"
 #include "CapturedString.h"
+#include "GameStart.h"
 
 //Misc required headers
 #include "iostream"
@@ -32,31 +33,15 @@ void loadResources() {
 	ResourceManager &resource_manager = ResourceManager::getInstance();
 	resource_manager.loadSprite("sprites/hashtag-spr.txt", "hashtag");
 	resource_manager.loadSprite("sprites/boss1-spr.txt", "skull");
+	resource_manager.loadSprite("sprites/gameover-spr.txt", "gameover");
+	resource_manager.loadSprite("sprites/gamestart-spr.txt", "gamestart");
 
 }
 
 void populateWorld() {
 
-	//World setup
-	WorldManager &worldmanager = WorldManager::getInstance();
-	new Hero();
-	for (int i = 0; i < 10; i++) {
-		new Character();
-	}
-	for (int i = 0; i < 40; i++) {
-		//TODO
-		//Maybe make stars move different directions?
-		//No longer flying to right all the time
-		new Star();
-	}
-	new BossSkull();
-	//Setup Points display
-	new Pointstemp;
-
-	CapturedString *cs = new CapturedString();
-
-	//TODO
-	//Add points
+	//Start the game
+	new GameStart();
 
 }
 

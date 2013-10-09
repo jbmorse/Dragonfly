@@ -12,10 +12,13 @@
 #include "GraphicsManager.h"
 #include "Hero.h"
 #include "LogManager.h"
-#include "Points.h"
 #include "ResourceManager.h"
-#include "Saucer.h"
 #include "WorldManager.h"
+#include "Pointstemp.h"
+#include "CapturedString.h"
+#include "BossSkull.h"
+#include "Character.h"
+#include "Star.h"
 
 GameStart::GameStart() {
 
@@ -81,22 +84,26 @@ void GameStart::start() {
 	//Will populate play world with objects
 	scene_graph.setLevel(PLAY_LEVEL);
 
-	//Spawn the enemies
-	for (int i=0; i<16; i++)
-		new Saucer;
-
-	//Spawn player
-	new Hero;
-
+	//World setup
+	WorldManager &worldmanager = WorldManager::getInstance();
+	new Hero();
+	for (int i = 0; i < 10; i++) {
+		new Character();
+	}
+	for (int i = 0; i < 40; i++) {
+		//TODO
+		//Maybe make stars move different directions?
+		//No longer flying to right all the time
+		new Star();
+	}
+	new BossSkull();
 	//Setup Points display
-	new Points;
+	new Pointstemp;
 
-	//Setup Nuke Count
-	ViewObject *p_vo = new ViewObject;
-	p_vo->setLocation(TOP_LEFT);
-	p_vo->setViewString("Nukes");
-	p_vo->setValue(1);
-	p_vo->setColor(COLOR_YELLOW);
+	CapturedString *cs = new CapturedString();
+
+	//TODO
+	//Add points
 
 	//Revert back to menu
 	scene_graph.setLevel(MENU_LEVEL);

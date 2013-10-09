@@ -22,6 +22,7 @@
 #include <math.h>
 #include "ResourceManager.h"
 #include "EventCapturedLetter.h"
+#include "GameOver.h"
 
 using namespace std;
 using std::string;
@@ -60,8 +61,9 @@ Hero::Hero() {
 
 Hero::~Hero() {
 
-	GameManager &gamemanager = GameManager::getInstance();
-	gamemanager.setGameOver();
+	LogManager &logmanager = LogManager::getInstance();
+	logmanager.writeLog("Hero::~Hero: Hero is deleted! \n");
+	new GameOver();
 
 }
 

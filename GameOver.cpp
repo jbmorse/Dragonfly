@@ -54,7 +54,8 @@ GameOver::~GameOver() {
 	ObjectListIterator i(&object_list);
 	for (i.first(); !i.isDone(); i.next()) {
 		Object *p_o = i.currentObject();
-		if (p_o -> getType() == "Saucer" || p_o -> getType() == "ViewObject") {
+		if (p_o -> getType() == "Character" || p_o -> getType() == "ViewObject" ||
+			p_o -> getType() == "EvilCharacter" || p_o -> getType() == "BossSkull") {
 			world_manager.markForDelete(p_o);
 		}
 	}
