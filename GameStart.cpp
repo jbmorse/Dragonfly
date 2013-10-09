@@ -100,7 +100,7 @@ void GameStart::start() {
 	//Setup Points display
 	new Pointstemp;
 
-	CapturedString *cs = new CapturedString();
+	new CapturedString("Hello");
 
 	//TODO
 	//Add points
