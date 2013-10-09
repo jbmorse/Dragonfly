@@ -26,5 +26,4 @@ class GameStart : public ViewObject {
 
 };
 
-
 #endif /* GAMESTART_H_ */

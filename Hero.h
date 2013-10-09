@@ -20,10 +20,10 @@ class Hero : public Object {
 
 	protected:
 	void kbd(EventKeyboard *p_keyboard_event);
+	void out();
 	void moveY(int dy);
 	void moveX(int dx);
 	void moveXY(EventMouse *me);
-	string hashtag;
 	void addLetter(EventCollision *p_e);
 	int round;
 

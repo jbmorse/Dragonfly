@@ -23,6 +23,7 @@
 #include "ResourceManager.h"
 #include "EventCapturedLetter.h"
 #include "GameOver.h"
+#include "EventOut.h"
 
 using namespace std;
 using std::string;
@@ -81,8 +82,38 @@ int Hero::eventHandler(Event *p_e) {
 		addLetter(p_collision_event);
 		return 1;
 	}
+	if (p_e->getType() == OUT_EVENT) {
+		out();
+		return 1;
+	}
 
 	return 0;
+
+}
+
+//Hero went out of bounds
+void Hero::out() {
+
+	WorldManager &world_manager = WorldManager::getInstance();
+	Position pos = getPosition();
+	if (pos.getX() < 0) {
+		setXVelocity(0);
+		pos.setX(0);
+	}
+	if (pos.getX() > world_manager.getBoundary().getHorizontal()) {
+		setXVelocity(0);
+		pos.setX(world_manager.getBoundary().getHorizontal());
+	}
+	if (pos.getY() < 0) {
+		setYVelocity(0);
+		pos.setY(0);
+	}
+	if (pos.getY() > world_manager.getBoundary().getVertical()) {
+		setYVelocity(0);
+		pos.setY(world_manager.getBoundary().getVertical());
+	}
+
+	setPosition(pos);
 
 }
 
@@ -112,32 +143,6 @@ void Hero::kbd(EventKeyboard *p_keyboard_event) {
 
 }
 
-//Move up or down
-void Hero::moveY(int dy) {
-
-	WorldManager &worldmanager = WorldManager::getInstance();
-	Position new_pos(getPosition().getX(), getPosition().getY() + dy);
-	//If stays on screen, allow move
-	if ((new_pos.getY() > 3) &&
-		(new_pos.getY() < worldmanager.getBoundary().getVertical())) {
-			worldmanager.moveObject(this, new_pos);
-	}
-
-}
-
-//Move left or right
-void Hero::moveX(int dx) {
-
-	WorldManager &worldmanager = WorldManager::getInstance();
-	Position new_pos(getPosition().getX() + dx, getPosition().getY());
-	//If stays on screen, allow move
-	if ((new_pos.getX() > 2) &&
-		(new_pos.getX() < worldmanager.getBoundary().getHorizontal())) {
-			worldmanager.moveObject(this, new_pos);
-	}
-
-}
-
 void Hero::addLetter(EventCollision *p_e) {
 
 	LogManager &logmanager = LogManager::getInstance();
@@ -147,31 +152,15 @@ void Hero::addLetter(EventCollision *p_e) {
 	Character *character;
 	if (p_e->getObject1()->getType() == "Character") {
 		character = static_cast <Character *> (p_e->getObject1());
-		hashtag += character->getChar();
 		EventCapturedLetter ecl;
 		ecl.setCapturedLetter(character->getChar());
 		worldmanager.onEvent(&ecl);
 	}
-	else {
+	else if (p_e->getObject2()->getType() == "Character") {
 		character = static_cast <Character *> (p_e->getObject2());
-		hashtag += character->getChar();
 		EventCapturedLetter ecl;
 		ecl.setCapturedLetter(character->getChar());
 		worldmanager.onEvent(&ecl);
-	}
-
-	if (hashtag.length() > 6) {
-		logmanager.writeLog("Hero::addLetter: Hashtag full! Refreshing game!\n");
-
-		EventRefresh er = EventRefresh();
-		worldmanager.onEvent(&er);
-
-		round++;
-		for (int i = 0; i < round * 10; i++) {
-			new Character();
-		}
-		hashtag = "";
-
 	}
 
 }

@@ -13,9 +13,10 @@
 #include "Utility.h"
 
 CapturedString::CapturedString() {
-	setType("CapturedString");
 
+	setType("CapturedString");
 	registerInterest(CAPTURED_LETTER_EVENT);
+
 }
 
 int CapturedString::eventHandler(Event *p_e) {
