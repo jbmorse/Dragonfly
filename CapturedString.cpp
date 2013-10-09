@@ -7,8 +7,11 @@
 
 // Class include
 #include "CapturedString.h"
+// System includes
+#include <algorithm>
 // Engine includes
 #include "EventCapturedLetter.h"
+#include "GameManager.h"
 #include "GraphicsManager.h"
 #include "Utility.h"
 
@@ -16,6 +19,17 @@ CapturedString::CapturedString() {
 	setType("CapturedString");
 
 	registerInterest(CAPTURED_LETTER_EVENT);
+}
+
+CapturedString::CapturedString(string new_complete_string) {
+	setType("CapturedString");
+
+	registerInterest(CAPTURED_LETTER_EVENT);
+
+	complete_string.resize(new_complete_string.length());
+	transform(new_complete_string.begin(),
+		new_complete_string.end(), complete_string.begin(), toupper);
+	setViewString(string(complete_string.length(), ' '));
 }
 
 int CapturedString::eventHandler(Event *p_e) {
@@ -64,6 +78,36 @@ void CapturedString::draw() {
 
 void CapturedString::addLetter(char letter) {
 	string temp_str = getViewString();
-	temp_str.append(1, letter);
+	size_t posInCompleteString = complete_string.find_first_of(letter, 0);
+
+	if(posInCompleteString == string::npos) 
+		return; // character isn't in string, ignore
+
+	do {
+		if(temp_str[posInCompleteString] == letter)
+			continue; // already got this one
+		// else
+
+		temp_str[posInCompleteString] = letter;
+		break; // done
+
+	} while((posInCompleteString = complete_string.find_first_of(letter,
+		 posInCompleteString + 1)) != string::npos);
+	// loop until there are no more instances of this character in the string
+
 	setViewString(temp_str);
+
+	if(temp_str == complete_string) { // completed string
+		GameManager::getInstance().setGameOver();
+	}
+}
+
+void CapturedString::setCompleteString(string new_complete_string) {
+	complete_string.resize(new_complete_string.length());
+	transform(new_complete_string.begin(),
+		new_complete_string.end(), complete_string.begin(), toupper);
+}
+
+string CapturedString::getCompleteString() {
+	return complete_string;
 }

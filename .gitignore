@@ -1,5 +1,6 @@
 *.o
-game.exe*
+game.exe
+game.exe.stackdump
 log.txt
 Makefile.bak
 
