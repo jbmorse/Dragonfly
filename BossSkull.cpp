@@ -14,6 +14,7 @@
 #include "ResourceManager.h"
 #include "WorldManager.h"
 #include "EvilCharacter.h"
+#include "GameOver.h"
 
 using namespace std;
 using std::string;
@@ -111,9 +112,15 @@ void BossSkull::hit(EventCollision *p_c) {
 
 	WorldManager &world_manager = WorldManager::getInstance();
 	if ((p_c -> getObject1() -> getType()) == "BossSkull") {
+		if ((p_c -> getObject2() -> getType()) == "Hero") {
+			new GameOver();
+		}
 		world_manager.markForDelete(p_c->getObject2());
 	}
 	else {
+		if ((p_c -> getObject1() -> getType()) == "Hero") {
+			new GameOver();
+		}
 		world_manager.markForDelete(p_c->getObject1());
 	}
 

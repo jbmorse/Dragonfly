@@ -20,6 +20,7 @@
 #include "CapturedString.h"
 #include "BossSkull.h"
 #include "LogManager.h"
+#include "GameStart.h"
 
 LevelHandler::LevelHandler() {
 
@@ -56,9 +57,23 @@ int LevelHandler::eventHandler(Event *p_e) {
  */
 void LevelHandler::restartGame() {
 
+	//Remove Objects from game (including persistent ones)
+	WorldManager &worldmanager = WorldManager::getInstance();
+	ObjectList object_list = worldmanager.getAllObjects();
+	ObjectListIterator i(&object_list);
+	for (i.first(); !i.isDone(); i.next()) {
+		Object *p_o = i.currentObject();
+		worldmanager.markForDelete(p_o);
+	}
+	//Redisplay the start of game
+	SceneGraph &scenegraph = worldmanager.getSceneGraph();
+	scenegraph.setLevel(1);
+
+	new GameStart();
+
+	scenegraph.setLevel(level);
+
 	nextLevel(1);
-	//TODO
-	//Reset points and hide level
 
 }
 

@@ -65,7 +65,6 @@ Hero::~Hero() {
 
 	LogManager &logmanager = LogManager::getInstance();
 	logmanager.writeLog("Hero::~Hero: Hero is deleted! \n");
-	new GameOver();
 
 }
 

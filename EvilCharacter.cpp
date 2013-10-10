@@ -16,6 +16,7 @@
 #include "GraphicsManager.h"
 #include "EventStep.h"
 #include "EventRefresh.h"
+#include "GameOver.h"
 
 EvilCharacter::EvilCharacter(int charnumber, bool outDeath) {
 
@@ -130,9 +131,11 @@ void EvilCharacter::hit(EventCollision *p_c) {
 	//If hero, mark for destruction
 	if (p_c -> getObject1() -> getType() == "Hero") {
 		world_manager.markForDelete(p_c -> getObject1());
+		new GameOver();
 	}
 	else if (p_c -> getObject2() -> getType() == "Hero") {
 		world_manager.markForDelete(p_c -> getObject2());
+		new GameOver();
 	}
 
 }
