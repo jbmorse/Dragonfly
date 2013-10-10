@@ -17,7 +17,6 @@
 #include "GraphicsManager.h"
 #include "ViewObject.h"
 #include "BossSkull.h"
-#include "Pointstemp.h"
 #include "CapturedString.h"
 #include "GameStart.h"
 
@@ -35,6 +34,7 @@ void loadResources() {
 	resource_manager.loadSprite("sprites/boss1-spr.txt", "skull");
 	resource_manager.loadSprite("sprites/gameover-spr.txt", "gameover");
 	resource_manager.loadSprite("sprites/gamestart-spr.txt", "gamestart");
+	resource_manager.loadSprite("sprites/goodjob-spr.txt", "goodjob");
 
 }
 

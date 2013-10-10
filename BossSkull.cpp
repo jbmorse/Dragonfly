@@ -14,7 +14,7 @@
 #include "ResourceManager.h"
 #include "WorldManager.h"
 #include "EvilCharacter.h"
-#include "GameOver.h"
+#include "LevelChange.h"
 
 using namespace std;
 using std::string;
@@ -51,6 +51,9 @@ BossSkull::BossSkull() {
 }
 
 BossSkull::~BossSkull() {
+
+	LogManager &logmanager = LogManager::getInstance();
+	logmanager.writeLog("I died BOSSSKULL\n");
 
 }
 
@@ -98,7 +101,7 @@ void BossSkull::moveY(int dy) {
 void BossSkull::attack() {
 
 	LogManager &logmanager = LogManager::getInstance();
-	logmanager.writeLog("attacking");
+	logmanager.writeLog("attacking\n");
 	WorldManager &worldmanager = WorldManager::getInstance();
 	EvilCharacter *attackchar = new EvilCharacter(0, true);
 	int trackingChance = random() % 10;
@@ -113,13 +116,13 @@ void BossSkull::hit(EventCollision *p_c) {
 	WorldManager &world_manager = WorldManager::getInstance();
 	if ((p_c -> getObject1() -> getType()) == "BossSkull") {
 		if ((p_c -> getObject2() -> getType()) == "Hero") {
-			new GameOver();
+			new LevelChange(1);
 		}
 		world_manager.markForDelete(p_c->getObject2());
 	}
 	else {
 		if ((p_c -> getObject1() -> getType()) == "Hero") {
-			new GameOver();
+			new LevelChange(1);
 		}
 		world_manager.markForDelete(p_c->getObject1());
 	}

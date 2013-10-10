@@ -23,9 +23,9 @@ GAMEENG= Manager.cpp LogManager.cpp Utility.cpp Clock.cpp GameManager.cpp \
 		EventKeyboard.cpp EventMouse.cpp EventCollision.cpp EventOut.cpp \
 		Frame.cpp Sprite.cpp ResourceManager.cpp Box.cpp ViewObject.cpp \
 		EventView.cpp SceneGraph.cpp
-GAMESRC= Character.cpp EventRefresh.cpp Hero.cpp Star.cpp BossSkull.cpp Pointstemp.cpp\
+GAMESRC= Character.cpp EventRefresh.cpp Hero.cpp Star.cpp BossSkull.cpp \
          CapturedString.cpp EventCapturedLetter.cpp EvilCharacter.cpp GameStart.cpp \
-         GameOver.cpp TargetString.cpp LevelHandler.cpp EventLevel.cpp
+         TargetString.cpp LevelHandler.cpp EventLevel.cpp LevelChange.cpp
 GAME= game.cpp
 EXECUTABLE= game
 OBJECTS= $(addprefix $(ENGPATH)/, $(GAMEENG:.cpp=.o)) $(GAMESRC:.cpp=.o)
@@ -54,8 +54,9 @@ BossSkull.o: /usr/include/sys/reent.h /usr/include/sys/_types.h
 BossSkull.o: /usr/include/machine/_types.h
 BossSkull.o: /usr/include/machine/_default_types.h /usr/include/sys/lock.h
 BossSkull.o: /usr/include/machine/stdlib.h /usr/include/alloca.h
-BossSkull.o: /usr/include/stdlib.h EvilCharacter.h
+BossSkull.o: /usr/include/stdlib.h EvilCharacter.h LevelChange.h
 CapturedString.o: CapturedString.h LevelHandler.h EventCapturedLetter.h
+CapturedString.o: LevelChange.h
 Character.o: Character.h /usr/include/stdlib.h EventRefresh.h
 EventCapturedLetter.o: EventCapturedLetter.h
 EventLevel.o: EventLevel.h
@@ -66,10 +67,9 @@ EvilCharacter.o: /usr/include/newlib.h /usr/include/sys/config.h
 EvilCharacter.o: /usr/include/machine/ieeefp.h /usr/include/sys/features.h
 EvilCharacter.o: /usr/include/sys/_types.h /usr/include/machine/_types.h
 EvilCharacter.o: /usr/include/machine/_default_types.h
-EvilCharacter.o: /usr/include/sys/lock.h EventRefresh.h
-GameOver.o: GameOver.h LevelHandler.h
-GameStart.o: GameStart.h Hero.h Pointstemp.h CapturedString.h TargetString.h
-GameStart.o: BossSkull.h Character.h Star.h LevelHandler.h
+EvilCharacter.o: /usr/include/sys/lock.h EventRefresh.h LevelChange.h
+GameStart.o: GameStart.h Hero.h CapturedString.h TargetString.h BossSkull.h
+GameStart.o: Character.h Star.h LevelHandler.h
 Hero.o: Hero.h EventRefresh.h Character.h /usr/include/time.h
 Hero.o: /usr/include/_ansi.h /usr/include/newlib.h /usr/include/sys/config.h
 Hero.o: /usr/include/machine/ieeefp.h /usr/include/sys/features.h
@@ -77,10 +77,10 @@ Hero.o: /usr/include/sys/reent.h /usr/include/sys/_types.h
 Hero.o: /usr/include/machine/_types.h /usr/include/machine/_default_types.h
 Hero.o: /usr/include/sys/lock.h /usr/include/machine/time.h
 Hero.o: /usr/include/sys/types.h /usr/include/machine/types.h
-Hero.o: /usr/include/math.h EventCapturedLetter.h GameOver.h
+Hero.o: /usr/include/math.h EventCapturedLetter.h
+LevelChange.o: LevelHandler.h LevelChange.h
 LevelHandler.o: LevelHandler.h EventLevel.h Character.h Hero.h
-LevelHandler.o: CapturedString.h BossSkull.h
-Pointstemp.o: Pointstemp.h
+LevelHandler.o: CapturedString.h BossSkull.h GameStart.h TargetString.h
 Star.o: Star.h /usr/include/Stdlib.h /usr/include/machine/ieeefp.h
 Star.o: /usr/include/_ansi.h /usr/include/newlib.h /usr/include/sys/config.h
 Star.o: /usr/include/sys/features.h /usr/include/sys/reent.h
@@ -88,17 +88,16 @@ Star.o: /usr/include/sys/_types.h /usr/include/machine/_types.h
 Star.o: /usr/include/machine/_default_types.h /usr/include/sys/lock.h
 Star.o: /usr/include/machine/stdlib.h /usr/include/alloca.h
 TargetString.o: TargetString.h
-game.o: Hero.h Character.h Star.h BossSkull.h Pointstemp.h CapturedString.h
-game.o: GameStart.h /usr/include/stdio.h /usr/include/_ansi.h
-game.o: /usr/include/newlib.h /usr/include/sys/config.h
-game.o: /usr/include/machine/ieeefp.h /usr/include/sys/features.h
-game.o: /usr/include/sys/reent.h /usr/include/sys/_types.h
-game.o: /usr/include/machine/_types.h /usr/include/machine/_default_types.h
-game.o: /usr/include/sys/lock.h /usr/include/sys/types.h
-game.o: /usr/include/machine/types.h /usr/include/sys/stdio.h
-game.o: /usr/include/sys/cdefs.h /usr/include/stdint.h
-game.o: /usr/include/bits/wordsize.h /usr/include/unistd.h
-game.o: /usr/include/sys/unistd.h
+game.o: Hero.h Character.h Star.h BossSkull.h CapturedString.h GameStart.h
+game.o: /usr/include/stdio.h /usr/include/_ansi.h /usr/include/newlib.h
+game.o: /usr/include/sys/config.h /usr/include/machine/ieeefp.h
+game.o: /usr/include/sys/features.h /usr/include/sys/reent.h
+game.o: /usr/include/sys/_types.h /usr/include/machine/_types.h
+game.o: /usr/include/machine/_default_types.h /usr/include/sys/lock.h
+game.o: /usr/include/sys/types.h /usr/include/machine/types.h
+game.o: /usr/include/sys/stdio.h /usr/include/sys/cdefs.h
+game.o: /usr/include/stdint.h /usr/include/bits/wordsize.h
+game.o: /usr/include/unistd.h /usr/include/sys/unistd.h
 Dragonfly_Engine/Box.o: Dragonfly_Engine/Box.h Dragonfly_Engine/Position.h
 Dragonfly_Engine/Clock.o: Dragonfly_Engine/Clock.h /usr/include/time.h
 Dragonfly_Engine/Clock.o: /usr/include/_ansi.h /usr/include/newlib.h

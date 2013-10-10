@@ -38,8 +38,7 @@ Character::Character() {
 }
 
 Character::~Character() {
-	// make a new character to compensate
-	new Character;
+
 }
 
 int Character::eventHandler(Event *p_e) {

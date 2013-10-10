@@ -14,7 +14,6 @@
 #include "LogManager.h"
 #include "ResourceManager.h"
 #include "WorldManager.h"
-#include "Pointstemp.h"
 #include "CapturedString.h"
 #include "TargetString.h"
 #include "BossSkull.h"
@@ -79,11 +78,6 @@ int GameStart::eventHandler(Event *p_e) {
 }
 
 void GameStart::start() {
-
-	//Setup viewObjects display
-	new Pointstemp;
-	new CapturedString("Hello");
-	new TargetString("Hello");
 
 	//Start the next level
 	LevelHandler &levelhandler = LevelHandler::getInstance();

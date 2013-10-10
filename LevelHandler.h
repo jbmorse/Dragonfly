@@ -22,6 +22,7 @@ public:
 	int eventHandler(Event *p_e);
 	void nextLevel(int nextlevel = 0);
 	void restartGame();
+	int getLevel();
 
 };
 

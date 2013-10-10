@@ -14,7 +14,7 @@
 TargetString::TargetString(string complete_string) {
 
 	setType("TargetString");
-	setLocation(TOP_LEFT);
+	setLocation(TOP_RIGHT);
 	setViewString(complete_string);
 
 }

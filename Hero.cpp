@@ -22,7 +22,6 @@
 #include <math.h>
 #include "ResourceManager.h"
 #include "EventCapturedLetter.h"
-#include "GameOver.h"
 #include "EventOut.h"
 #include "Utility.h"
 

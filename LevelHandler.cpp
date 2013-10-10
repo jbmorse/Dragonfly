@@ -21,6 +21,7 @@
 #include "BossSkull.h"
 #include "LogManager.h"
 #include "GameStart.h"
+#include "TargetString.h"
 
 LevelHandler::LevelHandler() {
 
@@ -92,7 +93,8 @@ void startLevel_2(int prevLevel) {
 	}
 
 	//Goal for collection
-	new CapturedString("Hi");
+	new CapturedString("HI");
+	new TargetString("HI");
 
 	//Revert back to previous level
 	scenegraph.setLevel(prevLevel);
@@ -121,17 +123,8 @@ void startLevel_3(int prevLevel) {
  */
 void LevelHandler::nextLevel(int nextlevel) {
 
-	//Remove Objects from current level
 	WorldManager &worldmanager = WorldManager::getInstance();
-
-	ObjectList object_list = worldmanager.getAllObjects();
-	ObjectListIterator i(&object_list);
-	for (i.first(); !i.isDone(); i.next()) {
-		Object *p_o = i.currentObject();
-		if (!p_o->isPersistent()) {
-			worldmanager.markForDelete(p_o);
-		}
-	}
+	LogManager &logmanager = LogManager::getInstance();
 
 	int prevLevel = level;
 	if (nextlevel != 0) {
@@ -155,8 +148,13 @@ void LevelHandler::nextLevel(int nextlevel) {
 		break;
 	}
 
-	LogManager &logmanager = LogManager::getInstance();
 	logmanager.writeLog("Level %d", level);
 	worldmanager.setLevel(level);
+
+}
+
+int LevelHandler::getLevel() {
+
+	return level;
 
 }
