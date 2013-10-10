@@ -81,6 +81,7 @@ Hero.o: /usr/include/math.h EventCapturedLetter.h
 LevelChange.o: LevelHandler.h LevelChange.h
 LevelHandler.o: LevelHandler.h EventLevel.h Character.h Hero.h
 LevelHandler.o: CapturedString.h BossSkull.h GameStart.h TargetString.h
+LevelHandler.o: EvilCharacter.h
 Star.o: Star.h /usr/include/Stdlib.h /usr/include/machine/ieeefp.h
 Star.o: /usr/include/_ansi.h /usr/include/newlib.h /usr/include/sys/config.h
 Star.o: /usr/include/sys/features.h /usr/include/sys/reent.h

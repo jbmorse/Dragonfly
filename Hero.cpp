@@ -126,7 +126,7 @@ void Hero::moveX(int dx) {
 	WorldManager &worldmanager = WorldManager::getInstance();
 	Position new_pos(getPosition().getX() + dx, getPosition().getY());
 	//If stays on screen, allow move
-	if ((new_pos.getX() > 2) &&
+	if ((new_pos.getX() > 0) &&
 			(new_pos.getX() < worldmanager.getBoundary().getHorizontal())) {
 		worldmanager.moveObject(this, new_pos);
 	}

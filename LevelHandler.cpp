@@ -22,6 +22,8 @@
 #include "LogManager.h"
 #include "GameStart.h"
 #include "TargetString.h"
+#include "EvilCharacter.h"
+#include "stdlib.h"
 
 LevelHandler::LevelHandler() {
 
@@ -100,6 +102,78 @@ void startLevel_2(int prevLevel) {
 	//Hashtag Hero
 	new Hero();
 
+	//A few characters
+	Character *char1 = new Character('W');
+	Character *char2 = new Character('E');
+	Character *char3 = new Character('L');
+	Character *char4 = new Character('C');
+	Character *char5 = new Character('O');
+	Character *char6 = new Character('M');
+	Character *char7 = new Character('E');
+
+	char1->setPosition(Position(18,8));
+	char2->setPosition(Position(25,8));
+	char3->setPosition(Position(32,8));
+	char4->setPosition(Position(39,8));
+	char5->setPosition(Position(46,8));
+	char6->setPosition(Position(53,8));
+	char7->setPosition(Position(60,8));
+
+	//Goal for collection
+	new CapturedString("WELCOME");
+	new TargetString("WELCOME");
+
+	//Revert back to previous level
+	scenegraph.setLevel(prevLevel);
+
+}
+
+void startLevel_3(int prevLevel) {
+
+	WorldManager &worldmanager = WorldManager::getInstance();
+	SceneGraph &scenegraph = worldmanager.getSceneGraph();
+	scenegraph.setLevel(3);
+
+	//Hashtag Hero
+	new Hero();
+
+	//A few characters
+	new Character('R');
+	new Character('E');
+	new Character('D');
+	new Character('I');
+	new Character('S');
+	new Character('B');
+	new Character('A');
+	new Character('D');
+
+	for (int i = 0; i < 20; i++) {
+		new Character();
+	}
+
+	for (int i = 0; i < 20; i++) {
+		int j = random() % 25 + 1;
+		new EvilCharacter(j, true);
+	}
+
+	//Goal for collection
+	new CapturedString("REDISBAD");
+	new TargetString("REDISBAD");
+
+	//Revert back to previous level
+	scenegraph.setLevel(prevLevel);
+
+}
+
+void startLevel_4(int prevLevel) {
+
+	WorldManager &worldmanager = WorldManager::getInstance();
+	SceneGraph &scenegraph = worldmanager.getSceneGraph();
+	scenegraph.setLevel(4);
+
+	//Hashtag Hero
+	new Hero();
+
 	//Characters to collect
 	for (int i = 0; i < 150; i++) {
 		new Character();
@@ -114,11 +188,11 @@ void startLevel_2(int prevLevel) {
 
 }
 
-void startLevel_3(int prevLevel) {
+void startLevel_5(int prevLevel) {
 
 	WorldManager &worldmanager = WorldManager::getInstance();
 	SceneGraph &scenegraph = worldmanager.getSceneGraph();
-	scenegraph.setLevel(3);
+	scenegraph.setLevel(5);
 
 	//Hashtag Hero
 	new Hero();
@@ -157,6 +231,12 @@ void LevelHandler::nextLevel(int nextlevel) {
 		startLevel_3(prevLevel);
 		break;
 	case 4 :
+		startLevel_4(prevLevel);
+		break;
+	case 5 :
+		startLevel_5(prevLevel);
+		break;
+	case 6 :
 		for (int i = 0; i < 1000; i++) {
 			logmanager.writeLog("I GOT HERE AND THERE IS A PROBLEM %d\n", level);
 		}
