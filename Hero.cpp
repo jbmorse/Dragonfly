@@ -40,10 +40,6 @@ Hero::Hero() {
 	ResourceManager &resourcemanager = ResourceManager::getInstance();
 	setType("Hero");
 
-	//Keep hero centered
-	WorldManager &worldmanager = WorldManager::getInstance();
-	worldmanager.setViewFollowing(this);
-
 	Sprite *p_temp_sprite = resourcemanager.getSprite("hashtag");
 	if (!p_temp_sprite) {
 			logmanager.writeLog("Hero::Hero(): Warning! Sprite '%s' not found", "hashtag");
@@ -76,43 +72,12 @@ int Hero::eventHandler(Event *p_e) {
 	}
 	if (p_e->getType() == COLLISION_EVENT) {
 		LogManager &logmanager = LogManager::getInstance();
-		logmanager.writeLog("Hero::eventHandler: Hero got a collision event! \n");
 		EventCollision *p_collision_event = static_cast <EventCollision *> (p_e);
 		addLetter(p_collision_event);
 		return 1;
 	}
-	if (p_e->getType() == OUT_EVENT) {
-		out();
-		return 1;
-	}
 
 	return 0;
-
-}
-
-//Hero went out of bounds
-void Hero::out() {
-
-	WorldManager &world_manager = WorldManager::getInstance();
-	Position pos = worldToView(getPosition());
-	if (pos.getX() < 0) {
-		setXVelocity(0);
-		pos.setX(0);
-	}
-	if (pos.getX() > world_manager.getView().getHorizontal()) {
-		setXVelocity(0);
-		pos.setX(world_manager.getView().getHorizontal() - 1);
-	}
-	if (pos.getY() < 0) {
-		setYVelocity(0);
-		pos.setY(0);
-	}
-	if (pos.getY() > world_manager.getView().getVertical()) {
-		setYVelocity(0);
-		pos.setY(world_manager.getView().getVertical() - 1);
-	}
-
-	setPosition(viewToWorld(pos));
 
 }
 
@@ -122,16 +87,16 @@ void Hero::kbd(EventKeyboard *p_keyboard_event) {
 	WorldManager &world_manager = WorldManager::getInstance();
 	switch(p_keyboard_event->getKey()) {
 	case KEY_UP:	//Up arrow
-		setYVelocity(max(getYVelocity() - VELOCITY_CHANGE, (-1) *  MAX_VELOCITY));
+		moveY(-1);
 		break;
 	case KEY_DOWN:	//Down arrow
-		setYVelocity(min(getYVelocity() + VELOCITY_CHANGE, MAX_VELOCITY));
+		moveY(+1);
 		break;
 	case KEY_LEFT:	//Left arrow
-		setXVelocity(max(getXVelocity() - VELOCITY_CHANGE, (-1) * MAX_VELOCITY));
+		moveX(-1);
 		break;
 	case KEY_RIGHT:	//Right arrow
-		setXVelocity(min(getXVelocity() + VELOCITY_CHANGE, MAX_VELOCITY));
+		moveX(+1);
 		break;
 	case 'q':
 		world_manager.markForDelete(this);
@@ -142,11 +107,36 @@ void Hero::kbd(EventKeyboard *p_keyboard_event) {
 
 }
 
+//Move up or down
+void Hero::moveY(int dy) {
+
+	WorldManager &worldmanager = WorldManager::getInstance();
+	Position new_pos(getPosition().getX(), getPosition().getY() + dy);
+	//If stays on screen, allow move
+	if ((new_pos.getY() > 3) &&
+			(new_pos.getY() < worldmanager.getBoundary().getVertical())) {
+		worldmanager.moveObject(this, new_pos);
+	}
+
+}
+
+//Move left or right
+void Hero::moveX(int dx) {
+
+	WorldManager &worldmanager = WorldManager::getInstance();
+	Position new_pos(getPosition().getX() + dx, getPosition().getY());
+	//If stays on screen, allow move
+	if ((new_pos.getX() > 2) &&
+			(new_pos.getX() < worldmanager.getBoundary().getHorizontal())) {
+		worldmanager.moveObject(this, new_pos);
+	}
+
+}
+
 void Hero::addLetter(EventCollision *p_e) {
 
 	LogManager &logmanager = LogManager::getInstance();
 	WorldManager &worldmanager = WorldManager::getInstance();
-	logmanager.writeLog("Hero::addLetter: received Collision event! Adding letter to hashtag\n");
 
 	Character *character;
 	if (p_e->getObject1()->getType() == "Character") {

@@ -53,6 +53,8 @@ LevelChange::LevelChange(int level) {
 
 	nextlevel = level;
 
+	log_manager.writeLog("LevelChange::LevelChange(): New levelchange!\n");
+
 }
 
 //When object exits, indicate game over
@@ -89,6 +91,20 @@ void LevelChange::step() {
 	if (time_to_live <= 0) {
 		WorldManager &world_manager = WorldManager::getInstance();
 		world_manager.markForDelete(this);
+	}
+
+	if (time_to_live == 10) {
+		//Remove Objects from current level
+		WorldManager &worldmanager = WorldManager::getInstance();
+
+		ObjectList object_list = worldmanager.getAllObjects();
+		ObjectListIterator i(&object_list);
+		for (i.first(); !i.isDone(); i.next()) {
+			Object *p_o = i.currentObject();
+			if (!p_o->isPersistent() && p_o != this) {
+				worldmanager.markForDelete(p_o);
+			}
+		}
 	}
 
 }

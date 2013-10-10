@@ -50,6 +50,8 @@ GameStart::GameStart() {
 	//Register for "keyboard" event
 	registerInterest(KEYBOARD_EVENT);
 
+	log_manager.writeLog("GameStart::GameStart(): Made gamestart!\n");
+
 }
 
 //Handle event; return 0 if ignored, else 1
