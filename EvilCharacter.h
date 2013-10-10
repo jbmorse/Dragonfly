@@ -21,6 +21,8 @@ class EvilCharacter : public Object {
 	string drawchar;
 	int charnum;
 	bool outIsDeath;
+	bool tracksPlayer;
+	int trackingTimeout;
 
 	public:
 	EvilCharacter(int charnumber, bool outIsDeath);
@@ -28,6 +30,7 @@ class EvilCharacter : public Object {
 	int eventHandler(Event *p_e);
 	void draw();
 	char getChar();
+	void setTracksPlayer(bool newTracksPlayer);
 
   };
 

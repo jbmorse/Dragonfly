@@ -6,10 +6,13 @@
  */
 
 #include "EventOut.h"
+#include "EventStep.h"
 #include "LogManager.h"
 #include "EvilCharacter.h"
 #include "stdlib.h"
+#include <math.h>
 #include "WorldManager.h"
+#include "GameManager.h"
 #include "GraphicsManager.h"
 #include "EventStep.h"
 #include "EventRefresh.h"
@@ -29,10 +32,13 @@ EvilCharacter::EvilCharacter(int charnumber, bool outDeath) {
 
 	//Register for step and refresh
 	registerInterest(REFRESH_EVENT);
+	registerInterest(STEP_EVENT);
 
 	charnum = charnumber;
 	outIsDeath = outDeath;
 	drawchar = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	tracksPlayer = false;
+	trackingTimeout = 0;
 
 }
 
@@ -41,6 +47,11 @@ EvilCharacter::~EvilCharacter() {
 }
 
 int EvilCharacter::eventHandler(Event *p_e) {
+
+	if(p_e->getType() == STEP_EVENT) {
+		move();
+		return 1;
+	}
 
 	if (p_e->getType() == OUT_EVENT) {
 		out();
@@ -137,4 +148,57 @@ char EvilCharacter::getChar() {
 
 	return drawchar[charnum];
 
+}
+
+void EvilCharacter::move() {
+	if(tracksPlayer) {
+		trackingTimeout--;
+		// Check if it's time to change direction
+		if(trackingTimeout <= 0) {
+			// Move character towards the player
+			// Get this character's potiions and the player's position
+			Position charPos = getPosition();
+			Position playerPos = Position(-1000, -1000);
+
+			ObjectList ol = WorldManager::getInstance().getAllObjects();
+			ObjectListIterator li = ol.createIterator();
+			for(li.first(); !li.isDone(); li.next()) {
+				if(li.currentObject()->getType() == "Hero") {
+					playerPos = li.currentObject()->getPosition();
+				}
+			}
+
+			if(playerPos.getX() == -1000 &&
+			   playerPos.getY() == -1000) // player isn't around for some reason
+				return;
+
+			float x_velocity;
+			float y_velocity;
+
+			// Get x and y distances between two objects
+			int x_distance = playerPos.getX() - charPos.getX();
+			int y_distance = playerPos.getY() - charPos.getY();
+
+			// Convert them so that the magnitude of the velocity
+			// vector is sqrt(1)
+			float magnitude = pow((pow(x_distance, 2) + pow(y_distance, 2)), 0.5);
+			x_velocity = ((float)x_distance) / magnitude;
+			y_velocity = ((float)y_distance) / magnitude;
+
+			// Set velocity, slowing it down a little more
+			setXVelocity(x_velocity * 0.85);
+			setYVelocity(y_velocity * 0.85);
+
+			// Reset timeout
+			trackingTimeout = GameManager::getInstance().getFrameTime() * 1.5;
+		}
+	} else {
+		// Just move to the left
+		setXVelocity(-1);
+		setYVelocity(0);
+	}
+}
+
+void EvilCharacter::setTracksPlayer(bool newTracksPlayer) {
+	tracksPlayer = newTracksPlayer;
 }
