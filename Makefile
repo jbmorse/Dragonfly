@@ -25,7 +25,7 @@ GAMEENG= Manager.cpp LogManager.cpp Utility.cpp Clock.cpp GameManager.cpp \
 		EventView.cpp SceneGraph.cpp
 GAMESRC= Character.cpp EventRefresh.cpp Hero.cpp Star.cpp BossSkull.cpp Pointstemp.cpp\
          CapturedString.cpp EventCapturedLetter.cpp EvilCharacter.cpp GameStart.cpp \
-         GameOver.cpp
+         GameOver.cpp TargetString.cpp
 GAME= game.cpp
 EXECUTABLE= game
 OBJECTS= $(addprefix $(ENGPATH)/, $(GAMEENG:.cpp=.o)) $(GAMESRC:.cpp=.o)
@@ -58,25 +58,15 @@ BossSkull.o: /usr/include/stdlib.h EvilCharacter.h
 CapturedString.o: CapturedString.h EventCapturedLetter.h
 Character.o: Character.h /usr/include/stdlib.h EventRefresh.h
 EventCapturedLetter.o: EventCapturedLetter.h
+EventLevel.o: EventLevel.h
 EventRefresh.o: EventRefresh.h
-EvilCharacter.o: EvilCharacter.h /usr/include/stdlib.h EventRefresh.h
-GameOver.o: GameOver.h
-GameStart.o: GameStart.h Hero.h Pointstemp.h
-Hero.o: Hero.h EventRefresh.h Character.h /usr/include/time.h
-Hero.o: /usr/include/_ansi.h /usr/include/newlib.h /usr/include/sys/config.h
-Hero.o: /usr/include/machine/ieeefp.h /usr/include/sys/features.h
-Hero.o: /usr/include/sys/reent.h /usr/include/sys/_types.h
-Hero.o: /usr/include/machine/_types.h /usr/include/machine/_default_types.h
-Hero.o: /usr/include/sys/lock.h /usr/include/machine/time.h
-Hero.o: /usr/include/sys/types.h /usr/include/machine/types.h
-Hero.o: /usr/include/math.h EventCapturedLetter.h GameOver.h
-Pointstemp.o: Pointstemp.h
-Star.o: Star.h /usr/include/Stdlib.h /usr/include/machine/ieeefp.h
-Star.o: /usr/include/_ansi.h /usr/include/newlib.h /usr/include/sys/config.h
-Star.o: /usr/include/sys/features.h /usr/include/sys/reent.h
-Star.o: /usr/include/sys/_types.h /usr/include/machine/_types.h
-Star.o: /usr/include/machine/_default_types.h /usr/include/sys/lock.h
-Star.o: /usr/include/machine/stdlib.h /usr/include/alloca.h
+EvilCharacter.o: EvilCharacter.h /usr/include/stdlib.h /usr/include/math.h
+EvilCharacter.o: /usr/include/sys/reent.h /usr/include/_ansi.h
+EvilCharacter.o: /usr/include/newlib.h /usr/include/sys/config.h
+EvilCharacter.o: /usr/include/machine/ieeefp.h /usr/include/sys/features.h
+EvilCharacter.o: /usr/include/sys/_types.h /usr/include/machine/_types.h
+EvilCharacter.o: /usr/include/machine/_default_types.h
+EvilCharacter.o: /usr/include/sys/lock.h EventRefresh.h
 game.o: Hero.h Character.h Star.h BossSkull.h Pointstemp.h CapturedString.h
 game.o: GameStart.h /usr/include/stdio.h /usr/include/_ansi.h
 game.o: /usr/include/newlib.h /usr/include/sys/config.h
@@ -88,6 +78,26 @@ game.o: /usr/include/machine/types.h /usr/include/sys/stdio.h
 game.o: /usr/include/sys/cdefs.h /usr/include/stdint.h
 game.o: /usr/include/bits/wordsize.h /usr/include/unistd.h
 game.o: /usr/include/sys/unistd.h
+GameOver.o: GameOver.h
+GameStart.o: GameStart.h Hero.h Pointstemp.h CapturedString.h BossSkull.h
+GameStart.o: Character.h Star.h
+Hero.o: Hero.h EventRefresh.h Character.h /usr/include/time.h
+Hero.o: /usr/include/_ansi.h /usr/include/newlib.h /usr/include/sys/config.h
+Hero.o: /usr/include/machine/ieeefp.h /usr/include/sys/features.h
+Hero.o: /usr/include/sys/reent.h /usr/include/sys/_types.h
+Hero.o: /usr/include/machine/_types.h /usr/include/machine/_default_types.h
+Hero.o: /usr/include/sys/lock.h /usr/include/machine/time.h
+Hero.o: /usr/include/sys/types.h /usr/include/machine/types.h
+Hero.o: /usr/include/math.h EventCapturedLetter.h GameOver.h
+LevelHandler.o: CapturedString.h LevelHandler.h EventLevel.h
+Pointstemp.o: Pointstemp.h
+Star.o: Star.h /usr/include/Stdlib.h /usr/include/machine/ieeefp.h
+Star.o: /usr/include/_ansi.h /usr/include/newlib.h /usr/include/sys/config.h
+Star.o: /usr/include/sys/features.h /usr/include/sys/reent.h
+Star.o: /usr/include/sys/_types.h /usr/include/machine/_types.h
+Star.o: /usr/include/machine/_default_types.h /usr/include/sys/lock.h
+Star.o: /usr/include/machine/stdlib.h /usr/include/alloca.h
+TargetString.o: TargetString.h
 Dragonfly_Engine/Box.o: Dragonfly_Engine/Box.h Dragonfly_Engine/Position.h
 Dragonfly_Engine/Clock.o: Dragonfly_Engine/Clock.h /usr/include/time.h
 Dragonfly_Engine/Clock.o: /usr/include/_ansi.h /usr/include/newlib.h

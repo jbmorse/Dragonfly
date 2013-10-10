@@ -16,6 +16,7 @@
 #include "WorldManager.h"
 #include "Pointstemp.h"
 #include "CapturedString.h"
+#include "TargetString.h"
 #include "BossSkull.h"
 #include "Character.h"
 #include "Star.h"
@@ -101,6 +102,7 @@ void GameStart::start() {
 	new Pointstemp;
 
 	new CapturedString("Hello");
+	new TargetString("Hello");
 
 	//TODO
 	//Add points

@@ -19,13 +19,13 @@ CapturedString::CapturedString() {
 
 	setType("CapturedString");
 	registerInterest(CAPTURED_LETTER_EVENT);
-
+	setLocation(TOP_CENTER);
 }
 
 CapturedString::CapturedString(string new_complete_string) {
 	setType("CapturedString");
-
 	registerInterest(CAPTURED_LETTER_EVENT);
+	setLocation(TOP_CENTER);
 
 	complete_string.resize(new_complete_string.length());
 	transform(new_complete_string.begin(),
