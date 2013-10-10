@@ -127,7 +127,8 @@ void EvilCharacter::hit(EventCollision *p_c) {
 		return;
 	}
 
-	//WorldManager &world_manager = WorldManager::getInstance();
+	WorldManager &world_manager = WorldManager::getInstance();
+	world_manager.markForDelete(this);
 	//If hero, mark for destruction
 	// ***********************
 	// ** In Hero class now **

@@ -43,11 +43,6 @@ PowerupShield::PowerupShield() {
 	Position temp_pos(view_horiz + 10,
 		random() % (view_vert - 4) + 4);
 	temp_pos = viewToWorld(temp_pos);
-	ObjectList collisions = wm.isCollision(this, temp_pos);
-	while(!collisions.isEmpty()) {
-		temp_pos.setX(temp_pos.getX() + 1);
-		collisions = wm.isCollision(this, temp_pos);
-	}
 	setPosition(temp_pos);
 }
 
