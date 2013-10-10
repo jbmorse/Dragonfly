@@ -8,17 +8,20 @@
 #ifndef LEVELHANDLER_H_
 #define LEVELHANDLER_H_
 
+#include "ViewObject.h"
+
 class LevelHandler : public ViewObject {
 
 private:
 	void addLetter(char letter);
 	int level;
+	LevelHandler();
 
 public:
-	LevelHandler();
+	static LevelHandler &getInstance();
 	int eventHandler(Event *p_e);
-	void draw();
-	void nextLevel();
+	void nextLevel(int nextlevel = 0);
+	void restartGame();
 
 };
 

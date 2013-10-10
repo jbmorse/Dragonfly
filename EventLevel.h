@@ -16,12 +16,15 @@
 class EventLevel : public Event {
 
 private:
-	string currentHashtag;
+	string levelEvent;
+	int levelEventNum;
 
 public:
 	EventLevel();
-	string getCurrentHashtag();
-	void setCurrentHashtag(string hash);
+	string getLevelEvent();
+	void setLevelEvent(string identifier);
+	int getLevelEventNum();
+	void setLevelEventNum(int num);
 
 };
 

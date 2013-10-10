@@ -19,6 +19,7 @@
 #include "BossSkull.h"
 #include "Character.h"
 #include "Star.h"
+#include "LevelHandler.h"
 
 GameStart::GameStart() {
 
@@ -78,38 +79,12 @@ int GameStart::eventHandler(Event *p_e) {
 
 void GameStart::start() {
 
-	WorldManager &world_manager = WorldManager::getInstance();
-	SceneGraph &scene_graph = world_manager.getSceneGraph();
-
-	//Will populate play world with objects
-	scene_graph.setLevel(PLAY_LEVEL);
-
-	//World setup
-	WorldManager &worldmanager = WorldManager::getInstance();
-	new Hero();
-	for (int i = 0; i < 10; i++) {
-		new Character();
-	}
-	for (int i = 0; i < 40; i++) {
-		//TODO
-		//Maybe make stars move different directions?
-		//No longer flying to right all the time
-		new Star();
-	}
-	new BossSkull();
-	//Setup Points display
+	//Setup viewObjects display
 	new Pointstemp;
 
-	new CapturedString("Hello");
-
-	//TODO
-	//Add points
-
-	//Revert back to menu
-	scene_graph.setLevel(MENU_LEVEL);
-
-	//Tell world manager to goto game level
-	world_manager.setLevel(PLAY_LEVEL);
+	//Start the next level
+	LevelHandler &levelhandler = LevelHandler::getInstance();
+	levelhandler.nextLevel(2);
 
 }
 

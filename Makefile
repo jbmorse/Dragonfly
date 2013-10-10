@@ -25,7 +25,7 @@ GAMEENG= Manager.cpp LogManager.cpp Utility.cpp Clock.cpp GameManager.cpp \
 		EventView.cpp SceneGraph.cpp
 GAMESRC= Character.cpp EventRefresh.cpp Hero.cpp Star.cpp BossSkull.cpp Pointstemp.cpp\
          CapturedString.cpp EventCapturedLetter.cpp EvilCharacter.cpp GameStart.cpp \
-         GameOver.cpp
+         GameOver.cpp LevelHandler.cpp EventLevel.cpp
 GAME= game.cpp
 EXECUTABLE= game
 OBJECTS= $(addprefix $(ENGPATH)/, $(GAMEENG:.cpp=.o)) $(GAMESRC:.cpp=.o)
@@ -58,10 +58,12 @@ BossSkull.o: /usr/include/stdlib.h EvilCharacter.h
 CapturedString.o: CapturedString.h EventCapturedLetter.h
 Character.o: Character.h /usr/include/stdlib.h EventRefresh.h
 EventCapturedLetter.o: EventCapturedLetter.h
+EventLevel.o: EventLevel.h
 EventRefresh.o: EventRefresh.h
 EvilCharacter.o: EvilCharacter.h /usr/include/stdlib.h EventRefresh.h
 GameOver.o: GameOver.h
-GameStart.o: GameStart.h Hero.h Pointstemp.h
+GameStart.o: GameStart.h Hero.h Pointstemp.h CapturedString.h BossSkull.h
+GameStart.o: Character.h Star.h LevelHandler.h
 Hero.o: Hero.h EventRefresh.h Character.h /usr/include/time.h
 Hero.o: /usr/include/_ansi.h /usr/include/newlib.h /usr/include/sys/config.h
 Hero.o: /usr/include/machine/ieeefp.h /usr/include/sys/features.h
@@ -70,6 +72,7 @@ Hero.o: /usr/include/machine/_types.h /usr/include/machine/_default_types.h
 Hero.o: /usr/include/sys/lock.h /usr/include/machine/time.h
 Hero.o: /usr/include/sys/types.h /usr/include/machine/types.h
 Hero.o: /usr/include/math.h EventCapturedLetter.h GameOver.h
+LevelHandler.o: CapturedString.h LevelHandler.h EventLevel.h
 Pointstemp.o: Pointstemp.h
 Star.o: Star.h /usr/include/Stdlib.h /usr/include/machine/ieeefp.h
 Star.o: /usr/include/_ansi.h /usr/include/newlib.h /usr/include/sys/config.h

@@ -11,19 +11,31 @@
 EventLevel::EventLevel() {
 
 	setType(LEVEL_EVENT);
-	currentHashtag = "";
+	levelEvent = "";
+	levelEventNum = 0;
 
 }
 
-void EventLevel::setCurrentHashtag(string hash) {
+void EventLevel::setLevelEvent(string identifier) {
 
-	currentHashtag = hash;
-
-}
-
-string EventLevel::getCurrentHashtag() {
-
-	return currentHashtag;
+	levelEvent = identifier;
 
 }
 
+string EventLevel::getLevelEvent() {
+
+	return levelEvent;
+
+}
+
+void EventLevel::setLevelEventNum(int num) {
+
+	levelEventNum = num;
+
+}
+
+int EventLevel::getLevelEventNum() {
+
+	return levelEventNum;
+
+}

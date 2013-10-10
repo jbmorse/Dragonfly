@@ -12,6 +12,7 @@
 #include "LogManager.h"
 #include "ResourceManager.h"
 #include "WorldManager.h"
+#include "LevelHandler.h"
 
 GameOver::GameOver() {
 
@@ -48,20 +49,9 @@ GameOver::GameOver() {
 //When object exits, indicate game over
 GameOver::~GameOver() {
 
-	//Remove Saucers and ViewObjects
-	WorldManager &world_manager = WorldManager::getInstance();
-	ObjectList object_list = world_manager.getAllObjects();
-	ObjectListIterator i(&object_list);
-	for (i.first(); !i.isDone(); i.next()) {
-		Object *p_o = i.currentObject();
-		if (p_o -> getType() == "Character" || p_o -> getType() == "ViewObject" ||
-			p_o -> getType() == "EvilCharacter" || p_o -> getType() == "BossSkull") {
-			world_manager.markForDelete(p_o);
-		}
-	}
-
 	//Go to start level
-	world_manager.setLevel(1);
+	LevelHandler &levelhandler = LevelHandler::getInstance();
+	levelhandler.restartGame();
 
 }
 

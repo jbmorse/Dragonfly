@@ -10,10 +10,12 @@
 // System includes
 #include <algorithm>
 // Engine includes
+#include "LevelHandler.h"
 #include "EventCapturedLetter.h"
 #include "GameManager.h"
 #include "GraphicsManager.h"
 #include "Utility.h"
+#include "LogManager.h"
 
 CapturedString::CapturedString() {
 
@@ -99,7 +101,10 @@ void CapturedString::addLetter(char letter) {
 	setViewString(temp_str);
 
 	if(temp_str == complete_string) { // completed string
-		GameManager::getInstance().setGameOver();
+		LogManager &logmanager = LogManager::getInstance();
+		logmanager.writeLog("Completed string!\n");
+		LevelHandler &levelhandler = LevelHandler::getInstance();
+		levelhandler.nextLevel();
 	}
 }
 

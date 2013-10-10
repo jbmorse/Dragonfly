@@ -14,6 +14,7 @@ Pointstemp::Pointstemp() {
 	setLocation(TOP_RIGHT);
 	setViewString(POINTS_STRING);
 	setColor(COLOR_YELLOW);
+	setPersistence(true);
 
 	//Need to update score each second, so count "step" events
 	registerInterest(STEP_EVENT);
