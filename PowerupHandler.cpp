@@ -20,7 +20,7 @@ PowerupHandler::PowerupHandler() {
 	setType("PowerupHandler");
 	registerInterest(STEP_EVENT);
 
-	powerupTimeout = GameManager::getInstance().getFrameTime() * 30;  // 30 secs
+	powerupTimeout = 66;//GameManager::getInstance().getFrameTime() * 30;  // 30 secs
 	powerupTimeoutCount = powerupTimeout;
 }
 

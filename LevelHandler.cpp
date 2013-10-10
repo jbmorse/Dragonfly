@@ -128,7 +128,7 @@ void startLevel_3(int prevLevel) {
 	new Hero();
 
 	// Powerups
-	//new PowerupHandler();
+	new PowerupHandler();
 
 	//BOSS FIGHT
 	new BossSkull();
