@@ -37,6 +37,9 @@ bool boxContainsPoint(Box b, Position p);
 //Convert world position to view position
 Position worldToView(Position world_pos);
 
+// Convert view position to world position
+Position viewToWorld(Position view_pos);
+
 //Convert int to a string, returning string
 string intToString(int number);
 

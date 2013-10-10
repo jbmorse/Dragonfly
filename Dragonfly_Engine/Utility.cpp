@@ -112,6 +112,14 @@ Position worldToView(Position world_pos) {
 
 }
 
+Position viewToWorld(Position view_pos) {
+	Position view_origin = WorldManager::getInstance().getView().getCorner();
+	int view_x = view_origin.getX();
+	int view_y = view_origin.getY();
+	Position world_pos(view_pos.getX() + view_x, view_pos.getY() + view_y);
+	return world_pos;
+}
+
 string intToString(int number) {
 
 	stringstream ss;
