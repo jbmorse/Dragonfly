@@ -35,6 +35,8 @@ void loadResources() {
 	resource_manager.loadSprite("sprites/gameover-spr.txt", "gameover");
 	resource_manager.loadSprite("sprites/gamestart-spr.txt", "gamestart");
 	resource_manager.loadSprite("sprites/goodjob-spr.txt", "goodjob");
+	resource_manager.loadSprite("sprites/powerup-shield-spr.txt", "powerup-shield");
+	resource_manager.loadSprite("sprites/hashtag-w-shield-spr.txt", "hashtag-shield");
 
 }
 

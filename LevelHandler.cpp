@@ -21,6 +21,7 @@
 #include "BossSkull.h"
 #include "LogManager.h"
 #include "GameStart.h"
+#include "PowerupHandler.h"
 #include "TargetString.h"
 
 LevelHandler::LevelHandler() {
@@ -105,6 +106,9 @@ void startLevel_2(int prevLevel) {
 		new Character();
 	}
 
+	// Powerups
+	new PowerupHandler();
+
 	//Goal for collection
 	new CapturedString("HI");
 	new TargetString("HI");
@@ -122,6 +126,9 @@ void startLevel_3(int prevLevel) {
 
 	//Hashtag Hero
 	new Hero();
+
+	// Powerups
+	//new PowerupHandler();
 
 	//BOSS FIGHT
 	new BossSkull();
