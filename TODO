@@ -1,7 +1,7 @@
-Hero cannot go out of bounds
+** Done ** Hero cannot go out of bounds
 Level generation
 Boss spawning
 Boss being killed
 level switching
-Specific string generation/goals
+** Mostly Done ** Specific string generation/goals (Shows strings hard coded into GameStart)
 alter gameover text

@@ -100,6 +100,9 @@ void BossSkull::attack() {
 	logmanager.writeLog("attacking");
 	WorldManager &worldmanager = WorldManager::getInstance();
 	EvilCharacter *attackchar = new EvilCharacter(0, true);
+	int trackingChance = random() % 10;
+	if(trackingChance >= 8) // 20% chance to track
+		attackchar->setTracksPlayer(true);
 	worldmanager.moveObject(attackchar,Position(60,this->getPosition().getY()));
 
 }

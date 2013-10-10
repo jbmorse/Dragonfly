@@ -16,6 +16,7 @@
 #include "WorldManager.h"
 #include "Pointstemp.h"
 #include "CapturedString.h"
+#include "TargetString.h"
 #include "BossSkull.h"
 #include "Character.h"
 #include "Star.h"
@@ -81,6 +82,8 @@ void GameStart::start() {
 
 	//Setup viewObjects display
 	new Pointstemp;
+	new CapturedString("Hello");
+	new TargetString("Hello");
 
 	//Start the next level
 	LevelHandler &levelhandler = LevelHandler::getInstance();

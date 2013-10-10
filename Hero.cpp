@@ -24,6 +24,7 @@
 #include "EventCapturedLetter.h"
 #include "GameOver.h"
 #include "EventOut.h"
+#include "Utility.h"
 
 using namespace std;
 using std::string;
@@ -95,25 +96,25 @@ int Hero::eventHandler(Event *p_e) {
 void Hero::out() {
 
 	WorldManager &world_manager = WorldManager::getInstance();
-	Position pos = getPosition();
+	Position pos = worldToView(getPosition());
 	if (pos.getX() < 0) {
 		setXVelocity(0);
 		pos.setX(0);
 	}
-	if (pos.getX() > world_manager.getBoundary().getHorizontal()) {
+	if (pos.getX() > world_manager.getView().getHorizontal()) {
 		setXVelocity(0);
-		pos.setX(world_manager.getBoundary().getHorizontal());
+		pos.setX(world_manager.getView().getHorizontal() - 1);
 	}
 	if (pos.getY() < 0) {
 		setYVelocity(0);
 		pos.setY(0);
 	}
-	if (pos.getY() > world_manager.getBoundary().getVertical()) {
+	if (pos.getY() > world_manager.getView().getVertical()) {
 		setYVelocity(0);
-		pos.setY(world_manager.getBoundary().getVertical());
+		pos.setY(world_manager.getView().getVertical() - 1);
 	}
 
-	setPosition(pos);
+	setPosition(viewToWorld(pos));
 
 }
 
