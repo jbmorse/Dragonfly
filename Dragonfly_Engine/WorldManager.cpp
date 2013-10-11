@@ -75,7 +75,6 @@ ObjectList WorldManager::getAllObjects() {
 void WorldManager::update() {
 
 	LogManager &logmanager = LogManager::getInstance();
-	logmanager.writeLog("WorldManager::Update: Updating\n");
 
 	//Move objects based on velocity
 	ObjectList all_objects = scene_graph.allObjects();
@@ -105,8 +104,6 @@ void WorldManager::update() {
 		scene_graph.setLevel(next_level);
 		next_level = 0;
 	}
-
-	logmanager.writeLog("WorldManager::Update: Done updating\n");
 
 }
 

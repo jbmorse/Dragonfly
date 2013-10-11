@@ -16,6 +16,7 @@
 #include "EvilCharacter.h"
 #include "LevelChange.h"
 #include "EventCapturedLetter.h"
+#include "Character.h"
 
 using namespace std;
 using std::string;
@@ -108,15 +109,20 @@ void BossSkull::moveY(int dy) {
 
 void BossSkull::attack() {
 
-	LogManager &logmanager = LogManager::getInstance();
-	logmanager.writeLog("attacking\n");
 	WorldManager &worldmanager = WorldManager::getInstance();
-	EvilCharacter *attackchar = new EvilCharacter(0, true);
-	attackchar->setXVelocity(-1);
-	int trackingChance = random() % 10;
-	if(trackingChance >= 8) // 20% chance to track
-		attackchar->setTracksPlayer(true);
-	worldmanager.moveObject(attackchar,Position(60,this->getPosition().getY()));
+	if (random()%40 < 2) {
+		Character *goodchar = new Character();
+		goodchar->setXVelocity(-1);
+		worldmanager.moveObject(goodchar,Position(60,this->getPosition().getY()));
+	}
+	else {
+		EvilCharacter *attackchar = new EvilCharacter(0, true);
+		attackchar->setXVelocity(-1);
+		int trackingChance = random() % 10;
+		if(trackingChance >= 8) // 20% chance to track
+			attackchar->setTracksPlayer(true);
+		worldmanager.moveObject(attackchar,Position(60,this->getPosition().getY()));
+	}
 
 }
 
