@@ -57,6 +57,7 @@ GameStart::GameStart() {
 //Handle event; return 0 if ignored, else 1
 int GameStart::eventHandler(Event *p_e) {
 
+	LevelHandler &levelhandler = LevelHandler::getInstance();
 	GameManager &game_manager = GameManager::getInstance();
 	//Keyboard
 	if (p_e->getType() == KEYBOARD_EVENT) {
@@ -67,6 +68,15 @@ int GameStart::eventHandler(Event *p_e) {
 			break;
 		case 'q':	//Quit
 			game_manager.setGameOver();
+			break;
+		case '2':	//Developer options
+			levelhandler.nextLevel(3);
+			break;
+		case '3':	//Developer options
+			levelhandler.nextLevel(4);
+			break;
+		case '4':	//Developer options
+			levelhandler.nextLevel(5);
 			break;
 		default:
 			break;
