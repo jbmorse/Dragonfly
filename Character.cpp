@@ -16,24 +16,36 @@
 
 Character::Character() {
 
-	//Dragonfly managers needed for this method
-	LogManager &log_manager = LogManager::getInstance();
-
 	//Set object type
 	setType("Character");
 
 	setAltitude(1);
-
-	//Set speed in horizontal direction
-	setXVelocity(-0.40);  //1 space every 4 frames
+	setSolidness(SOFT);
 
 	moveToStart();
 
 	//Register for step and refresh
 	registerInterest(REFRESH_EVENT);
 
-	charnum = random() % 26;
-	drawchar = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	int charnum = random() % 26;
+	string drawchar = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	chartype = drawchar[charnum];
+
+}
+
+Character::Character(char newchar) {
+
+	//Set object type
+	setType("Character");
+
+	setAltitude(1);
+
+	moveToStart();
+
+	//Register for step and refresh
+	registerInterest(REFRESH_EVENT);
+
+	chartype = newchar;
 
 }
 
@@ -53,11 +65,6 @@ int Character::eventHandler(Event *p_e) {
 		EventCollision *p_collision_event = static_cast <EventCollision *> (p_e);
 		hit(p_collision_event);
 		return 1;
-	}
-
-	if (p_e->getType() == REFRESH_EVENT) {
-		WorldManager &worldmanager = WorldManager::getInstance();
-		worldmanager.markForDelete(this);
 	}
 
     return 0;
@@ -86,7 +93,7 @@ void Character::moveToStart() {
 	int world_vert = worldmanager.getBoundary().getVertical();
 
 	//x is off the right side of screen
-	new_pos.setX(world_horiz + random()%world_horiz + 3);
+	new_pos.setX(random()%(world_horiz-1) + 1);
 
 	//y is in the vertical range
 	new_pos.setY(random()%(world_vert-4) + 4);
@@ -125,12 +132,18 @@ void Character::hit(EventCollision *p_c) {
 void Character::draw() {
 
 	GraphicsManager &graphicsmanager = GraphicsManager::getInstance();
-	graphicsmanager.drawCh(this->getPosition(), drawchar[charnum], COLOR_WHITE);
+	graphicsmanager.drawCh(this->getPosition(), chartype, COLOR_WHITE);
 
 }
 
 char Character::getChar() {
 
-	return drawchar[charnum];
+	return chartype;
+
+}
+
+void Character::setChar(char newchar) {
+
+	chartype = newchar;
 
 }

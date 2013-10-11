@@ -74,6 +74,9 @@ ObjectList WorldManager::getAllObjects() {
 
 void WorldManager::update() {
 
+	LogManager &logmanager = LogManager::getInstance();
+	logmanager.writeLog("WorldManager::Update: Updating\n");
+
 	//Move objects based on velocity
 	ObjectList all_objects = scene_graph.allObjects();
 	ObjectListIterator v_i = ObjectListIterator(&all_objects);
@@ -90,7 +93,6 @@ void WorldManager::update() {
 
 	ObjectList deletion_copy = deletions;   //Copy list so can delete during iteration.
 	ObjectListIterator deletion_I(&deletion_copy);
-	LogManager &logmanager = LogManager::getInstance();
 	int i = 0;
 	for (deletion_I.first(); !deletion_I.isDone(); deletion_I.next()) {
 		i++;
@@ -103,6 +105,8 @@ void WorldManager::update() {
 		scene_graph.setLevel(next_level);
 		next_level = 0;
 	}
+
+	logmanager.writeLog("WorldManager::Update: Done updating\n");
 
 }
 
@@ -161,7 +165,9 @@ ObjectList WorldManager::isCollision(Object *p_o, Position where) {
 	while (!iterator.isDone()) {
 		Object *p_temp_o = iterator.currentObject();
 		if (p_temp_o != p_o) {
-			if (boxIntersectsBox(getWorldBox(p_temp_o), getWorldBox(p_o)) &&
+			Box new_box = p_o->getBox();
+			new_box.setCorner(where);
+			if (boxIntersectsBox(getWorldBox(p_temp_o), new_box) &&
 					(p_temp_o->isSolid()))
 			{
 				collisions.insert(p_temp_o);

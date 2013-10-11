@@ -93,4 +93,3 @@ void GameStart::draw() {
 	Object::draw();
 
 }
-

@@ -19,15 +19,16 @@ class Character : public Object {
 	void moveToStart();
 	void hit(EventCollision *p_c);
 	int stepcount;
-	string drawchar;
-	int charnum;
+	char chartype;
 
 	public:
 	Character();
+	Character(char newchar);
 	~Character();
 	int eventHandler(Event *p_e);
 	void draw();
 	char getChar();
+	void setChar(char newchar);
 
   };
 

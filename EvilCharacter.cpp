@@ -28,9 +28,6 @@ EvilCharacter::EvilCharacter(int charnumber, bool outDeath) {
 
 	setAltitude(1);
 
-	//Set speed in horizontal direction
-	setXVelocity(-1);
-
 	//Register for step and refresh
 	registerInterest(REFRESH_EVENT);
 	registerInterest(STEP_EVENT);
@@ -40,6 +37,10 @@ EvilCharacter::EvilCharacter(int charnumber, bool outDeath) {
 	drawchar = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 	tracksPlayer = false;
 	trackingTimeout = 0;
+
+	if (charnumber != 0) {
+		moveToStart();
+	}
 
 }
 
@@ -61,7 +62,7 @@ int EvilCharacter::eventHandler(Event *p_e) {
 
 	if (p_e->getType() == COLLISION_EVENT) {
 		LogManager &logmanager = LogManager::getInstance();
-		logmanager.writeLog("Character::eventHandler: received Collision event!\n");
+		logmanager.writeLog("EvilCharacter::eventHandler: received Collision event!\n");
 		EventCollision *p_collision_event = static_cast <EventCollision *> (p_e);
 		hit(p_collision_event);
 		return 1;
@@ -102,7 +103,7 @@ void EvilCharacter::moveToStart() {
 	int world_vert = worldmanager.getBoundary().getVertical();
 
 	//x is off the right side of screen
-	new_pos.setX(world_horiz + random()%world_horiz + 3);
+	new_pos.setX(random()%world_horiz);
 
 	//y is in the vertical range
 	new_pos.setY(random()%(world_vert-4) + 4);
@@ -199,10 +200,6 @@ void EvilCharacter::move() {
 			// Reset timeout
 			trackingTimeout = GameManager::getInstance().getFrameTime() * 1.5;
 		}
-	} else {
-		// Just move to the left
-		setXVelocity(-1);
-		setYVelocity(0);
 	}
 }
 
