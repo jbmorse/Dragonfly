@@ -20,6 +20,7 @@ Character::Character() {
 	setType("Character");
 
 	setAltitude(1);
+	setSolidness(SOFT);
 
 	moveToStart();
 
