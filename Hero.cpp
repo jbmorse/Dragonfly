@@ -95,7 +95,7 @@ void Hero::hit(EventCollision *p_c) {
 	if (p_c -> getObject1() -> getType() == "EvilCharacter") {
 		// If player doesn't have a shield up
 		shieldHitCount--;
-		if(shieldHitCount <= 0) {
+		if(shieldHitCount == 0) {
 			// shield expired
 			// Reset normal sprite
 			Sprite *p_temp_sprite = resourcemanager.getSprite("hashtag");
@@ -117,7 +117,7 @@ void Hero::hit(EventCollision *p_c) {
 	else if (p_c -> getObject2() -> getType() == "EvilCharacter") {
 		// If player doesn't have a shield up
 		shieldHitCount--;
-		if(shieldHitCount <= 0) {
+		if(shieldHitCount == 0) {
 			// shield expired
 			// Reset normal sprite
 			Sprite *p_temp_sprite = resourcemanager.getSprite("hashtag");
