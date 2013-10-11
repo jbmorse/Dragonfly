@@ -121,8 +121,11 @@ void GameManager::run(int fr_time) {
 		EventStep s = EventStep();
 		onEvent(&s);
 		worldmanager.update();
+		logmanager.writeLog("GameManager::run: Done updating, time to draw\n");
 		worldmanager.draw();
+		logmanager.writeLog("GameManager::run: Done drawing, time to swap buffers\n");
 		graphicsmanager.swapBuffers();
+		logmanager.writeLog("GameManager::run: Done swappin, time to clock out\n");
 		loop_time = clock.split();
 		usleep((frame_time-loop_time)*1000);
 	}

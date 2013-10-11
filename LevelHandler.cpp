@@ -66,21 +66,21 @@ void LevelHandler::restartGame() {
 
 	logmanager.writeLog("LevelHandler::restartGame: Restarting Game!\n");
 
-	//Remove all Objects from game (including persistent ones)
-	for (int j = 1; j < 99; j++) {
-
-		logmanager.writeLog("LevelHandler::restartGame: Deleting level %d!\n", j);
-
-		scenegraph.setLevel(j);
-
-		ObjectList object_list = worldmanager.getAllObjects();
-		ObjectListIterator i(&object_list);
-		for (i.first(); !i.isDone(); i.next()) {
-			Object *p_o = i.currentObject();
-			worldmanager.markForDelete(p_o);
-		}
-
-	}
+//	//Remove all Objects from game (including persistent ones)
+//	for (int j = 1; j < 99; j++) {
+//
+//		logmanager.writeLog("LevelHandler::restartGame: Deleting level %d!\n", j);
+//
+//		scenegraph.setLevel(j);
+//
+//		ObjectList object_list = worldmanager.getAllObjects();
+//		ObjectListIterator i(&object_list);
+//		for (i.first(); !i.isDone(); i.next()) {
+//			Object *p_o = i.currentObject();
+//			worldmanager.markForDelete(p_o);
+//		}
+//
+//	}
 
 	//Redisplay the start of game
 	//scenegraph.setLevel(1);
