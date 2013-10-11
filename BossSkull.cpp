@@ -64,10 +64,6 @@ int BossSkull::eventHandler(Event *p_e) {
 	if (p_e->getType() == COLLISION_EVENT) {
 		EventCollision *p_collision_event = static_cast <EventCollision *> (p_e);
 		hit(p_collision_event);
-		health--;
-		if (health <= 0) {
-			new LevelChange(6);
-		}
 		return 1;
 	}
 
@@ -138,6 +134,18 @@ void BossSkull::hit(EventCollision *p_c) {
 			new LevelChange(1);
 		}
 		world_manager.markForDelete(p_c->getObject1());
+	}
+
+	if(p_c->getObject1()->getType() == "PowerupShield" ||
+	   p_c->getObject2()->getType() == "PowerupShield") {
+		// Either way, return, because we don't want it to
+		// affect his health
+		return;
+	}
+
+	health--;
+	if (health <= 0) {
+		new LevelChange(6);
 	}
 
 }
