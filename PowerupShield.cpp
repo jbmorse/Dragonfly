@@ -10,6 +10,7 @@
 // System includes
 #include <stdlib.h>
 // Engine includes
+#include "EventCollision.h"
 #include "EventOut.h"
 #include "LogManager.h"
 #include "ResourceManager.h"
@@ -48,6 +49,8 @@ PowerupShield::PowerupShield() {
 
 int PowerupShield::eventHandler(Event *p_e) {
 	if(p_e->getType() == OUT_EVENT) {
+		WorldManager::getInstance().markForDelete(this);
+	} else if(p_e->getType() == COLLISION_EVENT) {
 		WorldManager::getInstance().markForDelete(this);
 	}
 }

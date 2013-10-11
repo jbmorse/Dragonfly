@@ -25,7 +25,8 @@ GAMEENG= Manager.cpp LogManager.cpp Utility.cpp Clock.cpp GameManager.cpp \
 		EventView.cpp SceneGraph.cpp
 GAMESRC= Character.cpp EventRefresh.cpp Hero.cpp Star.cpp BossSkull.cpp \
          CapturedString.cpp EventCapturedLetter.cpp EvilCharacter.cpp GameStart.cpp \
-         TargetString.cpp LevelHandler.cpp EventLevel.cpp LevelChange.cpp
+         TargetString.cpp LevelHandler.cpp EventLevel.cpp LevelChange.cpp \
+         PowerupHandler.cpp PowerupShield.cpp
 GAME= game.cpp
 EXECUTABLE= game
 OBJECTS= $(addprefix $(ENGPATH)/, $(GAMEENG:.cpp=.o)) $(GAMESRC:.cpp=.o)

@@ -95,10 +95,7 @@ void Hero::hit(EventCollision *p_c) {
 	if (p_c -> getObject1() -> getType() == "EvilCharacter") {
 		// If player doesn't have a shield up
 		shieldHitCount--;
-		if(shieldHitCount < 0) {
-			world_manager.markForDelete(this);
-			new LevelChange(1);
-		} else if(shieldHitCount == 0) {
+		if(shieldHitCount <= 0) {
 			// shield expired
 			// Reset normal sprite
 			Sprite *p_temp_sprite = resourcemanager.getSprite("hashtag");
@@ -106,19 +103,21 @@ void Hero::hit(EventCollision *p_c) {
 					logmanager.writeLog("Hero::Hero(): Warning! Sprite '%s' not found", "hashtag");
 			}
 			else {
+				logmanager.writeLog("Hero::Hit(): Setting sprite back to Hashtag\n");
+				logmanager.writeLog("Hero::Hit(): Shield Count is %d\n", shieldHitCount);
 				setSprite(p_temp_sprite);
 				setSpriteSlowdown(0);
 			}
-
 		}
+		if(shieldHitCount < 0) {
+			world_manager.markForDelete(this);
+			new LevelChange(1);
+		} 		
 	}
 	else if (p_c -> getObject2() -> getType() == "EvilCharacter") {
 		// If player doesn't have a shield up
 		shieldHitCount--;
-		if(shieldHitCount < 0) {
-			world_manager.markForDelete(this);
-			new LevelChange(1);
-		} else if(shieldHitCount == 0) {
+		if(shieldHitCount <= 0) {
 			// shield expired
 			// Reset normal sprite
 			Sprite *p_temp_sprite = resourcemanager.getSprite("hashtag");
@@ -126,11 +125,16 @@ void Hero::hit(EventCollision *p_c) {
 					logmanager.writeLog("Hero::Hero(): Warning! Sprite '%s' not found", "hashtag");
 			}
 			else {
+				logmanager.writeLog("Hero::Hit(): Setting sprite back to Hashtag\n");
+				logmanager.writeLog("Hero::Hit(): Shield Count is %d\n", shieldHitCount);
 				setSprite(p_temp_sprite);
 				setSpriteSlowdown(0);
 			}
-
 		}
+		if(shieldHitCount < 0) {
+			world_manager.markForDelete(this);
+			new LevelChange(1);
+		} 		
 	} else if(p_c->getObject1()->getType() == "PowerupShield") {
 		// Set hit count and change sprite
 		shieldHitCount = 2;
