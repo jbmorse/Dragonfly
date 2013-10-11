@@ -15,6 +15,7 @@
 #include "WorldManager.h"
 #include "EvilCharacter.h"
 #include "LevelChange.h"
+#include "EventCapturedLetter.h"
 
 using namespace std;
 using std::string;
@@ -38,6 +39,7 @@ BossSkull::BossSkull() {
 
 	//Step to disappear
 	registerInterest(STEP_EVENT);
+	registerInterest(CAPTURED_LETTER_EVENT);
 
 	WorldManager &world_manager = WorldManager::getInstance();
 	Position pos(((world_manager.getBoundary().getHorizontal()*5)/6), world_manager.getBoundary().getVertical()/2);
@@ -63,6 +65,9 @@ int BossSkull::eventHandler(Event *p_e) {
 		EventCollision *p_collision_event = static_cast <EventCollision *> (p_e);
 		hit(p_collision_event);
 		health--;
+		if (health <= 0) {
+			new LevelChange(6);
+		}
 		return 1;
 	}
 
@@ -77,6 +82,13 @@ int BossSkull::eventHandler(Event *p_e) {
 		else if ((random() % 200 + attack_countup) > 200) {
 			attack();
 			attack_countup = 0;
+		}
+		return 1;
+	}
+	if (p_e->getType() == CAPTURED_LETTER_EVENT) {
+		health--;
+		if (health <= 0) {
+			new LevelChange(6);
 		}
 		return 1;
 	}
