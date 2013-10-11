@@ -101,9 +101,15 @@ void Hero::hit(EventCollision *p_c) {
 		} else if(shieldHitCount == 0) {
 			// shield expired
 			// Reset normal sprite
-			// It worked before, I'm assuming it still will
-			setSprite(resourcemanager.getSprite("hashtag"));
-			setSpriteSlowdown(0);
+			Sprite *p_temp_sprite = resourcemanager.getSprite("hashtag");
+			if (!p_temp_sprite) {
+					logmanager.writeLog("Hero::Hero(): Warning! Sprite '%s' not found", "hashtag");
+			}
+			else {
+				setSprite(p_temp_sprite);
+				setSpriteSlowdown(0);
+			}
+
 		}
 	}
 	else if (p_c -> getObject2() -> getType() == "EvilCharacter") {
@@ -115,9 +121,15 @@ void Hero::hit(EventCollision *p_c) {
 		} else if(shieldHitCount == 0) {
 			// shield expired
 			// Reset normal sprite
-			// It worked before, I'm assuming it still will
-			setSprite(resourcemanager.getSprite("hashtag"));
-			setSpriteSlowdown(0);
+			Sprite *p_temp_sprite = resourcemanager.getSprite("hashtag");
+			if (!p_temp_sprite) {
+					logmanager.writeLog("Hero::Hero(): Warning! Sprite '%s' not found", "hashtag");
+			}
+			else {
+				setSprite(p_temp_sprite);
+				setSpriteSlowdown(0);
+			}
+
 		}
 	} else if(p_c->getObject1()->getType() == "PowerupShield") {
 		// Set hit count and change sprite
