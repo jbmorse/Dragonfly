@@ -92,7 +92,7 @@ void Character::moveToStart() {
 	int world_vert = worldmanager.getBoundary().getVertical();
 
 	//x is off the right side of screen
-	new_pos.setX(random()%world_horiz);
+	new_pos.setX(random()%(world_horiz-1) + 1);
 
 	//y is in the vertical range
 	new_pos.setY(random()%(world_vert-4) + 4);
