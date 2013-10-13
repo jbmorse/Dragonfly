@@ -161,8 +161,7 @@ ObjectList WorldManager::isCollision(Object *p_o, Position where) {
 	while (!iterator.isDone()) {
 		Object *p_temp_o = iterator.currentObject();
 		if (p_temp_o != p_o) {
-			if (boxIntersectsBox(getWorldBox(p_temp_o), getWorldBox(p_o)) &&
-					(p_temp_o->isSolid()))
+			if (boxIntersectsBox(getWorldBox(p_temp_o), getWorldBox(p_o)))
 			{
 				collisions.insert(p_temp_o);
 			}
