@@ -24,6 +24,7 @@
 #include "EventCapturedLetter.h"
 #include "EventOut.h"
 #include "Utility.h"
+#include "LevelChange.h"
 
 using namespace std;
 using std::string;
@@ -54,6 +55,8 @@ Hero::Hero() {
 	setPosition(pos);
 	setAltitude(2);
 
+	shieldHitCount = 0;
+
 }
 
 Hero::~Hero() {
@@ -74,11 +77,87 @@ int Hero::eventHandler(Event *p_e) {
 		LogManager &logmanager = LogManager::getInstance();
 		EventCollision *p_collision_event = static_cast <EventCollision *> (p_e);
 		addLetter(p_collision_event);
+		hit(p_collision_event);
 		return 1;
 	}
 
 	return 0;
 
+}
+
+// Collisions
+void Hero::hit(EventCollision *p_c) {
+	ResourceManager &resourcemanager = ResourceManager::getInstance();
+	WorldManager &world_manager = WorldManager::getInstance();
+	LogManager &logmanager = LogManager::getInstance();
+
+	// Collides with evil characters
+	if (p_c -> getObject1() -> getType() == "EvilCharacter") {
+		// If player doesn't have a shield up
+		shieldHitCount--;
+		if(shieldHitCount == 0) {
+			// shield expired
+			// Reset normal sprite
+			Sprite *p_temp_sprite = resourcemanager.getSprite("hashtag");
+			if (!p_temp_sprite) {
+					logmanager.writeLog("Hero::Hero(): Warning! Sprite '%s' not found", "hashtag");
+			}
+			else {
+				logmanager.writeLog("Hero::Hit(): Setting sprite back to Hashtag\n");
+				logmanager.writeLog("Hero::Hit(): Shield Count is %d\n", shieldHitCount);
+				setSprite(p_temp_sprite);
+				setSpriteSlowdown(0);
+			}
+		}
+		if(shieldHitCount < 0) {
+			world_manager.markForDelete(this);
+			new LevelChange(1);
+		} 		
+	}
+	else if (p_c -> getObject2() -> getType() == "EvilCharacter") {
+		// If player doesn't have a shield up
+		shieldHitCount--;
+		if(shieldHitCount == 0) {
+			// shield expired
+			// Reset normal sprite
+			Sprite *p_temp_sprite = resourcemanager.getSprite("hashtag");
+			if (!p_temp_sprite) {
+					logmanager.writeLog("Hero::Hero(): Warning! Sprite '%s' not found", "hashtag");
+			}
+			else {
+				logmanager.writeLog("Hero::Hit(): Setting sprite back to Hashtag\n");
+				logmanager.writeLog("Hero::Hit(): Shield Count is %d\n", shieldHitCount);
+				setSprite(p_temp_sprite);
+				setSpriteSlowdown(0);
+			}
+		}
+		if(shieldHitCount < 0) {
+			world_manager.markForDelete(this);
+			new LevelChange(1);
+		} 		
+	} else if(p_c->getObject1()->getType() == "PowerupShield") {
+		// Set hit count and change sprite
+		shieldHitCount = 2;
+		Sprite *p_temp_sprite = resourcemanager.getSprite("hashtag-shield");
+		if (!p_temp_sprite) {
+				logmanager.writeLog("Hero::Hero(): Warning! Sprite '%s' not found", "hashtag-shield");
+		}
+		else {
+			setSprite(p_temp_sprite);
+			setSpriteSlowdown(4);
+		}
+	} else if(p_c->getObject2()->getType() == "PowerupShield") {
+		// Set hit count and change sprite
+		shieldHitCount = 2;
+		Sprite *p_temp_sprite = resourcemanager.getSprite("hashtag-shield");
+		if (!p_temp_sprite) {
+				logmanager.writeLog("Hero::Hero(): Warning! Sprite '%s' not found", "hashtag-shield");
+		}
+		else {
+			setSprite(p_temp_sprite);
+			setSpriteSlowdown(4);
+		}
+	}
 }
 
 //Call move (or do nothing) according to key pressed

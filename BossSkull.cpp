@@ -15,6 +15,8 @@
 #include "WorldManager.h"
 #include "EvilCharacter.h"
 #include "LevelChange.h"
+#include "EventCapturedLetter.h"
+#include "Character.h"
 
 using namespace std;
 using std::string;
@@ -38,6 +40,7 @@ BossSkull::BossSkull() {
 
 	//Step to disappear
 	registerInterest(STEP_EVENT);
+	registerInterest(CAPTURED_LETTER_EVENT);
 
 	WorldManager &world_manager = WorldManager::getInstance();
 	Position pos(((world_manager.getBoundary().getHorizontal()*5)/6), world_manager.getBoundary().getVertical()/2);
@@ -62,7 +65,6 @@ int BossSkull::eventHandler(Event *p_e) {
 	if (p_e->getType() == COLLISION_EVENT) {
 		EventCollision *p_collision_event = static_cast <EventCollision *> (p_e);
 		hit(p_collision_event);
-		health--;
 		return 1;
 	}
 
@@ -77,6 +79,13 @@ int BossSkull::eventHandler(Event *p_e) {
 		else if ((random() % 200 + attack_countup) > 200) {
 			attack();
 			attack_countup = 0;
+		}
+		return 1;
+	}
+	if (p_e->getType() == CAPTURED_LETTER_EVENT) {
+		health--;
+		if (health <= 0) {
+			new LevelChange(6);
 		}
 		return 1;
 	}
@@ -100,15 +109,20 @@ void BossSkull::moveY(int dy) {
 
 void BossSkull::attack() {
 
-	LogManager &logmanager = LogManager::getInstance();
-	logmanager.writeLog("attacking\n");
 	WorldManager &worldmanager = WorldManager::getInstance();
-	EvilCharacter *attackchar = new EvilCharacter(0, true);
-	attackchar->setXVelocity(-1);
-	int trackingChance = random() % 10;
-	if(trackingChance >= 8) // 20% chance to track
-		attackchar->setTracksPlayer(true);
-	worldmanager.moveObject(attackchar,Position(60,this->getPosition().getY()));
+	if (random()%40 < 2) {
+		Character *goodchar = new Character();
+		goodchar->setXVelocity(-1);
+		worldmanager.moveObject(goodchar,Position(60,this->getPosition().getY()));
+	}
+	else {
+		EvilCharacter *attackchar = new EvilCharacter(0, true);
+		attackchar->setXVelocity(-1);
+		int trackingChance = random() % 10;
+		if(trackingChance >= 8) // 20% chance to track
+			attackchar->setTracksPlayer(true);
+		worldmanager.moveObject(attackchar,Position(60,this->getPosition().getY()));
+	}
 
 }
 
@@ -126,6 +140,18 @@ void BossSkull::hit(EventCollision *p_c) {
 			new LevelChange(1);
 		}
 		world_manager.markForDelete(p_c->getObject1());
+	}
+
+	if(p_c->getObject1()->getType() == "PowerupShield" ||
+	   p_c->getObject2()->getType() == "PowerupShield") {
+		// Either way, return, because we don't want it to
+		// affect his health
+		return;
+	}
+
+	health--;
+	if (health <= 0) {
+		new LevelChange(6);
 	}
 
 }

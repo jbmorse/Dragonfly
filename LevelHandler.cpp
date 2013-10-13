@@ -21,6 +21,7 @@
 #include "BossSkull.h"
 #include "LogManager.h"
 #include "GameStart.h"
+#include "PowerupHandler.h"
 #include "TargetString.h"
 #include "EvilCharacter.h"
 #include "stdlib.h"
@@ -61,33 +62,7 @@ int LevelHandler::eventHandler(Event *p_e) {
 void LevelHandler::restartGame() {
 
 	LogManager &logmanager = LogManager::getInstance();
-	WorldManager &worldmanager = WorldManager::getInstance();
-	SceneGraph &scenegraph = worldmanager.getSceneGraph();
-
 	logmanager.writeLog("LevelHandler::restartGame: Restarting Game!\n");
-
-	//Remove all Objects from game (including persistent ones)
-	for (int j = 1; j < 99; j++) {
-
-		logmanager.writeLog("LevelHandler::restartGame: Deleting level %d!\n", j);
-
-		scenegraph.setLevel(j);
-
-		ObjectList object_list = worldmanager.getAllObjects();
-		ObjectListIterator i(&object_list);
-		for (i.first(); !i.isDone(); i.next()) {
-			Object *p_o = i.currentObject();
-			worldmanager.markForDelete(p_o);
-		}
-
-	}
-
-	//Redisplay the start of game
-	//scenegraph.setLevel(1);
-
-	//new GameStart();
-
-	//scenegraph.setLevel(level);
 
 	nextLevel(1);
 
@@ -179,6 +154,9 @@ void startLevel_4(int prevLevel) {
 		new Character();
 	}
 
+	// Powerups
+	new PowerupHandler();
+
 	//Goal for collection
 	new CapturedString("HI");
 	new TargetString("HI");
@@ -196,6 +174,9 @@ void startLevel_5(int prevLevel) {
 
 	//Hashtag Hero
 	new Hero();
+
+	// Powerups
+	new PowerupHandler();
 
 	//BOSS FIGHT
 	new BossSkull();
@@ -237,10 +218,8 @@ void LevelHandler::nextLevel(int nextlevel) {
 		startLevel_5(prevLevel);
 		break;
 	case 6 :
-		for (int i = 0; i < 1000; i++) {
-			logmanager.writeLog("I GOT HERE AND THERE IS A PROBLEM %d\n", level);
-		}
-		restartGame();
+		setValue(0);
+		level = 1;
 		break;
 	}
 

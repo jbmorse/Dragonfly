@@ -129,15 +129,19 @@ void EvilCharacter::hit(EventCollision *p_c) {
 	}
 
 	WorldManager &world_manager = WorldManager::getInstance();
+	world_manager.markForDelete(this);
 	//If hero, mark for destruction
-	if (p_c -> getObject1() -> getType() == "Hero") {
-		world_manager.markForDelete(p_c -> getObject1());
-		new LevelChange(1);
-	}
-	else if (p_c -> getObject2() -> getType() == "Hero") {
-		world_manager.markForDelete(p_c -> getObject2());
-		new LevelChange(1);
-	}
+	// ***********************
+	// ** In Hero class now **
+	// ***********************
+	// if (p_c -> getObject1() -> getType() == "Hero") {
+	// 	world_manager.markForDelete(p_c -> getObject1());
+	// 	new LevelChange(1);
+	// }
+	// else if (p_c -> getObject2() -> getType() == "Hero") {
+	// 	world_manager.markForDelete(p_c -> getObject2());
+	// 	new LevelChange(1);
+	// }
 
 }
 

@@ -20,12 +20,14 @@ class Hero : public Object {
 
 	protected:
 	void kbd(EventKeyboard *p_keyboard_event);
+	void hit(EventCollision *p_c);
 	void out();
 	void moveY(int dy);
 	void moveX(int dx);
 	void moveXY(EventMouse *me);
 	void addLetter(EventCollision *p_e);
 	int round;
+	int shieldHitCount;
 
 	public:
 	Hero();

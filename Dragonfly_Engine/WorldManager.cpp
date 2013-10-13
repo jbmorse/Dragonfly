@@ -74,6 +74,8 @@ ObjectList WorldManager::getAllObjects() {
 
 void WorldManager::update() {
 
+	LogManager &logmanager = LogManager::getInstance();
+
 	//Move objects based on velocity
 	ObjectList all_objects = scene_graph.allObjects();
 	ObjectListIterator v_i = ObjectListIterator(&all_objects);
@@ -90,7 +92,6 @@ void WorldManager::update() {
 
 	ObjectList deletion_copy = deletions;   //Copy list so can delete during iteration.
 	ObjectListIterator deletion_I(&deletion_copy);
-	LogManager &logmanager = LogManager::getInstance();
 	int i = 0;
 	for (deletion_I.first(); !deletion_I.isDone(); deletion_I.next()) {
 		i++;
@@ -161,12 +162,13 @@ ObjectList WorldManager::isCollision(Object *p_o, Position where) {
 	while (!iterator.isDone()) {
 		Object *p_temp_o = iterator.currentObject();
 		if (p_temp_o != p_o) {
-			if (boxIntersectsBox(getWorldBox(p_temp_o), getWorldBox(p_o)))
-			{
+			Box new_box = p_o->getBox();
+			new_box.setCorner(where);
+			if (boxIntersectsBox(getWorldBox(p_temp_o), new_box)) {
 				collisions.insert(p_temp_o);
 			}
+			iterator.next();
 		}
-		iterator.next();
 	}
 
 	return collisions;
