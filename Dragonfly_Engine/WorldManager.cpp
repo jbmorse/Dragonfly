@@ -130,22 +130,20 @@ bool WorldManager::isValid(string event_type) {
 
 void WorldManager::draw() {
 
-	for (int alt = 0; alt <= MAX_ALTITUDE; alt++) {
+	for (int alt = MAX_ALTITUDE; alt >= 0; alt--) {
 		ObjectList alt_objs = scene_graph.visibleObjects(alt);
 		ObjectListIterator iterator = ObjectListIterator(&alt_objs);
 
 		while (!iterator.isDone()) {
 			Object *p_temp_o = iterator.currentObject();
-			if (p_temp_o->getAltitude() == alt) {
 
-				//Convert to world coordinates
-				Box temp_box = getWorldBox(p_temp_o);
+			//Convert to world coordinates
+			Box temp_box = getWorldBox(p_temp_o);
 
-				//Only draw if Object would be visible on screen
-				if (boxIntersectsBox(temp_box, view) ||
+			//Only draw if Object would be visible on screen
+			if (boxIntersectsBox(temp_box, view) ||
 					dynamic_cast <ViewObject *> (p_temp_o)) {
-					p_temp_o->draw();
-				}
+				p_temp_o->draw();
 			}
 			iterator.next();
 		}
@@ -167,8 +165,8 @@ ObjectList WorldManager::isCollision(Object *p_o, Position where) {
 			if (boxIntersectsBox(getWorldBox(p_temp_o), new_box)) {
 				collisions.insert(p_temp_o);
 			}
-			iterator.next();
 		}
+		iterator.next();
 	}
 
 	return collisions;

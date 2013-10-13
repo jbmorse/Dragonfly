@@ -17,6 +17,7 @@
 #include "LevelChange.h"
 #include "EventCapturedLetter.h"
 #include "Character.h"
+#include "BossExplosion.h"
 
 using namespace std;
 using std::string;
@@ -29,9 +30,9 @@ BossSkull::BossSkull() {
 	ResourceManager &resourcemanager = ResourceManager::getInstance();
 	setType("BossSkull");
 
-	Sprite *p_temp_sprite = resourcemanager.getSprite("skull");
+	Sprite *p_temp_sprite = resourcemanager.getSprite("skull1");
 	if (!p_temp_sprite) {
-			logmanager.writeLog("BossSkull::BossSkull(): Warning! Sprite '%s' not found", "skull");
+			logmanager.writeLog("BossSkull::BossSkull(): Warning! Sprite '%s' not found", "skull1");
 	}
 	else {
 		setSprite(p_temp_sprite);
@@ -62,6 +63,10 @@ BossSkull::~BossSkull() {
 
 int BossSkull::eventHandler(Event *p_e) {
 
+	WorldManager &worldmanager = WorldManager::getInstance();
+	LogManager &logmanager = LogManager::getInstance();
+	ResourceManager &resourcemanager = ResourceManager::getInstance();
+
 	if (p_e->getType() == COLLISION_EVENT) {
 		EventCollision *p_collision_event = static_cast <EventCollision *> (p_e);
 		hit(p_collision_event);
@@ -84,8 +89,32 @@ int BossSkull::eventHandler(Event *p_e) {
 	}
 	if (p_e->getType() == CAPTURED_LETTER_EVENT) {
 		health--;
+		//If health 2, set next sprite
+		if (health == 2) {
+			Sprite *p_temp_sprite = resourcemanager.getSprite("skull2");
+			if (!p_temp_sprite) {
+				logmanager.writeLog("BossSkull::BossSkull(): Warning! Sprite '%s' not found", "skull2");
+			}
+			else {
+				setSprite(p_temp_sprite);
+				setSpriteSlowdown(4);
+			}
+		}
+		//If health 1, set to almost dead sprite
+		if (health == 1) {
+			Sprite *p_temp_sprite = resourcemanager.getSprite("skull3");
+			if (!p_temp_sprite) {
+				logmanager.writeLog("BossSkull::BossSkull(): Warning! Sprite '%s' not found", "skull3");
+			}
+			else {
+				setSprite(p_temp_sprite);
+				setSpriteSlowdown(4);
+			}
+		}
+		//If health 0, dead and explode
 		if (health <= 0) {
-			new LevelChange(6);
+			new BossExplosion(this->getPosition());
+			worldmanager.markForDelete(this);
 		}
 		return 1;
 	}
@@ -110,7 +139,7 @@ void BossSkull::moveY(int dy) {
 void BossSkull::attack() {
 
 	WorldManager &worldmanager = WorldManager::getInstance();
-	if (random()%40 < 2) {
+	if (random()%15 < 2) {
 		Character *goodchar = new Character();
 		goodchar->setXVelocity(-1);
 		worldmanager.moveObject(goodchar,Position(60,this->getPosition().getY()));
@@ -140,18 +169,6 @@ void BossSkull::hit(EventCollision *p_c) {
 			new LevelChange(1);
 		}
 		world_manager.markForDelete(p_c->getObject1());
-	}
-
-	if(p_c->getObject1()->getType() == "PowerupShield" ||
-	   p_c->getObject2()->getType() == "PowerupShield") {
-		// Either way, return, because we don't want it to
-		// affect his health
-		return;
-	}
-
-	health--;
-	if (health <= 0) {
-		new LevelChange(6);
 	}
 
 }

@@ -19,6 +19,7 @@ class Star : public Object {
 
 	public:
 	Star();
+	Star(Position position);
 	void draw(void);
 	int eventHandler(Event *p_e);
 

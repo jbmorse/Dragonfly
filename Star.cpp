@@ -16,11 +16,30 @@ Star::Star() {
 
 	setType("Star");
 	setSolidness(SPECTRAL);
-	setXVelocity(-1.0 / (random()%10 + 1));
+	setXVelocity((random()%2 - 1) * 3/random()%9 - 1);
+	setYVelocity((random()%2 - 1) * 3/random()%9 - 1);
+	if (this->getXVelocity() == 0 && this->getYVelocity() == 0) {
+		setXVelocity(5);
+	}
 	setAltitude(0);  //Make them in the background
 	WorldManager &worldmanager = WorldManager::getInstance();
 	Position pos(random()%worldmanager.getBoundary().getHorizontal(), random()%worldmanager.getBoundary().getVertical());
 	setPosition(pos);
+
+}
+
+Star::Star(Position position) {
+
+	setType("Star");
+	setSolidness(SPECTRAL);
+	setXVelocity(random()%5 - 2);
+	setYVelocity(random()%5 - 2);
+	if (this->getXVelocity() == 0 && this->getYVelocity() == 0) {
+		setXVelocity(5);
+	}
+	setAltitude(0);  //Make them in the background
+	WorldManager &worldmanager = WorldManager::getInstance();
+	setPosition(position);
 
 }
 
@@ -47,9 +66,7 @@ void Star::draw() {
 void Star::out() {
 
 	WorldManager &worldmanager = WorldManager::getInstance();
-	Position pos(worldmanager.getBoundary().getHorizontal() + random()%20, random() % worldmanager.getBoundary().getVertical());
-	setPosition(pos);
-	setXVelocity(-1.0 / (random()%10 + 1));
+	worldmanager.markForDelete(this);
 
  }
 

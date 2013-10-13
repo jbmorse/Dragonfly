@@ -31,7 +31,10 @@ void loadResources() {
 	//Load sprites
 	ResourceManager &resource_manager = ResourceManager::getInstance();
 	resource_manager.loadSprite("sprites/hashtag-spr.txt", "hashtag");
-	resource_manager.loadSprite("sprites/boss1-spr.txt", "skull");
+	resource_manager.loadSprite("sprites/explosion-spr.txt", "explosion");
+	resource_manager.loadSprite("sprites/skull1-spr.txt", "skull1");
+	resource_manager.loadSprite("sprites/skull2-spr.txt", "skull2");
+	resource_manager.loadSprite("sprites/skull3-spr.txt", "skull3");
 	resource_manager.loadSprite("sprites/gameover-spr.txt", "gameover");
 	resource_manager.loadSprite("sprites/gamestart-spr.txt", "gamestart");
 	resource_manager.loadSprite("sprites/goodjob-spr.txt", "goodjob");

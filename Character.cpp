@@ -49,6 +49,30 @@ Character::Character(char newchar) {
 
 }
 
+Character::Character(bool spectral) {
+
+	//Set object type
+	setType("Character");
+
+	setAltitude(1);
+	if (spectral) {
+		setSolidness(SPECTRAL);
+	}
+	else {
+		setSolidness(SOFT);
+	}
+
+	moveToStart();
+
+	//Register for step and refresh
+	registerInterest(REFRESH_EVENT);
+
+	int charnum = random() % 26;
+	string drawchar = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	chartype = drawchar[charnum];
+
+}
+
 Character::~Character() {
 
 }
@@ -77,10 +101,12 @@ void Character::out() {
 		return;
 	}
 
+	WorldManager &worldmanager = WorldManager::getInstance();
+	worldmanager.markForDelete(this);
 	//setXVelocity(getXVelocity() * -1);
 	//setYVelocity(getYVelocity() * -1);
 
-	moveToStart();
+//	moveToStart();
 
 }
 
@@ -93,15 +119,15 @@ void Character::moveToStart() {
 	int world_vert = worldmanager.getBoundary().getVertical();
 
 	//x is off the right side of screen
-	new_pos.setX(random()%(world_horiz-1) + 1);
+	new_pos.setX(random()%(world_horiz-4) + 2);
 
 	//y is in the vertical range
-	new_pos.setY(random()%(world_vert-4) + 4);
+	new_pos.setY(random()%(world_vert-6) + 5);
 
 	//If collision, move right slightly until empty space
 	ObjectList collision_list = worldmanager.isCollision(this, new_pos);
 	while (!collision_list.isEmpty()) {
-		new_pos.setX(new_pos.getX()+1);
+		new_pos.setX(random()%(world_horiz-4) + 2);
 		collision_list = worldmanager.isCollision(this, new_pos);
 	}
 

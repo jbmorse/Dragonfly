@@ -24,6 +24,7 @@ class Character : public Object {
 	public:
 	Character();
 	Character(char newchar);
+	Character(bool spectral);
 	~Character();
 	int eventHandler(Event *p_e);
 	void draw();

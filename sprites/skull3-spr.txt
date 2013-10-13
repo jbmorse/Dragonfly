@@ -1,0 +1,65 @@
+frames 10
+width 6
+height 5
+color green
+ _- _ 
+D. - }
+0 0( |
+G /L 
+[BF]  
+end
+ _ __ 
+{-L- }
+0 0 <5
+R/ m N
+J#HNKU
+end
+ _B__ 
+{-JD }
+0U0MF|
+ HNNH 
+[##]K 
+end
+ _JVD 
+{Z M J
+0 H  |
+ /$$$ 
+[#VG J
+end
+ /\/_ 
+{- d }
+0 0  |
+ /    
+ Q#]  
+end
+ ____ 
+{- - }
+ X X |
+  /   
+ [##] 
+end
+ ____ 
+{_ _ }
+ 0 0 |
+ >/<  
+ [##] 
+end
+ ____ 
+{ - -}
+  0 0 
+   /  
+ [##] 
+end
+ ____ 
+{   -}
+   X X
+    / 
+ [##] 
+end
+ ____ 
+{    }
+      
+      
+ [VV] 
+end
+eof
