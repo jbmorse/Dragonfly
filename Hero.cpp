@@ -107,6 +107,7 @@ void Hero::hit(EventCollision *p_c) {
 				logmanager.writeLog("Hero::Hit(): Setting sprite back to Hashtag\n");
 				logmanager.writeLog("Hero::Hit(): Shield Count is %d\n", shieldHitCount);
 				setSprite(p_temp_sprite);
+				logmanager.writeLog("Hero::Hit(): Sprite is %s\n", getSprite()->getLabel().c_str());
 				setSpriteSlowdown(0);
 			}
 		}
@@ -132,6 +133,7 @@ void Hero::hit(EventCollision *p_c) {
 				logmanager.writeLog("Hero::Hit(): Setting sprite back to Hashtag\n");
 				logmanager.writeLog("Hero::Hit(): Shield Count is %d\n", shieldHitCount);
 				setSprite(p_temp_sprite);
+				logmanager.writeLog("Hero::Hit(): Sprite is %s\n", getSprite()->getLabel().c_str());
 				setSpriteSlowdown(0);
 			}
 		}

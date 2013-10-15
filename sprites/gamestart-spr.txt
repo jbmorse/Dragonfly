@@ -1,6 +1,6 @@
 frames 2
 width 72
-height 9
+height 12
 color default
     __  _____   _____ __  ___________   ______   __  ____________  ____ 
    / / / /   | / ___// / / /_  __/   | / ____/  / / / / ____/ __ \/ __ \
@@ -9,8 +9,11 @@ color default
 /_/ /_/_/  |_/____/_/ /_/ /_/ /_/  |_\____/  /_/ /_/_____/_/ |_|\____/  
                                                                         
                           Controls: Arrows move                         
+                    Collect letters to complete words                   
                                                                         
                      Press 'p' to play, 'q' to quit                     
+                                                                        
+                  Written by Josh Morse and Tim Calvert                 
 end
     __  _____   _____ __  ___________   ______   __  ____________  ____ 
    / / / /   | / ___// / / /_  __/   | / ____/  / / / / ____/ __ \/ __ \
@@ -19,7 +22,10 @@ end
 /_/ /_/_/  |_/____/_/ /_/ /_/ /_/  |_\____/  /_/ /_/_____/_/ |_|\____/  
                                                                         
                           Controls: Arrows move                         
+                    Collect letters to complete words                   
                                                                         
                                                                         
+                                                                        
+                  Written by Josh Morse and Tim Calvert                 
 end
 eof
