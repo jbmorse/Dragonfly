@@ -178,7 +178,9 @@ void Hero::kbd(EventKeyboard *p_keyboard_event) {
 		moveX(+1);
 		break;
 	case 'q':
-		world_manager.markForDelete(this);
+		if (getSolidness() != SPECTRAL) {
+			world_manager.markForDelete(this);
+		}
 		break;
 	}
 

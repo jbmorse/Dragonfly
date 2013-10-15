@@ -115,6 +115,16 @@ int BossSkull::eventHandler(Event *p_e) {
 		if (health <= 0) {
 			new BossExplosion(this->getPosition());
 			worldmanager.markForDelete(this);
+
+			//Level over, make hero spectral
+			ObjectList objects_copy = worldmanager.getAllObjects();
+			ObjectListIterator i(&objects_copy);
+			for (i.first(); !i.isDone(); i.next()) {
+				if (i.currentObject()->getType().compare("Hero") == 0) {
+					i.currentObject()->setSolidness(SPECTRAL);
+				}
+			}
+
 		}
 		return 1;
 	}

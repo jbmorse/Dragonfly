@@ -106,6 +106,16 @@ void CapturedString::addLetter(char letter) {
 		LogManager &logmanager = LogManager::getInstance();
 		logmanager.writeLog("Completed string!\n");
 
+		//Level over, make hero spectral
+		WorldManager &worldmanager = WorldManager::getInstance();
+		ObjectList objects_copy = worldmanager.getAllObjects();
+		ObjectListIterator i(&objects_copy);
+		for (i.first(); !i.isDone(); i.next()) {
+			if (i.currentObject()->getType().compare("Hero") == 0) {
+				i.currentObject()->setSolidness(SPECTRAL);
+			}
+		}
+
 		LevelHandler &levelhandler = LevelHandler::getInstance();
 		new LevelChange(levelhandler.getLevel() + 1);
 
