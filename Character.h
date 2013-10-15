@@ -11,6 +11,12 @@
 #include "EventCollision.h"
 #include "Object.h"
 
+/*
+ * Characters are what the hero collects. They have their own character value.
+ * Collecting the correct characters will add them to CapturedString.
+ * Collecting the wrong characters will do nothing, they will simply be deleted.
+ * Sometimes characters are used to do damage to boss characters.
+ */
 class Character : public Object {
 
 	protected:

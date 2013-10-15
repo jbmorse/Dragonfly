@@ -13,6 +13,10 @@
 
 #define CAPTURED_LETTER_EVENT "_capturedletter_"
 
+/*
+ * Event created whenever the hero collects a character.
+ * This is used by Bosses and CapturedString.
+ */
 class EventCapturedLetter : public Event {
 
 private:

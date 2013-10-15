@@ -12,7 +12,6 @@
 #include "LogManager.h"
 #include "WorldManager.h"
 #include "EventCollision.h"
-#include "EventRefresh.h"
 #include "Character.h"
 #include "EventMouse.h"
 #include <string>

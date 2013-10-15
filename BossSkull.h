@@ -13,6 +13,13 @@
 #include "EventCollision.h"
 #include "EventMouse.h"
 
+/*
+ * BossSkull is the boss for level 5. He will fire evilcharacters at the player.
+ * His movement pattern is moving up and down randomly.
+ * Occasionally he will fire good characters that can be picked up that deals damage.
+ * After 3 good characters are picked up, the BossSkull will die, creating BossExplosion.
+ * His sprite will change upon each damage he takes.
+ */
 class BossSkull : public Object {
 
 	protected:

@@ -1,11 +1,11 @@
 /*
- * BossSkull.cpp
+ * BossFinal.cpp
  *
- *  Created on: Oct 8, 2013
+ *  Created on: Oct 14, 2013
  *      Author: Josh
  */
 
-#include "BossSkull.h"
+#include "BossFinal.h"
 #include "EventStep.h"
 #include "Stdlib.h"
 #include "EventCollision.h"
@@ -22,17 +22,17 @@
 using namespace std;
 using std::string;
 
-BossSkull::BossSkull() {
+BossFinal::BossFinal() {
 
 	LogManager &logmanager = LogManager::getInstance();
-	logmanager.writeLog("BossSkull::BossSkull: Made the Boss!\n");
+	logmanager.writeLog("BossFinal::BossFinal: Made the Boss!\n");
 
 	ResourceManager &resourcemanager = ResourceManager::getInstance();
-	setType("BossSkull");
+	setType("BossFinal");
 
-	Sprite *p_temp_sprite = resourcemanager.getSprite("skull1");
+	Sprite *p_temp_sprite = resourcemanager.getSprite("finalboss1");
 	if (!p_temp_sprite) {
-			logmanager.writeLog("BossSkull::BossSkull(): Warning! Sprite '%s' not found", "skull1");
+			logmanager.writeLog("BossFinal::BossFinal(): Warning! Sprite '%s' not found", "finalboss1");
 	}
 	else {
 		setSprite(p_temp_sprite);
@@ -44,21 +44,20 @@ BossSkull::BossSkull() {
 	registerInterest(CAPTURED_LETTER_EVENT);
 
 	WorldManager &world_manager = WorldManager::getInstance();
-	Position pos(((world_manager.getBoundary().getHorizontal()*5)/6), world_manager.getBoundary().getVertical()/2);
+	Position pos(((world_manager.getBoundary().getHorizontal()*5)/6), world_manager.getBoundary().getVertical()/2 + 2);
 	setPosition(pos);
 	setAltitude(2);
 
 	health = 3;
 	attack_countup = 0;
-	move_countdown = 4;
 
 }
 
-BossSkull::~BossSkull() {
+BossFinal::~BossFinal() {
 
 }
 
-int BossSkull::eventHandler(Event *p_e) {
+int BossFinal::eventHandler(Event *p_e) {
 
 	WorldManager &worldmanager = WorldManager::getInstance();
 	LogManager &logmanager = LogManager::getInstance();
@@ -72,13 +71,7 @@ int BossSkull::eventHandler(Event *p_e) {
 
 	if (p_e->getType() == STEP_EVENT) {
 		attack_countup++;
-		move_countdown--;
-		if (move_countdown <= 0) {
-			move_countdown = 4;
-			int move = random() % 3 - 1;
-			moveY(move);
-		}
-		else if ((random() % 200 + attack_countup) > 200) {
+		if ((random() % 200 + attack_countup) > 200) {
 			attack();
 			attack_countup = 0;
 		}
@@ -88,9 +81,9 @@ int BossSkull::eventHandler(Event *p_e) {
 		health--;
 		//If health 2, set next sprite
 		if (health == 2) {
-			Sprite *p_temp_sprite = resourcemanager.getSprite("skull2");
+			Sprite *p_temp_sprite = resourcemanager.getSprite("finalboss2");
 			if (!p_temp_sprite) {
-				logmanager.writeLog("BossSkull::BossSkull(): Warning! Sprite '%s' not found", "skull2");
+				logmanager.writeLog("BossSkull::BossSkull(): Warning! Sprite '%s' not found", "finalboss2");
 			}
 			else {
 				setSprite(p_temp_sprite);
@@ -99,9 +92,9 @@ int BossSkull::eventHandler(Event *p_e) {
 		}
 		//If health 1, set to almost dead sprite
 		if (health == 1) {
-			Sprite *p_temp_sprite = resourcemanager.getSprite("skull3");
+			Sprite *p_temp_sprite = resourcemanager.getSprite("finalboss3");
 			if (!p_temp_sprite) {
-				logmanager.writeLog("BossSkull::BossSkull(): Warning! Sprite '%s' not found", "skull3");
+				logmanager.writeLog("BossSkull::BossSkull(): Warning! Sprite '%s' not found", "finalboss3");
 			}
 			else {
 				setSprite(p_temp_sprite);
@@ -130,20 +123,7 @@ int BossSkull::eventHandler(Event *p_e) {
 
 }
 
-//Move up or down
-void BossSkull::moveY(int dy) {
-
-	WorldManager &worldmanager = WorldManager::getInstance();
-	Position new_pos(getPosition().getX(), getPosition().getY() + dy);
-	//If stays on screen, allow move
-	if ((new_pos.getY() > 3) &&
-		(new_pos.getY() < worldmanager.getBoundary().getVertical())) {
-			worldmanager.moveObject(this, new_pos);
-	}
-
-}
-
-void BossSkull::attack() {
+void BossFinal::attack() {
 
 	WorldManager &worldmanager = WorldManager::getInstance();
 	if (random()%15 < 2) {
@@ -162,7 +142,7 @@ void BossSkull::attack() {
 
 }
 
-void BossSkull::hit(EventCollision *p_c) {
+void BossFinal::hit(EventCollision *p_c) {
 
 	WorldManager &world_manager = WorldManager::getInstance();
 	if ((p_c -> getObject1() -> getType()) == "BossSkull") {

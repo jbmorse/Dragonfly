@@ -23,11 +23,11 @@ GAMEENG= Manager.cpp LogManager.cpp Utility.cpp Clock.cpp GameManager.cpp \
 		EventKeyboard.cpp EventMouse.cpp EventCollision.cpp EventOut.cpp \
 		Frame.cpp Sprite.cpp ResourceManager.cpp Box.cpp ViewObject.cpp \
 		EventView.cpp SceneGraph.cpp
-GAMESRC= Character.cpp EventRefresh.cpp Hero.cpp Star.cpp BossSkull.cpp \
+GAMESRC= Character.cpp Hero.cpp Star.cpp BossSkull.cpp \
          CapturedString.cpp EventCapturedLetter.cpp EvilCharacter.cpp GameStart.cpp \
          TargetString.cpp LevelHandler.cpp EventLevel.cpp LevelChange.cpp \
          PowerupHandler.cpp PowerupShield.cpp BossExplosion.cpp SafeBox.cpp \
-         PowerupWildcard.cpp
+         PowerupWildcard.cpp BossFinal.cpp
 GAME= game.cpp
 EXECUTABLE= game
 OBJECTS= $(addprefix $(ENGPATH)/, $(GAMEENG:.cpp=.o)) $(GAMESRC:.cpp=.o)
@@ -49,6 +49,7 @@ depend:
 
 # DO NOT DELETE
 
+BossExplosion.o: BossExplosion.h Star.h LevelChange.h
 BossSkull.o: BossSkull.h /usr/include/Stdlib.h /usr/include/machine/ieeefp.h
 BossSkull.o: /usr/include/_ansi.h /usr/include/newlib.h
 BossSkull.o: /usr/include/sys/config.h /usr/include/sys/features.h
@@ -57,20 +58,46 @@ BossSkull.o: /usr/include/machine/_types.h
 BossSkull.o: /usr/include/machine/_default_types.h /usr/include/sys/lock.h
 BossSkull.o: /usr/include/machine/stdlib.h /usr/include/alloca.h
 BossSkull.o: /usr/include/stdlib.h EvilCharacter.h LevelChange.h
-BossSkull.o: EventCapturedLetter.h Character.h
+BossSkull.o: EventCapturedLetter.h Character.h BossExplosion.h
 CapturedString.o: CapturedString.h LevelHandler.h EventCapturedLetter.h
 CapturedString.o: LevelChange.h
-Character.o: Character.h /usr/include/stdlib.h EventRefresh.h
+Character.o: Character.h /usr/include/stdlib.h
 EventCapturedLetter.o: EventCapturedLetter.h
 EventLevel.o: EventLevel.h
-EventRefresh.o: EventRefresh.h
 EvilCharacter.o: EvilCharacter.h /usr/include/stdlib.h /usr/include/math.h
 EvilCharacter.o: /usr/include/sys/reent.h /usr/include/_ansi.h
 EvilCharacter.o: /usr/include/newlib.h /usr/include/sys/config.h
 EvilCharacter.o: /usr/include/machine/ieeefp.h /usr/include/sys/features.h
 EvilCharacter.o: /usr/include/sys/_types.h /usr/include/machine/_types.h
 EvilCharacter.o: /usr/include/machine/_default_types.h
-EvilCharacter.o: /usr/include/sys/lock.h EventRefresh.h LevelChange.h
+EvilCharacter.o: /usr/include/sys/lock.h LevelChange.h
+GameStart.o: GameStart.h Hero.h CapturedString.h TargetString.h BossSkull.h
+GameStart.o: Character.h Star.h LevelHandler.h
+Hero.o: Hero.h Character.h /usr/include/time.h /usr/include/_ansi.h
+Hero.o: /usr/include/newlib.h /usr/include/sys/config.h
+Hero.o: /usr/include/machine/ieeefp.h /usr/include/sys/features.h
+Hero.o: /usr/include/sys/reent.h /usr/include/sys/_types.h
+Hero.o: /usr/include/machine/_types.h /usr/include/machine/_default_types.h
+Hero.o: /usr/include/sys/lock.h /usr/include/machine/time.h
+Hero.o: /usr/include/sys/types.h /usr/include/machine/types.h
+Hero.o: /usr/include/math.h EventCapturedLetter.h LevelChange.h Star.h
+LevelChange.o: LevelHandler.h LevelChange.h
+LevelHandler.o: LevelHandler.h EventLevel.h Character.h Hero.h
+LevelHandler.o: CapturedString.h BossSkull.h GameStart.h PowerupHandler.h
+LevelHandler.o: TargetString.h EvilCharacter.h /usr/include/stdlib.h
+LevelHandler.o: SafeBox.h Star.h
+PowerupHandler.o: PowerupHandler.h /usr/include/stdlib.h PowerupShield.h
+PowerupHandler.o: PowerupWildcard.h
+PowerupShield.o: PowerupShield.h /usr/include/stdlib.h
+PowerupWildcard.o: PowerupWildcard.h /usr/include/stdlib.h
+SafeBox.o: SafeBox.h Star.h LevelChange.h
+Star.o: Star.h /usr/include/Stdlib.h /usr/include/machine/ieeefp.h
+Star.o: /usr/include/_ansi.h /usr/include/newlib.h /usr/include/sys/config.h
+Star.o: /usr/include/sys/features.h /usr/include/sys/reent.h
+Star.o: /usr/include/sys/_types.h /usr/include/machine/_types.h
+Star.o: /usr/include/machine/_default_types.h /usr/include/sys/lock.h
+Star.o: /usr/include/machine/stdlib.h /usr/include/alloca.h
+TargetString.o: TargetString.h
 game.o: Hero.h Character.h Star.h BossSkull.h CapturedString.h GameStart.h
 game.o: /usr/include/stdio.h /usr/include/_ansi.h /usr/include/newlib.h
 game.o: /usr/include/sys/config.h /usr/include/machine/ieeefp.h
@@ -81,29 +108,6 @@ game.o: /usr/include/sys/types.h /usr/include/machine/types.h
 game.o: /usr/include/sys/stdio.h /usr/include/sys/cdefs.h
 game.o: /usr/include/stdint.h /usr/include/bits/wordsize.h
 game.o: /usr/include/unistd.h /usr/include/sys/unistd.h
-GameStart.o: GameStart.h Hero.h CapturedString.h TargetString.h BossSkull.h
-GameStart.o: Character.h Star.h LevelHandler.h
-Hero.o: Hero.h EventRefresh.h Character.h /usr/include/time.h
-Hero.o: /usr/include/_ansi.h /usr/include/newlib.h /usr/include/sys/config.h
-Hero.o: /usr/include/machine/ieeefp.h /usr/include/sys/features.h
-Hero.o: /usr/include/sys/reent.h /usr/include/sys/_types.h
-Hero.o: /usr/include/machine/_types.h /usr/include/machine/_default_types.h
-Hero.o: /usr/include/sys/lock.h /usr/include/machine/time.h
-Hero.o: /usr/include/sys/types.h /usr/include/machine/types.h
-Hero.o: /usr/include/math.h EventCapturedLetter.h LevelChange.h
-LevelChange.o: LevelHandler.h LevelChange.h
-LevelHandler.o: LevelHandler.h EventLevel.h Character.h Hero.h
-LevelHandler.o: CapturedString.h BossSkull.h GameStart.h PowerupHandler.h
-LevelHandler.o: TargetString.h EvilCharacter.h /usr/include/stdlib.h
-PowerupHandler.o: PowerupHandler.h /usr/include/stdlib.h PowerupShield.h
-PowerupShield.o: PowerupShield.h /usr/include/stdlib.h
-Star.o: Star.h /usr/include/Stdlib.h /usr/include/machine/ieeefp.h
-Star.o: /usr/include/_ansi.h /usr/include/newlib.h /usr/include/sys/config.h
-Star.o: /usr/include/sys/features.h /usr/include/sys/reent.h
-Star.o: /usr/include/sys/_types.h /usr/include/machine/_types.h
-Star.o: /usr/include/machine/_default_types.h /usr/include/sys/lock.h
-Star.o: /usr/include/machine/stdlib.h /usr/include/alloca.h
-TargetString.o: TargetString.h
 Dragonfly_Engine/Box.o: Dragonfly_Engine/Box.h Dragonfly_Engine/Position.h
 Dragonfly_Engine/Clock.o: Dragonfly_Engine/Clock.h /usr/include/time.h
 Dragonfly_Engine/Clock.o: /usr/include/_ansi.h /usr/include/newlib.h

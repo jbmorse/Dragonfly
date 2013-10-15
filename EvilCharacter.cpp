@@ -15,7 +15,6 @@
 #include "GameManager.h"
 #include "GraphicsManager.h"
 #include "EventStep.h"
-#include "EventRefresh.h"
 #include "LevelChange.h"
 
 EvilCharacter::EvilCharacter(int charnumber, bool outDeath) {
@@ -28,8 +27,7 @@ EvilCharacter::EvilCharacter(int charnumber, bool outDeath) {
 
 	setAltitude(1);
 
-	//Register for step and refresh
-	registerInterest(REFRESH_EVENT);
+	//Register for step
 	registerInterest(STEP_EVENT);
 	setSolidness(SOFT);
 
@@ -67,8 +65,7 @@ EvilCharacter::EvilCharacter() {
 		setYVelocity(-0.8 / (random()%10 + 1));
 	}
 
-	//Register for step and refresh
-	registerInterest(REFRESH_EVENT);
+	//Register for step
 	registerInterest(STEP_EVENT);
 	setSolidness(SOFT);
 
@@ -104,11 +101,6 @@ int EvilCharacter::eventHandler(Event *p_e) {
 		EventCollision *p_collision_event = static_cast <EventCollision *> (p_e);
 		hit(p_collision_event);
 		return 1;
-	}
-
-	if (p_e->getType() == REFRESH_EVENT) {
-		WorldManager &worldmanager = WorldManager::getInstance();
-		worldmanager.markForDelete(this);
 	}
 
     return 0;

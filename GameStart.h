@@ -10,9 +10,10 @@
 
 #include "ViewObject.h"
 
-#define PLAY_LEVEL 2
-#define MENU_LEVEL 1
-
+/*
+ * Object that controls the level selection by the player.
+ * This resides in level 1 (the menu).
+ */
 class GameStart : public ViewObject {
 
 	protected:
