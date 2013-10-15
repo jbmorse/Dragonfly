@@ -157,6 +157,8 @@ void Object::draw() {
 
 	if (sprite_slowdown == 0) return;	//Frozen sprite
 
+
+
 	int count = sprite_slowdown_count + 1;
 	if (count >= sprite_slowdown) {
 		count = 0;
@@ -282,6 +284,9 @@ void Object::setSprite(Sprite *p_new_sprite) {
 	else {
 		temp_pos = Position(0,0);
 	}
+
+	setSpriteIndex(0);
+	setSpriteSlowdown(0);
 
 	box = Box(temp_pos, p_sprite->getWidth(), p_sprite->getHeight());
 
