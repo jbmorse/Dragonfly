@@ -1,36 +1,28 @@
 /*
- * PowerupShield.cpp
+ * PowerupWildcard.cpp
  *
  *   Created: Oct 10, 2013
  *    Author: Tim
  */
 
 // Class include
-#include "PowerupShield.h"
+#include "PowerupWildcard.h"
 // System includes
 #include <stdlib.h>
 // Engine includes
 #include "EventCollision.h"
 #include "EventOut.h"
+#include "GraphicsManager.h"
 #include "LogManager.h"
 #include "ResourceManager.h"
 #include "Utility.h"
 #include "WorldManager.h"
 
-PowerupShield::PowerupShield() {
+PowerupWildcard::PowerupWildcard() {
 	LogManager &lm = LogManager::getInstance();
 	ResourceManager &rm = ResourceManager::getInstance();
 
-	setType("PowerupShield");
-
-	Sprite *p_ts = rm.getSprite("powerup-shield");
-	if(!p_ts) {
-		lm.writeLog("PowerupShield::PowerupShield(): Warning! Sprite '%s' not found",
-			"powerup-shield");
-	} else {
-		setSprite(p_ts);
-		setSpriteSlowdown(10);
-	}
+	setType("PowerupWildcard");
 
 	setXVelocity(-0.25);
 
@@ -49,7 +41,7 @@ PowerupShield::PowerupShield() {
 	setPosition(temp_pos);
 }
 
-int PowerupShield::eventHandler(Event *p_e) {
+int PowerupWildcard::eventHandler(Event *p_e) {
 	if(p_e->getType() == OUT_EVENT) {
 		WorldManager::getInstance().markForDelete(this);
 	} else if(p_e->getType() == COLLISION_EVENT) {
@@ -64,3 +56,7 @@ int PowerupShield::eventHandler(Event *p_e) {
 	}
 }
 
+void PowerupWildcard::draw() {
+	GraphicsManager &graphicsmanager = GraphicsManager::getInstance();
+	graphicsmanager.drawCh(this->getPosition(), '*', COLOR_GREEN);
+}

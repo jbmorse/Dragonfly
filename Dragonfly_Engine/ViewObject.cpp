@@ -27,6 +27,7 @@ ViewObject::ViewObject() {
 	setBorder(true);
 	setLocation(TOP_CENTER);
 	setColor(COLOR_DEFAULT);
+	setAltitude(0);
 
 	//Register interest for view events
 	registerInterest(VIEW_EVENT);
