@@ -70,6 +70,7 @@ int GameStart::eventHandler(Event *p_e) {
 		EventKeyboard *p_keyboard_event = (EventKeyboard *) p_e;
 		switch (p_keyboard_event->getKey()) {
 		case 'p':	//Play
+			showInstructions(false); // change to start screen for when the player quits
 			start();
 			break;
 		case 'q':	//Quit
