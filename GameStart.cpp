@@ -81,8 +81,17 @@ int GameStart::eventHandler(Event *p_e) {
 			break;
 		case '4':	//Developer options
 			if (levelhandler.getCheckpoint() > 0) {
-				levelhandler.nextLevel(5);
+				levelhandler.nextLevel(6);
 			}
+			break;
+		case '5':	//Developer options
+			levelhandler.nextLevel(7);
+			break;
+		case '6':	//Developer options
+			levelhandler.nextLevel(8);
+			break;
+		case '9':	//Developer options
+			levelhandler.nextLevel(10);
 			break;
 		default:
 			break;

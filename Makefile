@@ -26,7 +26,7 @@ GAMEENG= Manager.cpp LogManager.cpp Utility.cpp Clock.cpp GameManager.cpp \
 GAMESRC= Character.cpp EventRefresh.cpp Hero.cpp Star.cpp BossSkull.cpp \
          CapturedString.cpp EventCapturedLetter.cpp EvilCharacter.cpp GameStart.cpp \
          TargetString.cpp LevelHandler.cpp EventLevel.cpp LevelChange.cpp \
-         PowerupHandler.cpp PowerupShield.cpp BossExplosion.cpp \
+         PowerupHandler.cpp PowerupShield.cpp BossExplosion.cpp SafeBox.cpp \
          PowerupWildcard.cpp
 GAME= game.cpp
 EXECUTABLE= game

@@ -41,6 +41,7 @@ void loadResources() {
 	resource_manager.loadSprite("sprites/powerup-shield-spr.txt", "powerup-shield");
 	resource_manager.loadSprite("sprites/hashtag-w-shield-spr.txt", "hashtag-shield");
 	resource_manager.loadSprite("sprites/youwin-spr.txt", "youwin");
+	resource_manager.loadSprite("sprites/safebox-spr.txt", "safebox");
 
 }
 

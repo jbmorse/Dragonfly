@@ -31,6 +31,7 @@ EvilCharacter::EvilCharacter(int charnumber, bool outDeath) {
 	//Register for step and refresh
 	registerInterest(REFRESH_EVENT);
 	registerInterest(STEP_EVENT);
+	setSolidness(SOFT);
 
 	charnum = charnumber;
 	outIsDeath = outDeath;
@@ -38,9 +39,46 @@ EvilCharacter::EvilCharacter(int charnumber, bool outDeath) {
 	tracksPlayer = false;
 	trackingTimeout = 0;
 
-	if (charnumber != 0) {
-		moveToStart();
+	moveToStart();
+
+}
+
+EvilCharacter::EvilCharacter() {
+
+	//Dragonfly managers needed for this method
+	LogManager &log_manager = LogManager::getInstance();
+
+	//Set object type
+	setType("EvilCharacter");
+
+	setAltitude(1);
+	int xdir = (random() % 2);
+	int ydir = (random() % 2);
+	if (xdir == 0) {
+		setXVelocity(0.8 / (random()%10 + 1));
 	}
+	else {
+		setXVelocity(-0.8 / (random()%10 + 1));
+	}
+	if (xdir == 0) {
+		setYVelocity(0.8 / (random()%10 + 1));
+	}
+	else {
+		setYVelocity(-0.8 / (random()%10 + 1));
+	}
+
+	//Register for step and refresh
+	registerInterest(REFRESH_EVENT);
+	registerInterest(STEP_EVENT);
+	setSolidness(SOFT);
+
+	charnum = random()%26;
+	outIsDeath = false;
+	drawchar = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	tracksPlayer = false;
+	trackingTimeout = 0;
+
+	moveToStart();
 
 }
 
@@ -86,25 +124,25 @@ void EvilCharacter::out() {
 	else {
 		if (getPosition().getX() < 0) {
 			//Bounced off left edge
-			Position p(0, getPosition().getY());
+			Position p(1, getPosition().getY());
 			setPosition(p);
 			setXVelocity(-1 * getXVelocity());
 		}
 		if (getPosition().getX() > worldmanager.getBoundary().getHorizontal() - 1) {
 			//Bounced off right edge
-			Position p(worldmanager.getBoundary().getHorizontal() - 1, getPosition().getY());
+			Position p(worldmanager.getBoundary().getHorizontal() - 2, getPosition().getY());
 			setPosition(p);
 			setXVelocity(-1 * getXVelocity());
 		}
 		if (getPosition().getY() < 0) {
 			//Bounced off top edge
-			Position p(getPosition().getX(), 0);
+			Position p(getPosition().getX(), 1);
 			setPosition(p);
 			setYVelocity(-1 * getYVelocity());
 		}
 		if (getPosition().getY() > worldmanager.getBoundary().getVertical() - 1) {
 			//Bounced off bottom edge
-			Position p(getPosition().getX(), worldmanager.getBoundary().getVertical() - 1);
+			Position p(getPosition().getX(), worldmanager.getBoundary().getVertical() - 2);
 			setPosition(p);
 			setYVelocity(-1 * getYVelocity());
 		}
@@ -141,8 +179,10 @@ void EvilCharacter::moveToStart() {
 void EvilCharacter::hit(EventCollision *p_c) {
 
 	//If Character on Character, ignore
-	if ((p_c -> getObject1() -> getType() == "Character") &&
-			(p_c -> getObject2() -> getType() == "Character")) {
+	if (((p_c -> getObject1() -> getType() == "Character") ||
+		(p_c -> getObject1() -> getType() == "EvilCharacter")) &&
+		((p_c -> getObject2() -> getType() == "Character") ||
+		(p_c -> getObject1() -> getType() == "EvilCharacter"))) {
 		return;
 	}
 

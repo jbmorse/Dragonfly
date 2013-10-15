@@ -19,7 +19,7 @@ Character::Character() {
 	//Set object type
 	setType("Character");
 
-	setAltitude(1);
+	setAltitude(2);
 	setSolidness(SOFT);
 
 	moveToStart();
@@ -38,7 +38,7 @@ Character::Character(char newchar) {
 	//Set object type
 	setType("Character");
 
-	setAltitude(1);
+	setAltitude(2);
 
 	moveToStart();
 
@@ -54,7 +54,7 @@ Character::Character(bool spectral) {
 	//Set object type
 	setType("Character");
 
-	setAltitude(1);
+	setAltitude(2);
 	if (spectral) {
 		setSolidness(SPECTRAL);
 	}

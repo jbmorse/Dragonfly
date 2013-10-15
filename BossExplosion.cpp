@@ -72,7 +72,7 @@ void BossExplosion::step() {
 		}
 		WorldManager &world_manager = WorldManager::getInstance();
 		world_manager.markForDelete(this);
-		new LevelChange(6);
+		new LevelChange(7);
 	}
 
 }

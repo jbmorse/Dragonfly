@@ -26,6 +26,7 @@ class EvilCharacter : public Object {
 
 	public:
 	EvilCharacter(int charnumber, bool outIsDeath);
+	EvilCharacter();
 	~EvilCharacter();
 	int eventHandler(Event *p_e);
 	void draw();
