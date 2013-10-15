@@ -44,6 +44,8 @@ LevelChange::LevelChange(int level) {
 
 	setType("LevelChange");
 
+	setAltitude(0);
+
 	//Put in center of screen
 	WorldManager &world_manager = WorldManager::getInstance();
 	Position pos(world_manager.getBoundary().getCorner().getX() +

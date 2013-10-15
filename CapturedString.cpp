@@ -83,22 +83,39 @@ void CapturedString::draw() {
 
 void CapturedString::addLetter(char letter) {
 	string temp_str = getViewString();
-	size_t posInCompleteString = complete_string.find_first_of(letter, 0);
 
-	if(posInCompleteString == string::npos) 
-		return; // character isn't in string, ignore
+	// Handle wildcard
+	if(letter == '*') {
 
-	do {
-		if(temp_str[posInCompleteString] == letter)
-			continue; // already got this one
-		// else
+		int firstEmptyPos = 0;
+		for(int i = 0; i < temp_str.length(); ++i) {
+			if(temp_str[i] == ' ') {
+				firstEmptyPos = i;
+				break;
+			}
+		}
 
-		temp_str[posInCompleteString] = letter;
-		break; // done
+		// Add letter
+		temp_str[firstEmptyPos] = complete_string[firstEmptyPos];
+	} else {
+		// Normal character
+		size_t posInCompleteString = complete_string.find_first_of(letter, 0);
 
-	} while((posInCompleteString = complete_string.find_first_of(letter,
-		 posInCompleteString + 1)) != string::npos);
-	// loop until there are no more instances of this character in the string
+		if(posInCompleteString == string::npos) 
+			return; // character isn't in string, ignore
+
+		do {
+			if(temp_str[posInCompleteString] == letter)
+				continue; // already got this one
+			// else
+
+			temp_str[posInCompleteString] = letter;
+			break; // done
+
+		} while((posInCompleteString = complete_string.find_first_of(letter,
+			 posInCompleteString + 1)) != string::npos);
+		// loop until there are no more instances of this character in the string
+	}
 
 	setViewString(temp_str);
 

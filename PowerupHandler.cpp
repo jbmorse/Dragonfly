@@ -13,23 +13,23 @@
 #include "EventStep.h"
 #include "GameManager.h"
 #include "PowerupShield.h"
-//#include "PowerupWildcard.h"
+#include "PowerupWildcard.h"
 #include "Utility.h"
 
 PowerupHandler::PowerupHandler() {
 	setType("PowerupHandler");
 	registerInterest(STEP_EVENT);
 
-	powerupTimeout = 66;//GameManager::getInstance().getFrameTime() * 30;  // 30 secs
+	powerupTimeout = GameManager::getInstance().getFrameTime() * 30;  // 30 secs
 	powerupTimeoutCount = powerupTimeout;
 }
 
 void PowerupHandler::createPowerup() {
-	int randomChance = random() % 10 + 15;
+	int randomChance = random() % 100;
 	// 0 - 14: Wildcard
 	// 15 - 24: Shield
 	if(valueInRange(randomChance, 0, 14)) {
-
+		new PowerupWildcard();
 	} else if(valueInRange(randomChance, 15, 24)) {
 		new PowerupShield();
 	}

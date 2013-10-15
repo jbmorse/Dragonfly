@@ -166,6 +166,14 @@ void Hero::hit(EventCollision *p_c) {
 			setSprite(p_temp_sprite);
 			setSpriteSlowdown(4);
 		}
+	} else if(p_c->getObject1()->getType() == "PowerupWildcard") {
+		EventCapturedLetter ecl;
+		ecl.setCapturedLetter('*');
+		world_manager.onEvent(&ecl);
+	} else if(p_c->getObject2()->getType() == "PowerupWildcard") {
+		EventCapturedLetter ecl;
+		ecl.setCapturedLetter('*');
+		world_manager.onEvent(&ecl);
 	}
 }
 
