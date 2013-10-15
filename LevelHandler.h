@@ -10,6 +10,15 @@
 
 #include "ViewObject.h"
 
+/*
+ * The LevelHandler is a persistent object that handles
+ * level creation and level switching. Only GameStart and
+ * LevelChange deal with this object directly. The methods for
+ * the blueprints of each level can be found here. Checkpoints
+ * are also set every time a certain level is reached, which can
+ * be accessed and used by GameStart. This displays the level
+ * in the top left corner of the game.
+ */
 class LevelHandler : public ViewObject {
 
 private:

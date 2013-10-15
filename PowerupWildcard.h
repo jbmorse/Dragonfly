@@ -12,6 +12,11 @@
 #include "Event.h"
 #include "Object.h"
 
+/*
+ * This wildcard powerup can be picked up by the hero.
+ * It will fill in the next needed character for the
+ * needed string, or do damage to the boss.
+ */
 class PowerupWildcard : public Object {
 
 public:

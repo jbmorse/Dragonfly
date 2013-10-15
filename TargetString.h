@@ -15,6 +15,11 @@
 // Using statements
 using std::string;
 
+/*
+ * The TargetString object is used for displaying purposes of what
+ * the player should be collecting for the level.
+ * This appears in the top right corner.
+ */
 class TargetString : public ViewObject {
 
 public:

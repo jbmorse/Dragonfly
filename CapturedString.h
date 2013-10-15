@@ -18,9 +18,12 @@ using std::string;
 
 /*
  * This is the class that handles completing strings.
- * When the hero picks a character up, it will send an EventCapturedLetter, which this class registers.
- * If the character picked up matches one needed, it will add it to the string.
- * Once the complete string is captured, the LevelChange for the next level is created, and the hero is made spectral.
+ * When the hero picks a character up, it will send an
+ * EventCapturedLetter, which this class registers.
+ * If the character picked up matches one needed, it will
+ * add it to the string. Once the complete string is captured,
+ * the LevelChange for the next level is created, and the hero
+ * is made spectral. The string is shown in the top middle of the screen.
  */
 class CapturedString : public ViewObject {
 

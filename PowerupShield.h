@@ -12,6 +12,10 @@
 #include "Event.h"
 #include "Object.h"
 
+/*
+ * This shield powerup can be grabbed by the hero.
+ * It will protect the hero from 2 hits.
+ */
 class PowerupShield : public Object {
 
 public:

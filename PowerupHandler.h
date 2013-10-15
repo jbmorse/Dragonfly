@@ -12,6 +12,9 @@
 #include "Event.h"
 #include "Object.h"
 
+/*
+ * This class attempts to create powerups every so often.
+ */
 class PowerupHandler : public Object {
 
 private:
