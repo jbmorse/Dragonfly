@@ -54,7 +54,7 @@ Hero::Hero() {
 	WorldManager &world_manager = WorldManager::getInstance();
 	Position pos(7, world_manager.getBoundary().getVertical()/2);
 	setPosition(pos);
-	setAltitude(2);
+	setAltitude(0);
 
 	shieldHitCount = 0;
 

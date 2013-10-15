@@ -21,7 +21,7 @@ LevelChange::LevelChange(int level) {
 	ResourceManager &resource_manager = ResourceManager::getInstance();
 
 	Sprite *p_temp_sprite;
-	if (level == 6) {
+	if (level == 12) {
 		//Setup GoodJob sprite
 		p_temp_sprite = resource_manager.getSprite("youwin");
 	}

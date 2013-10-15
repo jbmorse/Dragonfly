@@ -25,6 +25,7 @@
 #include "TargetString.h"
 #include "EvilCharacter.h"
 #include "stdlib.h"
+#include "SafeBox.h"
 
 LevelHandler::LevelHandler() {
 
@@ -176,7 +177,6 @@ void startLevel_5(int prevLevel) {
 	Hero *hero = new Hero();
 	hero->setPosition(Position(37,12));
 
-
 	EvilCharacter *evil1 = new EvilCharacter(7, true);
 	EvilCharacter *evil2 = new EvilCharacter(0, true);
 	EvilCharacter *evil3 = new EvilCharacter(7, true);
@@ -192,13 +192,6 @@ void startLevel_5(int prevLevel) {
 	EvilCharacter *evil13 = new EvilCharacter(7, true);
 	EvilCharacter *evil14 = new EvilCharacter(0, true);
 	EvilCharacter *evil15 = new EvilCharacter(0, true);
-	Character *char1 = new Character('B');
-	Character *char2 = new Character('O');
-	Character *char3 = new Character('X');
-	Character *char4 = new Character('E');
-	Character *char5 = new Character('D');
-	Character *char6 = new Character('I');
-	Character *char7 = new Character('N');
 
 	evil1->setPosition(Position(35,10));
 	evil2->setPosition(Position(36,10));
@@ -216,6 +209,13 @@ void startLevel_5(int prevLevel) {
 	evil14->setPosition(Position(35,13));
 	evil15->setPosition(Position(35,11));
 
+	Character *char1 = new Character('B');
+	Character *char2 = new Character('O');
+	Character *char3 = new Character('X');
+	Character *char4 = new Character('E');
+	Character *char5 = new Character('D');
+	Character *char6 = new Character('I');
+	Character *char7 = new Character('N');
 
 	//Goal for collection
 	new CapturedString("BOXEDIN");
@@ -250,10 +250,60 @@ void startLevel_7(int prevLevel) {
 
 	WorldManager &worldmanager = WorldManager::getInstance();
 	SceneGraph &scenegraph = worldmanager.getSceneGraph();
-	scenegraph.setLevel(6);
+	scenegraph.setLevel(7);
 
 	//Hashtag Hero
 	new Hero();
+
+	EvilCharacter *evil1 = new EvilCharacter(7, false);
+	EvilCharacter *evil2 = new EvilCharacter(5, false);
+	EvilCharacter *evil3 = new EvilCharacter(15, false);
+	EvilCharacter *evil4 = new EvilCharacter(19, false);
+	EvilCharacter *evil5 = new EvilCharacter(24, false);
+	EvilCharacter *evil6 = new EvilCharacter(1, false);
+	EvilCharacter *evil7 = new EvilCharacter(4, false);
+	EvilCharacter *evil8 = new EvilCharacter(22, false);
+	EvilCharacter *evil9 = new EvilCharacter(11, false);
+	EvilCharacter *evil10 = new EvilCharacter(0, false);
+
+	evil1->setPosition(Position(15,15));
+	evil1->setYVelocity(-.5);
+	evil2->setPosition(Position(30,9));
+	evil2->setYVelocity(.5);
+	evil3->setPosition(Position(45,23));
+	evil3->setYVelocity(-.4);
+	evil4->setPosition(Position(60,15));
+	evil4->setYVelocity(.5);
+	evil5->setPosition(Position(15,15));
+	evil5->setXVelocity(-.7);
+	evil6->setPosition(Position(30,9));
+	evil6->setXVelocity(.7);
+	evil7->setPosition(Position(45,23));
+	evil7->setXVelocity(-1);
+	evil8->setPosition(Position(60,5));
+	evil8->setXVelocity(.7);
+	evil9->setPosition(Position(49,20));
+	evil9->setXVelocity(-1.5);
+	evil10->setPosition(Position(10,10));
+	evil10->setYVelocity(.7);
+
+	Character *char1 = new Character('B');
+	Character *char2 = new Character('O');
+	Character *char3 = new Character('U');
+	Character *char4 = new Character('N');
+	Character *char5 = new Character('C');
+	Character *char6 = new Character('E');
+
+	char1->setPosition(Position(13,4));
+	char2->setPosition(Position(36,6));
+	char3->setPosition(Position(59,7));
+	char4->setPosition(Position(17,15));
+	char5->setPosition(Position(33,17));
+	char6->setPosition(Position(63,16));
+
+	//Goal for collection
+	new CapturedString("BOUNCE");
+	new TargetString("BOUNCE");
 
 	//Revert back to previous level
 	scenegraph.setLevel(prevLevel);
@@ -264,10 +314,43 @@ void startLevel_8(int prevLevel) {
 
 	WorldManager &worldmanager = WorldManager::getInstance();
 	SceneGraph &scenegraph = worldmanager.getSceneGraph();
-	scenegraph.setLevel(6);
+	scenegraph.setLevel(8);
 
 	//Hashtag Hero
 	new Hero();
+
+	//Spawn protect hero
+	new SafeBox(Position(7,7));
+	new SafeBox(Position(7,10));
+	new SafeBox(Position(7,13));
+	new SafeBox(Position(7,16));
+	new SafeBox(Position(4,7));
+	new SafeBox(Position(4,10));
+	new SafeBox(Position(4,13));
+	new SafeBox(Position(4,16));
+	new SafeBox(Position(10,7));
+	new SafeBox(Position(10,10));
+	new SafeBox(Position(10,13));
+	new SafeBox(Position(10,16));
+
+	for (int i = 0; i < 10; i++) {
+		new EvilCharacter();
+	}
+
+	for (int i = 0; i < 20; i++) {
+		new Character();
+	}
+
+	new Character('D');
+	new Character('A');
+	new Character('N');
+	new Character('G');
+	new Character('E');
+	new Character('R');
+
+	//Goal for collection
+	new CapturedString("DANGER");
+	new TargetString("DANGER");
 
 	//Revert back to previous level
 	scenegraph.setLevel(prevLevel);
@@ -278,10 +361,46 @@ void startLevel_9(int prevLevel) {
 
 	WorldManager &worldmanager = WorldManager::getInstance();
 	SceneGraph &scenegraph = worldmanager.getSceneGraph();
-	scenegraph.setLevel(6);
+	scenegraph.setLevel(9);
 
 	//Hashtag Hero
 	new Hero();
+
+	//Spawn protect hero
+	new SafeBox(Position(7,7));
+	new SafeBox(Position(7,10));
+	new SafeBox(Position(7,13));
+	new SafeBox(Position(7,16));
+	new SafeBox(Position(4,7));
+	new SafeBox(Position(4,10));
+	new SafeBox(Position(4,13));
+	new SafeBox(Position(4,16));
+	new SafeBox(Position(10,7));
+	new SafeBox(Position(10,10));
+	new SafeBox(Position(10,13));
+	new SafeBox(Position(10,16));
+
+	for (int i = 0; i < 8; i++) {
+		new EvilCharacter();
+	}
+
+	for (int i = 0; i < 100; i++) {
+		new Character();
+	}
+
+	new Character('C');
+	new Character('O');
+	new Character('N');
+	new Character('F');
+	new Character('U');
+	new Character('S');
+	new Character('I');
+	new Character('O');
+	new Character('N');
+
+	//Goal for collection
+	new CapturedString("CONFUSION");
+	new TargetString("CONFUSION");
 
 	//Revert back to previous level
 	scenegraph.setLevel(prevLevel);
@@ -292,10 +411,46 @@ void startLevel_10(int prevLevel) {
 
 	WorldManager &worldmanager = WorldManager::getInstance();
 	SceneGraph &scenegraph = worldmanager.getSceneGraph();
-	scenegraph.setLevel(6);
+	scenegraph.setLevel(10);
 
 	//Hashtag Hero
 	new Hero();
+
+	//Spawn protect hero
+	new SafeBox(Position(7,7));
+	new SafeBox(Position(7,10));
+	new SafeBox(Position(7,13));
+	new SafeBox(Position(7,16));
+	new SafeBox(Position(4,7));
+	new SafeBox(Position(4,10));
+	new SafeBox(Position(4,13));
+	new SafeBox(Position(4,16));
+	new SafeBox(Position(10,7));
+	new SafeBox(Position(10,10));
+	new SafeBox(Position(10,13));
+	new SafeBox(Position(10,16));
+
+	for (int i = 0; i < 20; i++) {
+		int j = random() % 25 + 1;
+		new EvilCharacter(j, true);
+	}
+
+	for (int i = 0; i < 20; i++) {
+		new EvilCharacter();
+	}
+
+	//Goal for collection
+	new CapturedString("GOODLUCK");
+	new TargetString("GOODLUCK");
+
+	new Character('G');
+	new Character('O');
+	new Character('O');
+	new Character('D');
+	new Character('L');
+	new Character('U');
+	new Character('C');
+	new Character('K');
 
 	//Revert back to previous level
 	scenegraph.setLevel(prevLevel);
@@ -304,9 +459,11 @@ void startLevel_10(int prevLevel) {
 
 void startLevel_11(int prevLevel) {
 
+	//FINAL LEVEL
+
 	WorldManager &worldmanager = WorldManager::getInstance();
 	SceneGraph &scenegraph = worldmanager.getSceneGraph();
-	scenegraph.setLevel(6);
+	scenegraph.setLevel(11);
 
 	//Hashtag Hero
 	new Hero();
@@ -354,18 +511,27 @@ void LevelHandler::nextLevel(int nextlevel) {
 		startLevel_6(prevLevel);
 		break;
 	case 7 :
+		if (checkpoint < 2) {
+			checkpoint = 2;
+		}
 		startLevel_7(prevLevel);
 		break;
 	case 8 :
 		startLevel_8(prevLevel);
 		break;
 	case 9 :
+		if (checkpoint < 3) {
+			checkpoint = 3;
+		}
 		startLevel_9(prevLevel);
 		break;
 	case 10 :
 		startLevel_10(prevLevel);
 		break;
 	case 11 :
+		if (checkpoint < 4) {
+			checkpoint = 4;
+		}
 		startLevel_11(prevLevel);
 		break;
 	case 12 :
