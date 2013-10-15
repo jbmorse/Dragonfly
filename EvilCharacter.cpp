@@ -83,14 +83,32 @@ void EvilCharacter::out() {
 	if (outIsDeath) {
 		worldmanager.markForDelete(this);
 	}
-	if (getPosition().getX() >= 0) {
-		return;
+	else {
+		if (getPosition().getX() < 0) {
+			//Bounced off left edge
+			Position p(0, getPosition().getY());
+			setPosition(p);
+			setXVelocity(-1 * getXVelocity());
+		}
+		if (getPosition().getX() > worldmanager.getBoundary().getHorizontal() - 1) {
+			//Bounced off right edge
+			Position p(worldmanager.getBoundary().getHorizontal() - 1, getPosition().getY());
+			setPosition(p);
+			setXVelocity(-1 * getXVelocity());
+		}
+		if (getPosition().getY() < 0) {
+			//Bounced off top edge
+			Position p(getPosition().getX(), 0);
+			setPosition(p);
+			setYVelocity(-1 * getYVelocity());
+		}
+		if (getPosition().getY() > worldmanager.getBoundary().getVertical() - 1) {
+			//Bounced off bottom edge
+			Position p(getPosition().getX(), worldmanager.getBoundary().getVertical() - 1);
+			setPosition(p);
+			setYVelocity(-1 * getYVelocity());
+		}
 	}
-
-	//setXVelocity(getXVelocity() * -1);
-	//setYVelocity(getYVelocity() * -1);
-
-	moveToStart();
 
 }
 
@@ -124,24 +142,12 @@ void EvilCharacter::hit(EventCollision *p_c) {
 
 	//If Character on Character, ignore
 	if ((p_c -> getObject1() -> getType() == "Character") &&
-		(p_c -> getObject2() -> getType() == "Character")) {
+			(p_c -> getObject2() -> getType() == "Character")) {
 		return;
 	}
 
 	WorldManager &world_manager = WorldManager::getInstance();
 	world_manager.markForDelete(this);
-	//If hero, mark for destruction
-	// ***********************
-	// ** In Hero class now **
-	// ***********************
-	// if (p_c -> getObject1() -> getType() == "Hero") {
-	// 	world_manager.markForDelete(p_c -> getObject1());
-	// 	new LevelChange(1);
-	// }
-	// else if (p_c -> getObject2() -> getType() == "Hero") {
-	// 	world_manager.markForDelete(p_c -> getObject2());
-	// 	new LevelChange(1);
-	// }
 
 }
 
