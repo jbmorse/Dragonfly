@@ -12,7 +12,6 @@
 #include "WorldManager.h"
 #include "GraphicsManager.h"
 #include "EventStep.h"
-#include "EventRefresh.h"
 
 Character::Character() {
 
@@ -23,9 +22,6 @@ Character::Character() {
 	setSolidness(SOFT);
 
 	moveToStart();
-
-	//Register for step and refresh
-	registerInterest(REFRESH_EVENT);
 
 	int charnum = random() % 26;
 	string drawchar = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -41,9 +37,6 @@ Character::Character(char newchar) {
 	setAltitude(2);
 
 	moveToStart();
-
-	//Register for step and refresh
-	registerInterest(REFRESH_EVENT);
 
 	chartype = newchar;
 
@@ -63,9 +56,6 @@ Character::Character(bool spectral) {
 	}
 
 	moveToStart();
-
-	//Register for step and refresh
-	registerInterest(REFRESH_EVENT);
 
 	int charnum = random() % 26;
 	string drawchar = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -103,10 +93,6 @@ void Character::out() {
 
 	WorldManager &worldmanager = WorldManager::getInstance();
 	worldmanager.markForDelete(this);
-	//setXVelocity(getXVelocity() * -1);
-	//setYVelocity(getYVelocity() * -1);
-
-//	moveToStart();
 
 }
 

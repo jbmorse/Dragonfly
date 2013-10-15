@@ -1,0 +1,26 @@
+frames 1
+width 3
+height 20
+color green
+X  
+X  
+X  
+X  
+X  
+X  
+X  
+X  
+X  
+X  
+X  
+X  
+X  
+X  
+X  
+X  
+X  
+X  
+X  
+X  
+end
+eof

@@ -26,6 +26,7 @@
 #include "EvilCharacter.h"
 #include "stdlib.h"
 #include "SafeBox.h"
+#include "BossFinal.h"
 #include "Star.h"
 
 LevelHandler::LevelHandler() {
@@ -464,6 +465,7 @@ void startLevel_11(int prevLevel) {
 
 	WorldManager &worldmanager = WorldManager::getInstance();
 	SceneGraph &scenegraph = worldmanager.getSceneGraph();
+
 	scenegraph.setLevel(11);
 
 	//Hashtag Hero
@@ -473,6 +475,9 @@ void startLevel_11(int prevLevel) {
 	for (int i = 0; i < 50; i++) {
 		new Star();
 	}
+
+	//FINAL BOSS
+	new BossFinal();
 
 	//Revert back to previous level
 	scenegraph.setLevel(prevLevel);

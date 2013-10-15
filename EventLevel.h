@@ -13,6 +13,9 @@
 
 #define LEVEL_EVENT "_level_"
 
+/*
+ * Currently this class has no use. If it continues to have no use, this will be removed.
+ */
 class EventLevel : public Event {
 
 private:

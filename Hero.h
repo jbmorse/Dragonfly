@@ -16,6 +16,15 @@
 #define VELOCITY_CHANGE 0.10
 #define MAX_VELOCITY 1.00
 
+/*
+ * Most important object! This is the Hashtag Hero (you!).
+ * Here can be found a lot of code revolving around moving and
+ * collisions and events that progress you through the game.
+ * At the end of each level, the hero is made spectral so it can not
+ * collide with anything and end the level (twice!).
+ * In general hitting anything that is not a Character is a bad idea.
+ * Powerups are good! Adds abilities to the hero.
+ */
 class Hero : public Object {
 
 	protected:
