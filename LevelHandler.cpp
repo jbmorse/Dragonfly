@@ -453,6 +453,9 @@ void startLevel_10(int prevLevel) {
 	new Character('C');
 	new Character('K');
 
+	// Powerups
+	new PowerupHandler();
+
 	//Revert back to previous level
 	scenegraph.setLevel(prevLevel);
 
