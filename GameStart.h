@@ -19,11 +19,13 @@ class GameStart : public ViewObject {
 	protected:
 	void step();
 	void start();
+	bool showInstruct;
 
 	public:
 	GameStart();
 	int eventHandler(Event *e);
 	void draw();
+	void showInstructions(bool show);
 
 };
 

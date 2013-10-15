@@ -1,6 +1,6 @@
 frames 2
 width 72
-height 12
+height 13
 color default
     __  _____   _____ __  ___________   ______   __  ____________  ____ 
    / / / /   | / ___// / / /_  __/   | / ____/  / / / / ____/ __ \/ __ \
@@ -12,6 +12,7 @@ color default
                     Collect letters to complete words                   
                                                                         
                      Press 'p' to play, 'q' to quit                     
+                       or 'i' to see instructions                       
                                                                         
                   Written by Josh Morse and Tim Calvert                 
 end
@@ -23,6 +24,7 @@ end
                                                                         
                           Controls: Arrows move                         
                     Collect letters to complete words                   
+                                                                        
                                                                         
                                                                         
                                                                         
