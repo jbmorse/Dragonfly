@@ -26,6 +26,7 @@
 #include "EvilCharacter.h"
 #include "stdlib.h"
 #include "SafeBox.h"
+#include "Star.h"
 
 LevelHandler::LevelHandler() {
 
@@ -467,6 +468,11 @@ void startLevel_11(int prevLevel) {
 
 	//Hashtag Hero
 	new Hero();
+
+	//Hyper stars!
+	for (int i = 0; i < 50; i++) {
+		new Star();
+	}
 
 	//Revert back to previous level
 	scenegraph.setLevel(prevLevel);

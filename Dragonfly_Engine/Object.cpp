@@ -142,6 +142,7 @@ int Object::unregisterInterest(string event_type) {
 	}
 
 	event_count--;
+
 	return 0;
 
 }

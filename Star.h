@@ -16,12 +16,16 @@ class Star : public Object {
 
 	private:
 	void out();
+	bool hyper;
+	void step();
+	int stepcount;
 
 	public:
 	Star();
 	Star(Position position);
 	void draw(void);
 	int eventHandler(Event *p_e);
+	void removeHyper();
 
 };
 

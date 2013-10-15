@@ -93,6 +93,9 @@ int GameStart::eventHandler(Event *p_e) {
 		case '9':	//Developer options
 			levelhandler.nextLevel(10);
 			break;
+		case '0':	//Developer options
+			levelhandler.nextLevel(11);
+			break;
 		default:
 			break;
 		}
