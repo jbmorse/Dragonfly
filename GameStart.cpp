@@ -39,6 +39,8 @@ GameStart::GameStart() {
 
 	setType("GameStart");
 
+	showInstruct = false;
+
 	//Put in center of screen
 	WorldManager &world_manager = WorldManager::getInstance();
 	Position pos(world_manager.getBoundary().getCorner().getX() +
@@ -72,6 +74,9 @@ int GameStart::eventHandler(Event *p_e) {
 			break;
 		case 'q':	//Quit
 			game_manager.setGameOver();
+			break;
+		case 'i':   // Show instructions
+			showInstructions(!showInstruct);
 			break;
 		case '2':	//Developer options
 			levelhandler.nextLevel(3);
@@ -120,4 +125,39 @@ void GameStart::draw() {
 
 	Object::draw();
 
+}
+
+void GameStart::showInstructions(bool show) {
+
+	LogManager &log_manager = LogManager::getInstance();
+	ResourceManager &resource_manager = ResourceManager::getInstance();
+
+	showInstruct = show;
+
+	if(!showInstruct) {  // Hiding instructions
+
+		//Setup GameStart sprite
+		Sprite *p_temp_sprite = resource_manager.getSprite("gamestart");
+		if (!p_temp_sprite) {
+			log_manager.writeLog("GameStart::showInstructions(): Warning! Sprite 'gamestart' not found", "gamestart");
+		}
+		else {
+			log_manager.writeLog("GameStart::showInstructions(): Switching to start screen\n");
+			setSprite(p_temp_sprite);
+			setSpriteSlowdown(15);
+		}
+	} else {  // Showing instructions
+
+		//Setup GameStart sprite
+		Sprite *p_temp_sprite = resource_manager.getSprite("instructions");
+		if (!p_temp_sprite) {
+			log_manager.writeLog("GameStart::showInstructions(): Warning! Sprite 'gamestart' not found", "instructions");
+		}
+		else {
+			log_manager.writeLog("GameStart::showInstructions(): Switching to instructions screen\n");
+			log_manager.writeLog("Frame: %s\n", p_temp_sprite->getFrame(0).getString().c_str());
+			setSprite(p_temp_sprite);
+			setSpriteSlowdown(0);
+		}
+	}
 }
