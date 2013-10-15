@@ -1,26 +1,87 @@
-frames 1
-width 3
+frames 4
+width 8
 height 20
-color green
-X  
-X  
-X  
-X  
-X  
-X  
-X  
-X  
-X  
-X  
-X  
-X  
-X  
-X  
-X  
-X  
-X  
-X  
-X  
-X  
+color yellow
+X\      
+o/      
+X\      
+o/\     
+X\%!    
+B/ %    
+X\F&VG  
+o/&7304 
+B-0  08%
+]9 D: 75
+]70  063
+o-529706
+X\dqwy0 
+oG&&85  
+X\ %    
+o/%!    
+X\/     
+o/      
+X\      
+o/      
+end
+X\      
+o/      
+X\      
+o/\     
+X\%!    
+B/ %    
+X\F&00  
+o/&1111 
+B-234234
+]5 X5 78
+]706 063
+o-937506
+X\SEGFAU
+oG&&/LT 
+X\ %    
+o/%!    
+X\/     
+o/      
+X\      
+o/      
+end
+o/      
+X\      
+o/\     
+X\*!    
+o/ %    
+X\FF00  
+o/&3041 
+X-234234
+>5GJFD78
+>7000063
+o-Ax0000
+X\SEGA.U
+o**/.. 
+X\**    
+o/%!    
+X\/     
+o/      
+X\      
+o/      
+end
+o/      
+X\      
+o/\     
+X\*!    
+o/ %    
+X\GGNORE  
+o/&3041 
+C/845g34
+]1GJFD78
+]1ohno63
+o\Bx0000
+X\88888 
+o**/..  
+X\**    
+o/%!    
+X\/     
+o/      
+X\      
+o/      
 end
 eof

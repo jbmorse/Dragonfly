@@ -1,26 +1,87 @@
-frames 1
+frames 4
 width 3
 height 20
-color green
-X  
-X  
-X  
-X  
-X  
-X  
-X  
-X  
-X  
-X  
-X  
-X  
-X  
-X  
-X  
-X  
-X  
-X  
-X  
-X  
+color red
+G\      
+o/ >fkd 
+Xy >LD> 
+o/j jfs 
+e\%!    
+gt %    
+X\F&VG  
+o/&7304 
+B-0  08%
+][ X_X ]
+][ --- ]
+o-529706
+X\dqwy0 
+oG&&85  
+X\ %    
+o/%!    
+X\/  5  
+gfd   6 
+X\      
+o/      
+end
+V\      
+V/      
+^\      
+^j\     
+X]fd%?  
+7] %    
+X\F***  
+o/&v346 
+B-234234
+]???????
+]???????
+~~999999
+~\ERROR 
+GGFATAL 
+G\ABORT 
+DESTROY 
+G\/     
+ozqwerty
+zzz     
+oz      
+end
+o/*     
+n\ **   
+,/\;'   
+=\*!    
+o/ .    
+X\deAR  
+o/&3041 
+X-234234
+>5000078
+>7000K63
+o-Ax0K00
+X\00K0K0
+o**/.. 
+X\**    
+o/%!    
+X\/     
+o/      
+$\ <>{#)
+%/      
+end
+o/      
+X\      
+o/\     
+X\*!    
+o/ %    
+X\n4xn;E
+o/&3041 
+C/845g34
+]>_<>_<>
+]*%)$##$
+o\^%jfsE
+X\123456
+(*&/..  
+|\**    
+\/%!JK  
+N\/  JKJ
+M/ jHF  
+L\ >_G>     
+Q/ >?{: 
 end
 eof
