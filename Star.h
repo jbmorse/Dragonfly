@@ -12,6 +12,12 @@
 
 #define STAR_CHAR '.'
 
+/*
+ * This star object is used for special effects.
+ * It is used in both the explosion animations and
+ * in the hyperstar final boss fight mode.
+ * This is a purely spectral object.
+ */
 class Star : public Object {
 
 	private:

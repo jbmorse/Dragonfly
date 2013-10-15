@@ -11,6 +11,12 @@
 #include "Object.h"
 #include "ResourceManager.h"
 
+/*
+ * This SafeBox object is placed in levels where it
+ * runs the risk of killing the hero instantly.
+ * It will disallow EvilCharacters from spawning in its zone.
+ * It will disappear in one game loop upon start of level.
+ */
 class SafeBox : public Object {
 
 	protected:
