@@ -15,6 +15,7 @@ class LevelHandler : public ViewObject {
 private:
 	void addLetter(char letter);
 	int level;
+	int checkpoint;
 	LevelHandler();
 
 public:
@@ -23,6 +24,8 @@ public:
 	void nextLevel(int nextlevel = 0);
 	void restartGame();
 	int getLevel();
+	int getCheckpoint();
+	void setCheckpoint(int newcheckpoint);
 
 };
 

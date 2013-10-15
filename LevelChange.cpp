@@ -38,8 +38,8 @@ LevelChange::LevelChange(int level) {
 	}
 	else {
 		setSprite(p_temp_sprite);
-		setSpriteSlowdown(15);
-		time_to_live = p_temp_sprite->getFrameCount() * 15;
+		setSpriteSlowdown(10);
+		time_to_live = p_temp_sprite->getFrameCount() * 10;
 	}
 
 	setType("LevelChange");

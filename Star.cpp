@@ -16,8 +16,8 @@ Star::Star() {
 
 	setType("Star");
 	setSolidness(SPECTRAL);
-	setXVelocity((random()%2 - 1) * 3/random()%9 - 1);
-	setYVelocity((random()%2 - 1) * 3/random()%9 - 1);
+	setXVelocity(random()%7 - 3);
+	setYVelocity(random()%7 - 3);
 	if (this->getXVelocity() == 0 && this->getYVelocity() == 0) {
 		setXVelocity(5);
 	}
@@ -32,8 +32,8 @@ Star::Star(Position position) {
 
 	setType("Star");
 	setSolidness(SPECTRAL);
-	setXVelocity(random()%5 - 2);
-	setYVelocity(random()%5 - 2);
+	setXVelocity(random()%7 - 3);
+	setYVelocity(random()%7 - 3);
 	if (this->getXVelocity() == 0 && this->getYVelocity() == 0) {
 		setXVelocity(5);
 	}

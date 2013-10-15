@@ -51,6 +51,7 @@ GameStart::GameStart() {
 	registerInterest(KEYBOARD_EVENT);
 
 	log_manager.writeLog("GameStart::GameStart(): Made gamestart!\n");
+	LevelHandler &levelhandler = LevelHandler::getInstance();
 
 }
 
@@ -60,6 +61,9 @@ int GameStart::eventHandler(Event *p_e) {
 	LevelHandler &levelhandler = LevelHandler::getInstance();
 	GameManager &game_manager = GameManager::getInstance();
 	//Keyboard
+	if (levelhandler.getLevel() != 1) {
+		return 0;
+	}
 	if (p_e->getType() == KEYBOARD_EVENT) {
 		EventKeyboard *p_keyboard_event = (EventKeyboard *) p_e;
 		switch (p_keyboard_event->getKey()) {
@@ -76,7 +80,9 @@ int GameStart::eventHandler(Event *p_e) {
 			levelhandler.nextLevel(4);
 			break;
 		case '4':	//Developer options
-			levelhandler.nextLevel(5);
+			if (levelhandler.getCheckpoint() > 0) {
+				levelhandler.nextLevel(5);
+			}
 			break;
 		default:
 			break;

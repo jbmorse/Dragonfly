@@ -34,6 +34,7 @@ LevelHandler::LevelHandler() {
 	setLocation(TOP_LEFT);
 	level = 1;
 	setPersistence(true);
+	checkpoint = 0;
 
 }
 
@@ -153,6 +154,8 @@ void startLevel_4(int prevLevel) {
 	for (int i = 0; i < 150; i++) {
 		new Character();
 	}
+	new Character("H");
+	new Character("I");
 
 	// Powerups
 	new PowerupHandler();
@@ -215,6 +218,9 @@ void LevelHandler::nextLevel(int nextlevel) {
 		startLevel_4(prevLevel);
 		break;
 	case 5 :
+		if (checkpoint < 1) {
+			checkpoint = 1;
+		}
 		startLevel_5(prevLevel);
 		break;
 	case 6 :
@@ -231,5 +237,17 @@ void LevelHandler::nextLevel(int nextlevel) {
 int LevelHandler::getLevel() {
 
 	return level;
+
+}
+
+int LevelHandler::getCheckpoint() {
+
+	return checkpoint;
+
+}
+
+void LevelHandler::setCheckpoint(int newcheckpoint) {
+
+	checkpoint = newcheckpoint;
 
 }

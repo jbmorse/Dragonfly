@@ -25,6 +25,7 @@
 #include "EventOut.h"
 #include "Utility.h"
 #include "LevelChange.h"
+#include "Star.h"
 
 using namespace std;
 using std::string;
@@ -110,6 +111,9 @@ void Hero::hit(EventCollision *p_c) {
 			}
 		}
 		if(shieldHitCount < 0) {
+			for (int i = 0; i < 30; i++) {
+				new Star(this->getPosition());
+			}
 			world_manager.markForDelete(this);
 			new LevelChange(1);
 		} 		
@@ -132,6 +136,9 @@ void Hero::hit(EventCollision *p_c) {
 			}
 		}
 		if(shieldHitCount < 0) {
+			for (int i = 0; i < 30; i++) {
+				new Star(this->getPosition());
+			}
 			world_manager.markForDelete(this);
 			new LevelChange(1);
 		} 		
@@ -180,6 +187,10 @@ void Hero::kbd(EventKeyboard *p_keyboard_event) {
 	case 'q':
 		if (getSolidness() != SPECTRAL) {
 			world_manager.markForDelete(this);
+			for (int i = 0; i < 30; i++) {
+				new Star(this->getPosition());
+			}
+			new LevelChange(1);
 		}
 		break;
 	}

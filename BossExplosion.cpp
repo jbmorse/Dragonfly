@@ -62,12 +62,12 @@ void BossExplosion::step() {
 
 	time_to_live--;
 	if (time_to_live % 20 == 0) {
-		for (int i = 0; i < 20; i++) {
+		for (int i = 0; i < 30; i++) {
 			new Star(this->getPosition());
 		}
 	}
 	if (time_to_live <= 0) {
-		for (int i = 0; i < 50; i++) {
+		for (int i = 0; i < 100; i++) {
 			new Star(this->getPosition());
 		}
 		WorldManager &world_manager = WorldManager::getInstance();
