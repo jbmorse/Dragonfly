@@ -14,7 +14,6 @@
 #include "Utility.h"
 #include "SceneGraph.h"
 #include "WorldManager.h"
-#include "EventLevel.h"
 #include "Character.h"
 #include "Hero.h"
 #include "CapturedString.h"
@@ -33,7 +32,6 @@ LevelHandler::LevelHandler() {
 
 	setViewString("Level ");
 	setType("LevelHandler");
-	registerInterest(LEVEL_EVENT);
 	setLocation(TOP_LEFT);
 	level = 1;
 	setPersistence(true);
@@ -49,11 +47,6 @@ LevelHandler &LevelHandler::getInstance() {
 }
 
 int LevelHandler::eventHandler(Event *p_e) {
-
-	if(p_e->getType() == LEVEL_EVENT) {
-		EventLevel *el = (EventLevel *) p_e;
-		return 1;
-	}
 
 	return 0;
 

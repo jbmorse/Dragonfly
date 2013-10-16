@@ -79,28 +79,25 @@ int GameStart::eventHandler(Event *p_e) {
 		case 'i':   // Show instructions
 			showInstructions(!showInstruct);
 			break;
-		case '2':	//Developer options
-			levelhandler.nextLevel(3);
-			break;
-		case '3':	//Developer options
-			levelhandler.nextLevel(4);
-			break;
-		case '4':	//Developer options
+		case '1':	//Checkpoint 1
 			if (levelhandler.getCheckpoint() > 0) {
 				levelhandler.nextLevel(6);
 			}
 			break;
-		case '5':	//Developer options
-			levelhandler.nextLevel(7);
+		case '2':	//Checkpoint 2
+			if (levelhandler.getCheckpoint() > 1) {
+				levelhandler.nextLevel(7);
+			}
 			break;
-		case '6':	//Developer options
-			levelhandler.nextLevel(8);
+		case '3':	//Checkpoint 3
+			if (levelhandler.getCheckpoint() > 2) {
+				levelhandler.nextLevel(9);
+			}
 			break;
-		case '9':	//Developer options
-			levelhandler.nextLevel(10);
-			break;
-		case '0':	//Developer options
-			levelhandler.nextLevel(11);
+		case '4':	//Checkpoint 4
+			if (levelhandler.getCheckpoint() > 3) {
+				levelhandler.nextLevel(11);
+			}
 			break;
 		default:
 			break;

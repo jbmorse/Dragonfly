@@ -25,7 +25,7 @@ GAMEENG= Manager.cpp LogManager.cpp Utility.cpp Clock.cpp GameManager.cpp \
 		EventView.cpp SceneGraph.cpp
 GAMESRC= Character.cpp Hero.cpp Star.cpp BossSkull.cpp \
          CapturedString.cpp EventCapturedLetter.cpp EvilCharacter.cpp GameStart.cpp \
-         TargetString.cpp LevelHandler.cpp EventLevel.cpp LevelChange.cpp \
+         TargetString.cpp LevelHandler.cpp LevelChange.cpp \
          PowerupHandler.cpp PowerupShield.cpp BossExplosion.cpp SafeBox.cpp \
          PowerupWildcard.cpp BossFinal.cpp FinalBossExplosion.cpp
 GAME= game.cpp
@@ -50,6 +50,17 @@ depend:
 # DO NOT DELETE
 
 BossExplosion.o: BossExplosion.h Star.h LevelChange.h
+BossFinal.o: BossFinal.h /usr/include/Stdlib.h /usr/include/machine/ieeefp.h
+BossFinal.o: /usr/include/_ansi.h /usr/include/newlib.h
+BossFinal.o: /usr/include/sys/config.h /usr/include/sys/features.h
+BossFinal.o: /usr/include/sys/reent.h /usr/include/sys/_types.h
+BossFinal.o: /usr/include/machine/_types.h
+BossFinal.o: /usr/include/machine/_default_types.h /usr/include/sys/lock.h
+BossFinal.o: /usr/include/machine/stdlib.h /usr/include/alloca.h
+BossFinal.o: /usr/include/stdlib.h EvilCharacter.h LevelChange.h
+BossFinal.o: EventCapturedLetter.h Character.h FinalBossExplosion.h Star.h
+BossFinalIntro.o: FinalBossExplosion.h Star.h LevelChange.h
+BossFinalIntro.o: /usr/include/stdlib.h
 BossSkull.o: BossSkull.h /usr/include/Stdlib.h /usr/include/machine/ieeefp.h
 BossSkull.o: /usr/include/_ansi.h /usr/include/newlib.h
 BossSkull.o: /usr/include/sys/config.h /usr/include/sys/features.h
@@ -63,7 +74,6 @@ CapturedString.o: CapturedString.h LevelHandler.h EventCapturedLetter.h
 CapturedString.o: LevelChange.h
 Character.o: Character.h /usr/include/stdlib.h
 EventCapturedLetter.o: EventCapturedLetter.h
-EventLevel.o: EventLevel.h
 EvilCharacter.o: EvilCharacter.h /usr/include/stdlib.h /usr/include/math.h
 EvilCharacter.o: /usr/include/sys/reent.h /usr/include/_ansi.h
 EvilCharacter.o: /usr/include/newlib.h /usr/include/sys/config.h
@@ -71,6 +81,8 @@ EvilCharacter.o: /usr/include/machine/ieeefp.h /usr/include/sys/features.h
 EvilCharacter.o: /usr/include/sys/_types.h /usr/include/machine/_types.h
 EvilCharacter.o: /usr/include/machine/_default_types.h
 EvilCharacter.o: /usr/include/sys/lock.h LevelChange.h
+FinalBossExplosion.o: FinalBossExplosion.h Star.h LevelChange.h
+FinalBossExplosion.o: /usr/include/stdlib.h
 GameStart.o: GameStart.h Hero.h CapturedString.h TargetString.h BossSkull.h
 GameStart.o: Character.h Star.h LevelHandler.h
 Hero.o: Hero.h Character.h /usr/include/time.h /usr/include/_ansi.h
@@ -82,10 +94,10 @@ Hero.o: /usr/include/sys/lock.h /usr/include/machine/time.h
 Hero.o: /usr/include/sys/types.h /usr/include/machine/types.h
 Hero.o: /usr/include/math.h EventCapturedLetter.h LevelChange.h Star.h
 LevelChange.o: LevelHandler.h LevelChange.h
-LevelHandler.o: LevelHandler.h EventLevel.h Character.h Hero.h
-LevelHandler.o: CapturedString.h BossSkull.h GameStart.h PowerupHandler.h
-LevelHandler.o: TargetString.h EvilCharacter.h /usr/include/stdlib.h
-LevelHandler.o: SafeBox.h Star.h
+LevelHandler.o: LevelHandler.h Character.h Hero.h CapturedString.h
+LevelHandler.o: BossSkull.h GameStart.h PowerupHandler.h TargetString.h
+LevelHandler.o: EvilCharacter.h /usr/include/stdlib.h SafeBox.h BossFinal.h
+LevelHandler.o: Star.h
 PowerupHandler.o: PowerupHandler.h /usr/include/stdlib.h PowerupShield.h
 PowerupHandler.o: PowerupWildcard.h
 PowerupShield.o: PowerupShield.h /usr/include/stdlib.h

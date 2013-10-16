@@ -47,7 +47,6 @@ void loadResources() {
 	resource_manager.loadSprite("sprites/finalboss3-spr.txt", "finalboss3");
 	resource_manager.loadSprite("sprites/instructions-spr.txt", "instructions");
 	resource_manager.loadSprite("sprites/finalexplosion-spr.txt", "finalexplosion");
-	resource_manager.loadSprite("sprites/explosion-spr.txt", "explosion");
 
 }
 
