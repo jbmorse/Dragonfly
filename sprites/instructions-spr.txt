@@ -10,11 +10,11 @@ color default
    Current            Word          Word you     
     Level           progress      are capturing  
                                                  
+            W  E  L  C  O  M  E  <--- Letters you
+#  <-- You                            can pick up
                                                  
- W    E    L    C   O   M   E    <--- Letters you
-                                      can pick up
-                                                 
-#   <-- You                                      
+Checkpoints at level 5, 6, 8, 9, 10              
+Press 1, 2, 3, 4, or 5 at start menu to use!     
                                                  
 Instructions:                                    
   - Collect characters to complete words         

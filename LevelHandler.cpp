@@ -533,11 +533,14 @@ void LevelHandler::nextLevel(int nextlevel) {
 		startLevel_9(prevLevel);
 		break;
 	case 10 :
+		if (checkpoint < 4) {
+			checkpoint = 4;
+		}
 		startLevel_10(prevLevel);
 		break;
 	case 11 :
-		if (checkpoint < 4) {
-			checkpoint = 4;
+		if (checkpoint < 5) {
+			checkpoint = 5;
 		}
 		startLevel_11(prevLevel);
 		break;

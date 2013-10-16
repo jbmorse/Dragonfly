@@ -96,6 +96,11 @@ int GameStart::eventHandler(Event *p_e) {
 			break;
 		case '4':	//Checkpoint 4
 			if (levelhandler.getCheckpoint() > 3) {
+				levelhandler.nextLevel(10);
+			}
+			break;
+		case '5':	//Checkpoint 5
+			if (levelhandler.getCheckpoint() > 4) {
 				levelhandler.nextLevel(11);
 			}
 			break;

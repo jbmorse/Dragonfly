@@ -80,24 +80,12 @@ int BossFinal::eventHandler(Event *p_e) {
 				attack1();
 				attack_countup = 0;
 			}
-			if (chartimer == 300) {
-				Character *goodchar = new Character();
-				goodchar->setXVelocity(-1);
-				worldmanager.moveObject(goodchar,Position(this->getPosition().getX()-5, this->getPosition().getY()));
-				chartimer = 0;
-			}
 		}
 
 		if (health == 2) {
 			if ((random() % 100 + attack_countup) > 92) {
 				attack2();
 				attack_countup = 0;
-			}
-			if (chartimer == 300) {
-				Character *goodchar = new Character();
-				goodchar->setXVelocity(-1);
-				worldmanager.moveObject(goodchar,Position(this->getPosition().getX()-5, this->getPosition().getY()));
-				chartimer = 0;
 			}
 		}
 
@@ -107,12 +95,12 @@ int BossFinal::eventHandler(Event *p_e) {
 				attack3();
 				attack_countup = 0;
 			}
-			if (chartimer >= 299) {
-				if (chartimer%60 == 0) {
-					Character *goodchar = new Character();
-					goodchar->setXVelocity(-1);
-					worldmanager.moveObject(goodchar,Position(this->getPosition().getX()-5, this->getPosition().getY()));
-				}
+		}
+		if (chartimer >= 299) {
+			if (chartimer%100 == 0) {
+				Character *goodchar = new Character();
+				goodchar->setXVelocity(-1);
+				worldmanager.moveObject(goodchar,Position(this->getPosition().getX()-5, this->getPosition().getY()));
 			}
 		}
 
