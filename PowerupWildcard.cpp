@@ -42,18 +42,26 @@ PowerupWildcard::PowerupWildcard() {
 }
 
 int PowerupWildcard::eventHandler(Event *p_e) {
+
 	if(p_e->getType() == OUT_EVENT) {
+
 		WorldManager::getInstance().markForDelete(this);
-	} else if(p_e->getType() == COLLISION_EVENT) {
+		return 1;
+	}
+	else if(p_e->getType() == COLLISION_EVENT) {
+
 		EventCollision *p_c = (EventCollision *)p_e;
 
 		// Only delete if colliding with hero or boss
 		if(p_c->getObject1()->getType() == "Hero" ||
-		   p_c->getObject2()->getType() == "Hero" || 
-		   p_c->getObject1()->getType() == "BossSkull" ||
-		   p_c->getObject2()->getType() == "BossSkull")
+				p_c->getObject2()->getType() == "Hero" ||
+				p_c->getObject1()->getType() == "BossSkull" ||
+				p_c->getObject2()->getType() == "BossSkull")
 			WorldManager::getInstance().markForDelete(this);
+		return 1;
 	}
+
+	return 0;
 }
 
 void PowerupWildcard::draw() {

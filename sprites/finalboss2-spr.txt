@@ -44,6 +44,7 @@ o/
 X\      
 o/      
 end
+<>      
 o/      
 X\      
 o/\     
@@ -56,7 +57,7 @@ X-234234
 >7000063
 o-Ax0000
 X\SEGA.U
-o**/.. 
+o**/..  
 X\**    
 o/%!    
 X\/     
@@ -64,12 +65,13 @@ o/
 X\      
 o/      
 end
+X\      
 o/      
 X\      
 o/\     
 X\*!    
 o/ %    
-X\GGNORE  
+X\GGNORE
 o/&3041 
 C/845g34
 ]1GJFD78

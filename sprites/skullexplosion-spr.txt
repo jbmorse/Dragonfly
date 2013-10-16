@@ -1,0 +1,77 @@
+frames 8
+width 15
+height 8
+color red
+               
+   _ _         
+   0 0         
+    /          
+   XX          
+               
+               
+               
+end
+               
+       *       
+   *           
+     *         
+   *  *        
+               
+               
+               
+end
+               
+   4   *       
+   *^  J       
+   J *u        
+   *K *        
+     g  j      
+               
+               
+end
+    %          
+   4 ^ *       
+   *^ MJ  N    
+   J *u        
+   *K * & t    
+   R g Jf  g   
+  F   N V      
+               
+end
+    %  d g k   
+;  4 ^ * n .   
+ ' ** MJ  N    
+ F J ** n   ;  
+F b*K * & t /  
+V  R g *f Bg   
+  F = N V      
+         *     
+end
+ 4% %2 d g k c 
+; #4 ^r* n . m 
+ ' ** M*t N n  
+ F J **h-) (;  
+Flb*K * & t / j
+V  R g *f Bg:  
+  F = N V ;dkl 
+ dkgierm0   *  
+end
+{4%-%2-d*g*k*c&
+;k#4 ^r* n . m*
+#'#** M*t N n H
+#F#J#**h-)#(;##
+Flb*K#*#&#t#/#j
+V##R#g *f Bg:##
+##F#= N V ;dkl 
+#dkgierm0   *##
+end
+{##-%2-d*###*#&
+;k#4##r*#####m*
+#######M*t#N ##
+###J#**h#)#(;##
+F###K#*#&#t#/#j
+V##R#g#*f Bg:##
+##F#=###V #####
+#dk####m0###*##
+end
+eof

@@ -95,7 +95,6 @@ void WorldManager::update() {
 	int i = 0;
 	for (deletion_I.first(); !deletion_I.isDone(); deletion_I.next()) {
 		i++;
-		logmanager.writeLog("deletion %d\n", i);
 		delete deletion_I.currentObject();
 	}
 	deletions.clear();

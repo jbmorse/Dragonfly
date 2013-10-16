@@ -1,6 +1,6 @@
 frames 20
 width 8
-height 21
+height 20
 color green
 o\      
 X/      

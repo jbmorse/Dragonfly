@@ -27,7 +27,7 @@ GAMESRC= Character.cpp Hero.cpp Star.cpp BossSkull.cpp \
          CapturedString.cpp EventCapturedLetter.cpp EvilCharacter.cpp GameStart.cpp \
          TargetString.cpp LevelHandler.cpp EventLevel.cpp LevelChange.cpp \
          PowerupHandler.cpp PowerupShield.cpp BossExplosion.cpp SafeBox.cpp \
-         PowerupWildcard.cpp BossFinal.cpp
+         PowerupWildcard.cpp BossFinal.cpp FinalBossExplosion.cpp
 GAME= game.cpp
 EXECUTABLE= game
 OBJECTS= $(addprefix $(ENGPATH)/, $(GAMEENG:.cpp=.o)) $(GAMESRC:.cpp=.o)

@@ -55,9 +55,6 @@ int ObjectList::remove(Object *p_o) {
 		}
 	}
 
-	LogManager &logmanager = LogManager::getInstance();
-	logmanager.writeLog("ObjectList::remove: Did not locate object!\n");
-
 	return -1; //Did not locate object
 
 }

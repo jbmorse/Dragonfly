@@ -14,17 +14,21 @@
 #include "EventMouse.h"
 
 /*
- *
+ * FINAL BOSS has 3 modes of attack, once dead the game ends in victory
  */
 class BossFinal : public Object {
 
 	protected:
 	void moveY(int dy);
 	void moveX(int dx);
-	void attack();
+	void attack1();
+	void attack2();
+	void attack3();
+	void laser();
 	void hit(EventCollision *p_c);
 	int attack_countup;
 	int health;
+	int chartimer;
 
 	public:
 	BossFinal();

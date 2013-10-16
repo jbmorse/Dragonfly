@@ -22,9 +22,9 @@ BossExplosion::BossExplosion(Position position) {
 	ResourceManager &resource_manager = ResourceManager::getInstance();
 
 	//Setup explosion sprite
-	Sprite *p_temp_sprite = resource_manager.getSprite("explosion");
+	Sprite *p_temp_sprite = resource_manager.getSprite("skullexplosion");
 	if (!p_temp_sprite) {
-		log_manager.writeLog("Explosion::Explosion(): Warning! Sprite '%s' not found", "explosion");
+		log_manager.writeLog("Explosion::Explosion(): Warning! Sprite '%s' not found", "skullexplosion");
 	}
 	else {
 		setSprite(p_temp_sprite);

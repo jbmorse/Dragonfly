@@ -97,7 +97,6 @@ int EvilCharacter::eventHandler(Event *p_e) {
 
 	if (p_e->getType() == COLLISION_EVENT) {
 		LogManager &logmanager = LogManager::getInstance();
-		logmanager.writeLog("EvilCharacter::eventHandler: received Collision event!\n");
 		EventCollision *p_collision_event = static_cast <EventCollision *> (p_e);
 		hit(p_collision_event);
 		return 1;
